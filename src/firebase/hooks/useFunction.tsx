@@ -1,7 +1,6 @@
 import { useSnackbar, ProviderContext } from 'notistack';
 import { useTranslation, UseTranslationResponse } from 'react-i18next';
 import firebase from 'firebase';
-import React from 'react';
 
 interface ICatchErrorProps {
     err: {

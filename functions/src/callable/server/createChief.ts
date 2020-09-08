@@ -1,12 +1,13 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import * as utils from '../utils';
-import * as modelsUtil from '../utils/models';
-import { createNewOfficer } from './citizen/recruitCitizen';
-import { makeDiscordLog } from '../registry/makeRegistration';
+import * as utils from '../../utils';
+import * as modelsUtil from '../../utils/models';
+import { createNewOfficer } from '../citizen/recruitCitizen';
+import { makeDiscordLog } from '../../registry/makeRegistration';
 
 export interface ICreateChiefProps {
     uid: string;
+    password: string;
 }
 
 export const createChiefCall = functions.https.onCall(
@@ -15,12 +16,22 @@ export const createChiefCall = functions.https.onCall(
             uid: {
                 validFirebaseId: 'citizens',
             },
+            password: {
+                presence: true,
+                type: 'string',
+            },
         });
 
         if (error) {
             throw error;
         }
         /* ******************************************************************* */
+        const serverDoc = await admin.firestore().collection('config').doc('server').get();
+
+        const serverPassword = serverDoc.get('Password');
+        if (!serverPassword || serverPassword !== data.password) {
+            throw new functions.https.HttpsError('unauthenticated', 'Invalid server password');
+        }
 
         // Check if not chief exists
         const adminQuery = await admin
