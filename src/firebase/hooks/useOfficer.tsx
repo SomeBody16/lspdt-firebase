@@ -27,7 +27,7 @@ export function useOfficerHook(
                 });
                 setIsLoading(false);
             });
-    }, [user]);
+    }, [user, officerId]);
 
     return {
         value: officer,

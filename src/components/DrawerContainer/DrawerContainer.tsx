@@ -92,7 +92,9 @@ function TabletContainer(props: any) {
     );
 }
 
-type AppBarProgressContextValue = React.Dispatch<React.SetStateAction<number | 'indeterminate' | null>>;
+type AppBarProgressContextValue = React.Dispatch<
+    React.SetStateAction<number | 'indeterminate' | null>
+>;
 export const AppBarProgressContext = React.createContext<AppBarProgressContextValue>(() => {});
 
 function DrawerContainer(props: any) {
@@ -101,7 +103,9 @@ function DrawerContainer(props: any) {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [t] = useTranslation('common');
 
-    const [loadingProgress, setLoadingProgress] = React.useState<number | 'indeterminate' | null>(null);
+    const [loadingProgress, setLoadingProgress] = React.useState<number | 'indeterminate' | null>(
+        null
+    );
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -128,13 +132,17 @@ function DrawerContainer(props: any) {
                     </Typography>
 
                     <Hidden xsDown>
-                        <Typography variant='h6'>{!isMobile && user && user.displayName}</Typography>
+                        <Typography variant='h6'>
+                            {!isMobile && user && user.displayName}
+                        </Typography>
                     </Hidden>
                 </Toolbar>
                 {loadingProgress && (
                     <LinearProgress
                         color='secondary'
-                        variant={typeof loadingProgress === 'number' ? 'determinate' : 'indeterminate'}
+                        variant={
+                            typeof loadingProgress === 'number' ? 'determinate' : 'indeterminate'
+                        }
                         value={typeof loadingProgress === 'number' ? loadingProgress : 0}
                     />
                 )}

@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
         },
         formField: {
-            marginBottom: theme.spacing(2),
+            marginBottom: theme.spacing(1),
             marginRight: 'auto',
         },
         spacer: {
@@ -120,12 +120,18 @@ function ArrestSummaryForm() {
         ].join(' ');
     };
 
+    const [closestId, setClosestId] = React.useState<number>(0);
+    React.useEffect(() => {
+        fivemBridge.requestClosestId();
+        return fivemBridge.onClosestId(setClosestId);
+    }, [fivemBridge]);
+
     const handleMandateClick = async () => {
-        await fivemBridge.mandate(0, formValue.penalty, reasonStr());
+        fivemBridge.mandate(closestId, formValue.penalty, reasonStr());
     };
 
     const handleArrestClick = async () => {
-        await fivemBridge.arrest(0, formValue.judgment, reasonStr());
+        fivemBridge.arrest(closestId, formValue.judgment, reasonStr());
     };
 
     const handleIncludeWanted = (includeWanted: boolean) => {
@@ -297,6 +303,17 @@ function ArrestSummaryForm() {
 
             <div className={classes.spacer}></div>
 
+            <Button
+                className={classes.formField}
+                fullWidth
+                variant='outlined'
+                onClick={fivemBridge.requestClosestId}
+            >
+                <div className={classes.button}>
+                    <span>{t('fivem.closestId', { closestId })}</span>
+                    <span>{emojify(':id:')}</span>
+                </div>
+            </Button>
             <Button
                 className={classes.formField}
                 fullWidth

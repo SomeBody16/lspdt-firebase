@@ -20,6 +20,7 @@ import { listPermissionsCall } from './callable/listPermissions';
 import { addRankCall } from './callable/config/ranks/addRank';
 import { editRankCall } from './callable/config/ranks/editRank';
 import { deleteRankCall } from './callable/config/ranks/deleteRank';
+import { createChiefCall } from './callable/createChief';
 
 admin.initializeApp();
 admin.firestore().settings({
@@ -53,3 +54,4 @@ export const deleteRank = deleteRankCall;
 
 // Permissions
 export const listPermissions = listPermissionsCall;
+export const createChief = createChiefCall;

@@ -68,6 +68,9 @@
             }
         }
     },
+    "fivem": {
+        "closestId": "Numer buta: {{closestId}}"
+    },
     "common": {
         "form": {
             "reset": "Wyczyść",

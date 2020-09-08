@@ -8,6 +8,7 @@ import { Typography } from '@material-ui/core';
 import { AppBarProgressContext } from '../../DrawerContainer/DrawerContainer';
 import { useSnackbar } from 'notistack';
 import { ISetCitizenPhotoProps } from '../../../../functions/src/callable/citizen/setCitizenPhoto';
+import useFivemBridge from '../../../hooks/useFivemBridge';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -67,63 +68,39 @@ function CitizenPhoto(props: Props) {
 
     const setCitizenPhoto = useFunction<ISetCitizenPhotoProps, void>('setCitizenPhoto');
 
-    const handleOnClick = React.useCallback(async () => {
-        setAppBarProgress('indeterminate');
-
-        const clipboardData: string = await navigator.clipboard.readText();
-
-        const image = new Image();
-        image.onerror = () => {
-            snackbar.enqueueSnackbar(t('snackbar.notAnImageUrl'), {
-                variant: 'error',
-            });
-            setAppBarProgress(null);
-        };
-        image.onload = () => {
-            setCitizenPhoto({
-                citizenId: props.citizenId,
-                imageUrl: clipboardData,
-            })
-                .then(() => {
-                    snackbar.enqueueSnackbar(t('snackbar.citizenImageSet'), {
-                        variant: 'success',
-                    });
-                })
-                .catch((err) => {
-                    snackbar.enqueueSnackbar(t(err.message, err.details), {
-                        variant: 'error',
-                    });
-                })
-                .finally(() => setAppBarProgress(null));
-        };
-
-        image.src = clipboardData;
-    }, [setAppBarProgress, snackbar, t, setCitizenPhoto, props.citizenId]);
-
+    const fivemBridge = useFivemBridge();
     React.useEffect(() => {
-        const onPasteHandler = (pasteEvent: any) => {
-            // consider the first item (can be easily extended for multiple items)
-            var item = pasteEvent.clipboardData.items[0];
+        return fivemBridge.onPasteImage(async (src) => {
+            setAppBarProgress('indeterminate');
 
-            if (item.type.indexOf('image') === 0) {
-                var blob = item.getAsFile();
+            const image = new Image();
+            image.onerror = () => {
+                snackbar.enqueueSnackbar(t('snackbar.notAnImageUrl'), {
+                    variant: 'error',
+                });
+                setAppBarProgress(null);
+            };
+            image.onload = () => {
+                setCitizenPhoto({
+                    citizenId: props.citizenId,
+                    imageUrl: src,
+                })
+                    .then(() => {
+                        snackbar.enqueueSnackbar(t('snackbar.citizenImageSet'), {
+                            variant: 'success',
+                        });
+                    })
+                    .catch((err) => {
+                        snackbar.enqueueSnackbar(t(err.message, err.details), {
+                            variant: 'error',
+                        });
+                    })
+                    .finally(() => setAppBarProgress(null));
+            };
 
-                var reader = new FileReader();
-                reader.onload = async (event) => {
-                    const res = event.target?.result;
-                    console.log({ res });
-                    if (res) {
-                        await navigator.clipboard.writeText(res as string);
-                        await handleOnClick();
-                    }
-                };
-
-                reader.readAsDataURL(blob);
-            }
-        };
-        document.addEventListener('paste', onPasteHandler);
-        return () => document.removeEventListener('paste', onPasteHandler);
-    }, [handleOnClick]);
+            image.src = src;
+        });
+    }, [fivemBridge, props.citizenId, setAppBarProgress, setCitizenPhoto, snackbar, t]);
 
     const imageSrc = citizen.value?.ImageUrl || '/images/no_photo_found.jpg';
     const citizenPhotoClassName = `${classes.citizenPhoto} ${
@@ -131,7 +108,7 @@ function CitizenPhoto(props: Props) {
     }`;
 
     return (
-        <div className={classes.root} onClick={handleOnClick}>
+        <div className={classes.root}>
             <img className={citizenPhotoClassName} src={imageSrc} alt='' />
             {citizen.value?.IsWanted && (
                 <Typography

@@ -20,6 +20,9 @@
             }
         }
     },
+    "fivem": {
+        "closestId": "Numer buta: {{closestId}}"
+    },
     "common": {
         "id": "Identyfikator",
         "loading": "Ładowanie...",

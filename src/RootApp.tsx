@@ -10,11 +10,18 @@ import { useAuthChanged } from './firebase';
 import { SnackbarProvider } from 'notistack';
 import ProvideProviders, { IProviderWithProps } from './components/utils/ProvideProviders';
 
+import packageJson from '../package.json';
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
             height: '100vh',
+        },
+        buildNumber: {
+            position: 'absolute',
+            bottom: theme.spacing(1),
+            right: theme.spacing(1),
         },
     })
 );
@@ -46,11 +53,11 @@ function RootApp() {
                         <Route exact path='/'>
                             <LoginScreen />
                         </Route>
-                        {/* TODO: Change 'true' to 'user' | DEBUG */}
                         <Route path='/tablet'>
-                            {true ? <DrawerContainer /> : <Redirect to='/' />}
+                            {user ? <DrawerContainer /> : <Redirect to='/' />}
                         </Route>
                     </Switch>
+                    <div className={classes.buildNumber}>{packageJson.build.unique}</div>
                 </div>
             </ProvideProviders>
         </Router>

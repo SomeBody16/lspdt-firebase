@@ -48,7 +48,6 @@ export const makeRegistration = async (
                         'Citizen',
                         `${props.Citizen.Name} ${props.Citizen.Surname} | ${props.Citizen.Id}`
                     )
-                    .setColor(0x085ba3)
                     .setAuthor(
                         `${props.OfficerAuthor.BadgeNumber} | ${props.OfficerAuthor.Citizen.Name} ${props.OfficerAuthor.Citizen.Surname} | ${props.OfficerAuthor.Id}`
                     );
@@ -74,7 +73,7 @@ export const makeDiscordLog = async (discordLogOptions: IDiscordLogOptions) => {
     hook.setUsername('LSPD Tablet');
     hook.setAvatar('https://t7.rbxcdn.com/0bf0b1236401f5ba95b1c72a95c7df96');
 
-    let msg = new MessageBuilder().setColor(0x085ba3);
+    let msg = new MessageBuilder().setTitle(discordLogOptions.title).setColor(0x085ba3);
     if (discordLogOptions.customMessage) {
         msg = discordLogOptions.customMessage(msg);
     }

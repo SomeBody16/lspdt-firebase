@@ -26,7 +26,6 @@ export function useFunctionHook<T = any, R = boolean>(
     const snackbar = useSnackbar();
 
     return async (props?: T): Promise<R | void> => {
-        console.log(`FIREBASE CALL: ${name}`, props);
         const call = firebase.functions().httpsCallable(name);
         const res = await call(props).catch((err) =>
             catchError({ err, useTranslationResponse, snackbar })
