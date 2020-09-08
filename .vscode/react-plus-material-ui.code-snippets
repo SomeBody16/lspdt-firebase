@@ -1,0 +1,53 @@
+{
+    "React + Material UI - Functions Component": {
+        "prefix": "rmufc",
+        "body": [
+            "import React from 'react';",
+            "import { Theme, createStyles } from '@material-ui/core/styles';",
+            "import { makeStyles } from '@material-ui/styles';",
+            "",
+            "const useStyles = makeStyles((theme: Theme) =>",
+            "    createStyles({",
+            "        // Component styles",
+            "    })",
+            ");",
+            "",
+            "interface Props {",
+            "    // Component props",
+            "}",
+            "",
+            "function ${1:${TM_FILENAME/(.*)\\..+$/$1/}}(props: Props) {",
+            "    const classes = useStyles();",
+            "    return <div>${0:$1 works!}</div>;",
+            "}",
+            "",
+            "export default $1;",
+            ""
+        ]
+    },
+    "React Use State": {
+        "prefix": "rus",
+        "body": ["const [${1:value}, set${1/(.{1})/${1:/upcase}/}] = React.useState<$2>(${3:''});"]
+    },
+    "React Use Callback": {
+        "prefix": "ruc",
+        "body": ["const ${1:useCallback} = React.useCallback(() => {", "   $0", "}, []);"]
+    },
+    "React Use Memo": {
+        "prefix": "rum",
+        "body": ["const ${1:useMemo} = React.useMemo(() => {", "   $0", "}, []);"]
+    },
+    "React Use Effect": {
+        "prefix": "rue",
+        "body": ["React.useEffect(() => {", "   $0", "}, []);"]
+    },
+    "SomeBody16 Use TextField": {
+        "prefix": "sbutf",
+        "body": [
+            "const [${1:name}FieldProps, $1, set${1/(.{1})/${1:/upcase}/}, set${1/(.{1})/${1:/upcase}/}Disabled] = useTextField({",
+            "   label: $2,",
+            "   type: $3,",
+            "});"
+        ]
+    }
+}

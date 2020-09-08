@@ -1,0 +1,208 @@
+{
+    "intl": {
+        "dateTime": {
+            "registration": {
+                "year": "numeric",
+                "month": "long",
+                "day": "2-digit",
+                "hour": "numeric",
+                "minute": "numeric"
+            }
+        },
+        "number": {
+            "penalty": {
+                "style": "currency",
+                "currency": "USD",
+                "minimumFractionDigits": 0
+            },
+            "judgment": {
+                "unit": "msc"
+            }
+        }
+    },
+    "common": {
+        "id": "Identyfikator",
+        "loading": "Ładowanie...",
+
+        "form": {
+            "title": "Tytuł",
+            "description": "Opis",
+
+            "button": {
+                "reset": "Wyczyść",
+                "search": "Wyszukaj",
+                "save": "Zapisz",
+                "cancel": "Anuluj",
+                "confirm": "Potwierdź",
+                "edit": "Edytuj"
+            },
+
+            "error": {
+                "titleEmpty": "Wprowadź tytuł wpisu"
+            }
+        }
+    },
+    "auth": {
+        "email": "E-mail",
+        "password": "Hasło",
+
+        "error": {
+            "emailEmpty": "Wprowadź adres e-mail",
+            "emailInvalid": "Podany adres e-mail jest nieprawidłowy",
+            "passwordEmpty": "Wprowadź hasło",
+            "auth/invalid-email": "Podany adres e-mail jest nieprawidłowy",
+            "auth/user-disabled": "Użytkownik odpowiadający temu adresowi e-mail został wyłączony",
+            "auth/user-not-found": "Nie ma użytkownika odpowiadającemu danemu adresowi e-mail",
+            "auth/wrong-password": "Podane hasło jest nieprawidłowe"
+        }
+    },
+    "registry": {
+        "newCop": "Dołączenie do policji",
+        "phoneChange": "Zmiana numeru telefonu",
+        "photoChange": "Nowe zdjęcie użytkownika",
+        "newWanted": "List gończy",
+        "arrestMandate": "{{penalty}} | {{judgment}}"
+    },
+    "citizen": {
+        "name": "Imię",
+        "surname": "Nazwisko",
+        "birthDate": "Data urodzenia",
+        "phoneNumber": "Nr. telefonu",
+
+        "state": {
+            "wanted": {
+                "label": "Poszukiwany",
+                "includeInCrimes": "Dołącz list gończy",
+                "onImageFontSize": 32
+            }
+        },
+
+        "example": {
+            "name": "Samuel",
+            "surname": "Buddy",
+            "phoneNumber": "000-0000"
+        },
+
+        "action": {
+            "arrestMandate": "Aresztuj | Mandat",
+            "setPhoneNumber": "Nr. telefonu",
+            "makeRegistration": "Wpis do rejestru",
+            "recruit": "Zatrudnij"
+        },
+
+        "error": {
+            "phoneNumberEmpty": "Pusty numer telefonu!",
+            "phoneNumberInvalid": "Nieprawidłowy numer telefonu!",
+            "phoneNumberSame": "Numer się nie różni od poprzedniego!"
+        },
+
+        "success": {
+            "phoneChanged": "Zmieniono numer telefonu!",
+            "registrationAdded": "Dodano wpis do rejestru!",
+            "recruit": "Pomyślnie zatrudniono obywatela!"
+        }
+    },
+    "officer": {
+        "rank": "Stopień",
+        "badgeNumber": "Nr. odznaki",
+
+        "action": {
+            "setBadgeNumber": "Ustaw numer odznaki",
+            "fire": "Zwolnij"
+        },
+
+        "success": {
+            "badgeNumberChanged": "Zmienino numer odznaki!"
+        },
+
+        "error": {
+            "badgeNumberSame": "Ten sam numer odznaki!",
+            "badgeNumberEmpty": "Wpisz numer odznaki!"
+        }
+    },
+    "crime": {
+        "name": "Przestępstwo",
+        "penalty": "Grzywna",
+        "judgment": "Odsiadka",
+
+        "action": {
+            "add": "Dodaj do taryfikatora",
+            "edit": "Edytuj przestępstwo"
+        },
+
+        "success": {
+            "deleted": "Usuwanie pomyślne!",
+            "edited": "Edycja pomyślna!",
+            "added": "Dodano do taryfikatora!"
+        }
+    },
+    "prefix": {
+        "content": "Grafika",
+        "description": "Przeznaczenie",
+
+        "action": {
+            "add": "Dodaj ikonę",
+            "edit": "Edytuj ikonę"
+        },
+
+        "success": {
+            "added": "Dodano ikonę!",
+            "edited": "Edycja pomyślna!",
+            "deleted": "Usuwanie pomyślne!"
+        }
+    },
+    "rank": {
+        "name": "Ranga",
+        "image": "Odznaka",
+        "callsign": "Callsign",
+        "permissions": "Permisje",
+
+        "action": {
+            "add": "Dodaj rangę",
+            "edit": "Edytuj rangę"
+        },
+
+        "success": {
+            "added": "Dodano rangę!",
+            "edited": "Edycja pomyślna!",
+            "deleted": "Usuwanie pomyślne!"
+        }
+    },
+
+    "message": {
+        "deleted": "Usuwanie pomyślne!",
+        "edited": "Edycja pomyślna!",
+        "added": "Dodano do taryfikatora!"
+    },
+
+    "permission": {
+        "accessSummary": "Dostęp do zakładki \"Podsumowanie\".",
+        "accessCitizens": "Dostęp do zakładki \"Mieszkańcy\".",
+        "accessVehicles": "Dostęp do zakładki \"Pojazdy\".",
+        "accessPolice": "Dostęp do zakładki \"Policjanci\".",
+        "accessCrimes": "Dostęp do zakładki \"Taryfikator\".",
+        "accessPrefixes": "Dostęp do zakładki \"Ikony\".",
+        "accessRanks": "Dostęp do zakładki \"Rangi\".",
+
+        "setCitizenPhoneNumber": "Możliwość edytowania numeru telefonu mieszkańca.",
+        "makeCitizenRegistration": "Możliwość własnego wpisu do rejestru mieszkańca.",
+        "accessArrestMandate": "Możliwość aresztowania/ wystawienia faktury dla mieszkańca.",
+        "recruitOfficer": "Możliwość zatrudnienia lub przywrócenia do służby policjanta.",
+
+        "changeOfficerBadgeNumber": "Możliwość zmiany numeru odznaki funkcjonariusza.",
+        "changeOfficerRank": "Możliwość zmiany rangi funkcjonariusza.",
+        "fireOfficer": "Możliwość zwolnienia funkcjonariusza.",
+
+        "manageCrimes": "Możliwość dodania, zmiany, usunięcia wpisów taryfikatora.",
+
+        "managePrefixes": "Możliwość dodania, zmiany, usunięcia ikon.",
+
+        "manageRanks": "Możliwość dodania, zmiany, usunięcia rangi."
+    },
+
+    "server": {
+        "error": {
+            "officerWithThisRankExists": "Zmień rangę oficera {{officer}} aby usunąć {{rank}}"
+        }
+    }
+}
