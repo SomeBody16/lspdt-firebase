@@ -9,42 +9,46 @@ export interface ICreateCitizenProps {
     password: string;
 }
 
-export const createCitizenCall = functions.https.onCall(
-    async (data: ICreateCitizenProps, context: functions.https.CallableContext) => {
-        const error = await utils.requireValidated(data, {
-            uid: {
-                presence: true,
-                type: 'string',
-            },
-            citizen: {
-                ModelCitizen: ['Name', 'Surname', 'BirthDate'],
-            },
-            password: {
-                presence: true,
-                type: 'string',
-            },
+export const createCitizenCall = functions.https.onRequest(async (req, res) => {
+    const data: ICreateCitizenProps = req.body;
+    const error = await utils.requireValidated(data, {
+        uid: {
+            presence: true,
+            type: 'string',
+        },
+        citizen: {
+            ModelCitizen: ['Name', 'Surname', 'BirthDate'],
+        },
+        password: {
+            presence: true,
+            type: 'string',
+        },
+    });
+
+    if (error) {
+        throw error;
+    }
+    /* ******************************************************************* */
+    const serverDoc = await admin.firestore().collection('config').doc('server').get();
+
+    const serverPassword = serverDoc.get('Password');
+    console.log('serverPassword', serverPassword);
+    console.log('data.password', data.password);
+    if (!serverPassword || serverPassword !== data.password) {
+        throw new functions.https.HttpsError('unauthenticated', 'Invalid server password');
+    }
+
+    await admin
+        .firestore()
+        .collection('citizens')
+        .doc(data.uid)
+        .set({
+            ...data.citizen,
+            CreateTime: Date.now(),
+            IsOfficer: false,
+            IsWanted: false,
+            IsChief: false,
         });
 
-        if (error) {
-            throw error;
-        }
-        /* ******************************************************************* */
-        const serverDoc = await admin.firestore().collection('config').doc('server').get();
-
-        const serverPassword = serverDoc.get('Password');
-        if (!serverPassword || serverPassword !== data.password) {
-            throw new functions.https.HttpsError('unauthenticated', 'Invalid server password');
-        }
-
-        await admin
-            .firestore()
-            .collection('citizens')
-            .add({
-                ...data.citizen,
-                CreateTime: Date.now(),
-                IsOfficer: false,
-                IsWanted: false,
-                IsChief: false,
-            });
-    }
-);
+    res.sendStatus(201);
+});

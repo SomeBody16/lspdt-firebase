@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "fivem-lspdt"
+    "default": "fivem-lspdt",
+    "atomicrp": "fivem-lspdt-atomicrp"
   }
 }

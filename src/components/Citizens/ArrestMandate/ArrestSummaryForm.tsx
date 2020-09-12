@@ -22,6 +22,7 @@ import { SelectedCrimesContext } from '../../../screens/Citizens/ArrestMandateSc
 import { useCitizen, useOfficer, useFunction } from '../../../firebase';
 import { IMakeCitizenWantedProps } from '../../../../functions/src/callable/citizen/arrestMandate/makeCitizenWanted';
 import { IConfirmArrestMandateProps } from '../../../../functions/src/callable/citizen/arrestMandate/confirmArrestMandate';
+import { penaltyJudgmentStr } from '../../Chips/PenaltyJudgment';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -65,7 +66,8 @@ function ArrestSummaryForm() {
     const classes = useStyles();
 
     const fivemBridge = useFivemBridge();
-    const [t] = useTranslation('common');
+    const translationResponse = useTranslation('lang');
+    const [t] = translationResponse;
     const { enqueueSnackbar } = useSnackbar();
     const setAppBarProgress = React.useContext(AppBarProgressContext);
 
@@ -126,6 +128,16 @@ function ArrestSummaryForm() {
         return fivemBridge.onClosestId(setClosestId);
     }, [fivemBridge]);
 
+    const handleShowClick = () => {
+        fivemBridge.show(
+            [
+                ...reasonStr().split(' '),
+                '\n',
+                penaltyJudgmentStr(formValue, translationResponse),
+            ].join(' ')
+        );
+    };
+
     const handleMandateClick = async () => {
         fivemBridge.mandate(closestId, formValue.penalty, reasonStr());
     };
@@ -175,7 +187,7 @@ function ArrestSummaryForm() {
             author: formValue.author,
         })
             .then(() => {
-                enqueueSnackbar(t('snackbar.makeWantedSuccess'), {
+                enqueueSnackbar(t('citizen.success.makeWantedSuccess'), {
                     variant: 'success',
                 });
                 history.replace(`/tablet/citizen/${citizenId}`);
@@ -205,7 +217,7 @@ function ArrestSummaryForm() {
             author: formValue.author,
         })
             .then(() => {
-                enqueueSnackbar(t('snackbar.arrestMandateSuccess'), {
+                enqueueSnackbar(t('citizen.success.arrestMandateSuccess'), {
                     variant: 'success',
                 });
                 history.replace(`/tablet/citizen/${citizenId}`);
@@ -220,7 +232,7 @@ function ArrestSummaryForm() {
         <form onSubmit={handleSubmit(onConfirm)} className={classes.form}>
             <TextField
                 className={classes.formField}
-                label={t('citizen.details.name')}
+                label={t('citizen.name')}
                 variant='filled'
                 value={citizen.value?.Name || '...'}
                 disabled
@@ -228,7 +240,7 @@ function ArrestSummaryForm() {
             />
             <TextField
                 className={classes.formField}
-                label={t('citizen.details.surname')}
+                label={t('citizen.surname')}
                 variant='filled'
                 value={citizen.value?.Surname || '...'}
                 disabled
@@ -246,7 +258,7 @@ function ArrestSummaryForm() {
                             ),
                         }}
                         type='number'
-                        label={t('citizen.form.arrestMandate.penalty')}
+                        label={t('crime.penalty')}
                         variant='filled'
                     />
                 }
@@ -266,7 +278,7 @@ function ArrestSummaryForm() {
                             ),
                         }}
                         type='number'
-                        label={t('citizen.form.arrestMandate.judgment')}
+                        label={t('crime.judgment')}
                         variant='filled'
                     />
                 }
@@ -285,7 +297,7 @@ function ArrestSummaryForm() {
                                 </InputAdornment>
                             ),
                         }}
-                        label={t('common.form.author')}
+                        label={t('common.author')}
                         variant='filled'
                     />
                 }
@@ -297,13 +309,13 @@ function ArrestSummaryForm() {
                 <FormControlLabel
                     className={classes.formField}
                     control={<Checkbox onChange={(e) => handleIncludeWanted(e.target.checked)} />}
-                    label={t('citizen.details.wanted.include')}
+                    label={t('citizen.state.wanted.includeInCrimes')}
                 />
             )}
 
             <div className={classes.spacer}></div>
 
-            <Button
+            {/* <Button
                 className={classes.formField}
                 fullWidth
                 variant='outlined'
@@ -312,6 +324,21 @@ function ArrestSummaryForm() {
                 <div className={classes.button}>
                     <span>{t('fivem.closestId', { closestId })}</span>
                     <span>{emojify(':id:')}</span>
+                </div>
+            </Button> */}
+            <Button
+                className={classes.formField}
+                fullWidth
+                variant='outlined'
+                onClick={handleShowClick}
+                disabled={
+                    crimesWithCount.length <= 0 ||
+                    (formValue.penalty <= 0 && formValue.judgment <= 0)
+                }
+            >
+                <div className={classes.button}>
+                    <span>{t('common.summary')}</span>
+                    <span>{emojify(':speech_balloon:')}</span>
                 </div>
             </Button>
             <Button
@@ -322,7 +349,7 @@ function ArrestSummaryForm() {
                 disabled={formValue.penalty <= 0}
             >
                 <div className={classes.button}>
-                    <span>{t('citizen.form.arrestMandate.mandate')}</span>
+                    <span>{t('citizen.action.mandate')}</span>
                     <span>{emojify(':dollar:')}</span>
                 </div>
             </Button>
@@ -335,7 +362,7 @@ function ArrestSummaryForm() {
                 disabled={formValue.judgment <= 0}
             >
                 <div className={classes.button}>
-                    <span>{t('citizen.form.arrestMandate.arrest')}</span>
+                    <span>{t('citizen.action.arrest')}</span>
                     <span>{emojify(':cop:')}</span>
                 </div>
             </Button>
@@ -351,7 +378,7 @@ function ArrestSummaryForm() {
                 }
             >
                 <div className={classes.button}>
-                    <span>{t('citizen.form.arrestMandate.makeWanted')}</span>
+                    <span>{t('citizen.action.makeWanted')}</span>
                     <span>{emojify(':spy:')}</span>
                 </div>
             </MakeWantedButton>
@@ -363,7 +390,7 @@ function ArrestSummaryForm() {
                 }
             >
                 <div className={classes.button}>
-                    <span>{t('common.form.confirm')}</span>
+                    <span>{t('common.form.button.confirm')}</span>
                     <span>{emojify(':clipboard:')}</span>
                 </div>
             </ConfirmButton>

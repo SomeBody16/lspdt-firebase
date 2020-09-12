@@ -29,7 +29,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-firebase.functions().useFunctionsEmulator('http://localhost:5001');
+// firebase.functions().useFunctionsEmulator('http://localhost:5001');
 
 export const useAllCrimes = useAllCrimesHook;
 export const useAllOfficers = useAllOfficersHook;

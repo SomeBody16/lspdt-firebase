@@ -26,6 +26,8 @@
     "common": {
         "id": "Identyfikator",
         "loading": "Ładowanie...",
+        "summary": "Podsumowanie",
+        "author": "Autor",
 
         "form": {
             "title": "Tytuł",
@@ -37,7 +39,8 @@
                 "save": "Zapisz",
                 "cancel": "Anuluj",
                 "confirm": "Potwierdź",
-                "edit": "Edytuj"
+                "edit": "Edytuj",
+                "copy": "Kopiuj"
             },
 
             "error": {
@@ -90,19 +93,26 @@
             "arrestMandate": "Aresztuj | Mandat",
             "setPhoneNumber": "Nr. telefonu",
             "makeRegistration": "Wpis do rejestru",
-            "recruit": "Zatrudnij"
+            "recruit": "Zatrudnij",
+            "mandate": "Faktura",
+            "arrest": "Aresztuj",
+            "makeWanted": "List gończy"
         },
 
         "error": {
             "phoneNumberEmpty": "Pusty numer telefonu!",
             "phoneNumberInvalid": "Nieprawidłowy numer telefonu!",
-            "phoneNumberSame": "Numer się nie różni od poprzedniego!"
+            "phoneNumberSame": "Numer się nie różni od poprzedniego!",
+            "notAnImageUrl": "W schowku nie znaleziono zdjęcia!"
         },
 
         "success": {
             "phoneChanged": "Zmieniono numer telefonu!",
             "registrationAdded": "Dodano wpis do rejestru!",
-            "recruit": "Pomyślnie zatrudniono obywatela!"
+            "recruit": "Pomyślnie zatrudniono obywatela!",
+            "imageSet": "Pomyślnie zmieniono zdjęcie obywatela!",
+            "arrestMandateSuccess": "Dodano wpis do bazy danych!",
+            "makeWantedSuccess": "Wystawiono list gończy!"
         }
     },
     "officer": {

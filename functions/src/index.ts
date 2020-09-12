@@ -28,12 +28,15 @@ admin.firestore().settings({
     ignoreUndefinedProperties: true,
 });
 
+// Citizen
 export const setCitizenPhoneNumber = setCitizenPhoneNumberCall;
 export const makeCitizenRegistration = makeCitizenRegistrationCall;
 export const recruitCitizen = recruitCitizenCall;
 export const setCitizenPhoto = setCitizenPhotoCall;
 export const makeCitizenWanted = makeCitizenWantedCall;
 export const confirmArrestMandate = confirmArrestMandateCall;
+
+// Officer
 export const updateOfficerBadgeNumber = updateOfficerBadgeNumberCall;
 export const setOfficerRank = setOfficerRankCall;
 export const fireOfficer = fireOfficerCall;

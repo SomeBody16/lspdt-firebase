@@ -11,6 +11,7 @@ import { SnackbarProvider } from 'notistack';
 import ProvideProviders, { IProviderWithProps } from './components/utils/ProvideProviders';
 
 import packageJson from '../package.json';
+import firebase from 'firebase';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -19,9 +20,10 @@ const useStyles = makeStyles((theme: Theme) =>
             height: '100vh',
         },
         buildNumber: {
-            position: 'absolute',
+            position: 'fixed',
             bottom: theme.spacing(1),
             right: theme.spacing(1),
+            fontSize: '80%',
         },
     })
 );
@@ -44,6 +46,14 @@ function RootApp() {
         },
     ];
 
+    React.useEffect(() => {
+        const call = firebase.functions().httpsCallable('findByIdScan');
+        console.log('calling find');
+        call({ filePath: 'id.png' })
+            .then((data) => console.log(JSON.stringify(data)))
+            .catch(console.error);
+    }, []);
+
     return (
         <Router>
             <ProvideProviders providers={providers}>
@@ -54,7 +64,11 @@ function RootApp() {
                             <LoginScreen />
                         </Route>
                         <Route path='/tablet'>
-                            {user ? <DrawerContainer /> : <Redirect to='/' />}
+                            {user || process.env.NODE_ENV === 'development' ? (
+                                <DrawerContainer />
+                            ) : (
+                                <Redirect to='/' />
+                            )}
                         </Route>
                     </Switch>
                     <div className={classes.buildNumber}>{packageJson.build.unique}</div>

@@ -61,7 +61,7 @@ function OfficerBadge(props: Props) {
 function CitizenPhoto(props: Props) {
     const classes = useStyles();
     const citizen = useCitizen(props.citizenId);
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
 
     const snackbar = useSnackbar();
     const setAppBarProgress = React.useContext(AppBarProgressContext);
@@ -71,11 +71,12 @@ function CitizenPhoto(props: Props) {
     const fivemBridge = useFivemBridge();
     React.useEffect(() => {
         return fivemBridge.onPasteImage(async (src) => {
+            console.log('src', src);
             setAppBarProgress('indeterminate');
 
             const image = new Image();
             image.onerror = () => {
-                snackbar.enqueueSnackbar(t('snackbar.notAnImageUrl'), {
+                snackbar.enqueueSnackbar(t('citizen.error.notAnImageUrl'), {
                     variant: 'error',
                 });
                 setAppBarProgress(null);
@@ -86,7 +87,7 @@ function CitizenPhoto(props: Props) {
                     imageUrl: src,
                 })
                     .then(() => {
-                        snackbar.enqueueSnackbar(t('snackbar.citizenImageSet'), {
+                        snackbar.enqueueSnackbar(t('citizen.success.imageSet'), {
                             variant: 'success',
                         });
                     })
@@ -108,18 +109,21 @@ function CitizenPhoto(props: Props) {
     }`;
 
     return (
-        <div className={classes.root}>
+        <div
+            className={classes.root}
+            onClick={async () =>
+                fivemBridge.triggerEvent('pasteImage', await navigator.clipboard.readText())
+            }
+        >
             <img className={citizenPhotoClassName} src={imageSrc} alt='' />
             {citizen.value?.IsWanted && (
                 <Typography
                     style={{
-                        fontSize: (t(
-                            'citizen.details.wanted.onImageFontSize'
-                        ) as unknown) as number,
+                        fontSize: (t('citizen.state.wanted.onImageFontSize') as unknown) as number,
                     }}
                     className={classes.isWanted}
                 >
-                    {t('citizen.details.wanted.label').toUpperCase()}
+                    {t('citizen.state.wanted.label').toUpperCase()}
                 </Typography>
             )}
             {citizen.value?.IsOfficer && <OfficerBadge {...props} />}

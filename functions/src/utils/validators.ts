@@ -396,6 +396,8 @@ const injectValidators = () => {
     validate.validators.validFirebaseIds = validFirebaseIds;
     validate.validators.isPermission = isPermission;
     validate.validators.isPermissions = isPermissions;
+    validate.validators.validImageUrl = validImageUrl;
+    validate.validators.validImageDataUrl = validImageDataUrl;
     validate.validators.validImage = validImage;
 
     validate.validators.ModelCitizen = ModelCitizen;
