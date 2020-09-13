@@ -41,7 +41,7 @@ function AddCrimeButton() {
         setAppBarProgress('indeterminate');
 
         addCrime({ crime })
-            .then(() => enqueueSnackbar(t('crime.message.added'), { variant: 'success' }))
+            .then(() => enqueueSnackbar(t('Dodano!'), { variant: 'success' }))
             .finally(() => {
                 setAppBarProgress(null);
                 setDisabled(false);
@@ -56,7 +56,7 @@ function AddCrimeButton() {
         <React.Fragment>
             <CrimeDialog
                 open={isDialogOpen}
-                title={t('crime.action.add')}
+                title={t('Dodaj do taryfikatora')}
                 onClose={handleState(false)}
                 onSave={handleSave}
             />

@@ -28,7 +28,7 @@ interface Props {
 
 function ButtonFireOfficer(props: Props) {
     const classes = useStyles();
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
     const { enqueueSnackbar } = useSnackbar();
 
     const fireOfficer = useFunction<IFireOfficerProps, void>('fireOfficer');
@@ -41,7 +41,7 @@ function ButtonFireOfficer(props: Props) {
             officerId: props.officerId,
         })
             .then(() => {
-                enqueueSnackbar(t('snackbar.officerFired'), {
+                enqueueSnackbar(t('Zwolniono funkcjonariusza!'), {
                     variant: 'success',
                 });
             })
@@ -54,7 +54,7 @@ function ButtonFireOfficer(props: Props) {
     }
     return (
         <SubmitButton className={classes.fireButton} {...props.ButtonProps} onClick={handleClick}>
-            {t('officer.form.fire')}
+            {t('Zwolnij')}
         </SubmitButton>
     );
 }

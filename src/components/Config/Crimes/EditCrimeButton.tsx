@@ -34,7 +34,7 @@ function EditCrimeButton(props: Props) {
         setAppBarProgress('indeterminate');
 
         editCrime({ crime })
-            .then(() => enqueueSnackbar(t('crime.message.edited'), { variant: 'success' }))
+            .then(() => enqueueSnackbar(t('Edytowano!'), { variant: 'success' }))
             .finally(() => {
                 setDisabled(false);
                 setAppBarProgress(null);
@@ -45,7 +45,7 @@ function EditCrimeButton(props: Props) {
         <React.Fragment>
             <CrimeDialog
                 open={isDialogOpen}
-                title={t('crime.action.edit')}
+                title={t('Edytuj przestępstwo')}
                 onClose={handleState(false)}
                 onSave={handleSave}
                 crimeId={props.crimeId}

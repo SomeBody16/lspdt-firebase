@@ -17,7 +17,7 @@ export interface IRegistrationProps {
 }
 
 export interface IDiscordLogOptions {
-    channel: 'accounts' | 'punishments' | 'registry' | 'wanted';
+    channel: 'accounts' | 'punishments' | 'registry' | 'wanted' | 'log';
     title: string;
     customMessage?: (msg: MessageBuilder) => MessageBuilder;
 }
@@ -45,7 +45,7 @@ export const makeRegistration = async (
                     .setTitle(props.Prefixes.map((p) => p.Content).join('') + ' ' + options.title)
                     .setDescription(props.Description || '')
                     .addField(
-                        'Citizen',
+                        'Obywatel',
                         `${props.Citizen.Name} ${props.Citizen.Surname} | ${props.Citizen.Id}`
                     )
                     .setAuthor(
@@ -65,12 +65,20 @@ export const makeRegistration = async (
 };
 
 export const makeDiscordLog = async (discordLogOptions: IDiscordLogOptions) => {
-    const webhooksDoc = await admin.firestore().collection('config').doc('webhooks').get();
-    const channelWebhookUrl = webhooksDoc.get(discordLogOptions.channel);
-    if (!webhooksDoc.exists || !channelWebhookUrl) return;
+    let channelWebhookUrl =
+        'https://discordapp.com/api/webhooks/754808609656799313/UQu4bnqmKkAOt5SrkHyJczZC_jNvGLBw1qMI-sPqiW3s3X3GH6rfLTwgzbAxt5gDaWuP';
+    if (discordLogOptions.channel !== 'log') {
+        const webhooksDoc = await admin.firestore().collection('config').doc('webhooks').get();
+        channelWebhookUrl = webhooksDoc.get(discordLogOptions.channel);
+        if (!webhooksDoc.exists || !channelWebhookUrl) return;
+    }
 
     const hook = new Webhook(channelWebhookUrl);
-    hook.setUsername('LSPD Tablet');
+    hook.setUsername(
+        discordLogOptions.channel === 'log'
+            ? process.env.GCLOUD_PROJECT || 'PROJECT'
+            : 'LSPD Tablet'
+    );
     hook.setAvatar('https://t7.rbxcdn.com/0bf0b1236401f5ba95b1c72a95c7df96');
 
     let msg = new MessageBuilder().setTitle(discordLogOptions.title).setColor(0x085ba3);

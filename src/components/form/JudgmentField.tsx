@@ -12,7 +12,7 @@ function JudgmentField(props?: TextFieldProps) {
                 ),
             }}
             type='number'
-            label={t('crime.judgment')}
+            label={t('Odsiadka')}
             {...props}
         />
     );

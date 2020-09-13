@@ -34,7 +34,7 @@ function EditPrefixButton(props: Props) {
         setAppBarProgress('indeterminate');
 
         editPrefix({ prefix })
-            .then(() => enqueueSnackbar(t('prefix.success.edited'), { variant: 'success' }))
+            .then(() => enqueueSnackbar(t('Edytowano!'), { variant: 'success' }))
             .finally(() => {
                 setDisabled(false);
                 setAppBarProgress(null);
@@ -45,7 +45,7 @@ function EditPrefixButton(props: Props) {
         <React.Fragment>
             <PrefixDialog
                 open={isDialogOpen}
-                title={t('crime.action.edit')}
+                title={t('Edytuj ikonę')}
                 onClose={handleState(false)}
                 onSave={handleSave}
                 prefixId={props.prefixId}

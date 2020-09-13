@@ -25,7 +25,7 @@ function DeleteCrimeButton(props: Props) {
         setDisabled(true);
 
         deleteCrime({ crimeId: props.crimeId })
-            .then(() => enqueueSnackbar(t('crime.message.deleted'), { variant: 'success' }))
+            .then(() => enqueueSnackbar(t('Usunięto!'), { variant: 'success' }))
             .finally(() => {
                 setAppBarProgress(null);
                 setDisabled(false);

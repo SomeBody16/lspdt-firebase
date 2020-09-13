@@ -71,8 +71,8 @@ function PrefixesScreen() {
                     <TableHead>
                         <TableRow>
                             <TableCell />
-                            <TableCell>{t('prefix.description')}</TableCell>
-                            <TableCell align='right'>{t('prefix.content')}</TableCell>
+                            <TableCell>{t('Przeznaczenie')}</TableCell>
+                            <TableCell align='right'>{t('Grafika')}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

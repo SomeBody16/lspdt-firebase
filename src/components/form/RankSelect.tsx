@@ -10,14 +10,14 @@ interface Props {
 }
 
 function RankSelect(props: Props) {
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
 
     const allRanks = useAllRanks();
 
     return (
         <TextField
             select
-            label={t('officer.details.rank')}
+            label={t('Ranga')}
             value={props.value}
             onChange={(e) => props.onChange && props.onChange(e.target.value)}
             fullWidth

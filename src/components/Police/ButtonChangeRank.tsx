@@ -20,7 +20,7 @@ interface Props {
 }
 
 function ButtonChangeRank(props: Props) {
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
     const { enqueueSnackbar } = useSnackbar();
 
     const setOfficerRank = useFunction<ISetOfficerRankProps, void>('setOfficerRank');
@@ -40,13 +40,13 @@ function ButtonChangeRank(props: Props) {
     };
     const handleSubmit = () => {
         if (officer.value?.Rank.Id === rankId) {
-            enqueueSnackbar(t('snackbar.error.rankSame'), {
+            enqueueSnackbar(t('Ranga nie różni się od poprzedniej!'), {
                 variant: 'error',
             });
             return;
         }
         if (rankId.length <= 0) {
-            enqueueSnackbar(t('snackbar.error.rankEmpty'), {
+            enqueueSnackbar(t('Podaj rangę!'), {
                 variant: 'error',
             });
             return;
@@ -58,7 +58,7 @@ function ButtonChangeRank(props: Props) {
             rankId,
         })
             .then(() => {
-                enqueueSnackbar(t('snackbar.rankChanged'), {
+                enqueueSnackbar(t('Zmieniono rangę!'), {
                     variant: 'success',
                 });
             })
@@ -72,19 +72,19 @@ function ButtonChangeRank(props: Props) {
     return (
         <React.Fragment>
             <SubmitButton {...props.ButtonProps} onClick={handleState(true)}>
-                {t('officer.details.rank')}
+                {t('Ranga')}
             </SubmitButton>
             <Dialog open={open} onClose={handleState(false)}>
-                <DialogTitle>{t('officer.form.SetBadgeNumber')}</DialogTitle>
+                <DialogTitle>{t('Zmień rangę')}</DialogTitle>
                 <DialogContent>
                     <RankSelect value={rankId} onChange={setRankId} />
                 </DialogContent>
                 <DialogActions>
                     <Button color='primary' onClick={handleState(false)}>
-                        {t('common.form.cancel')}
+                        {t('Anuluj')}
                     </Button>
                     <Button color='primary' onClick={handleSubmit}>
-                        {t('common.form.save')}
+                        {t('Zapisz')}
                     </Button>
                 </DialogActions>
             </Dialog>

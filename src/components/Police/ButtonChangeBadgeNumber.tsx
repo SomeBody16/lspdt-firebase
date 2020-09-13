@@ -42,13 +42,13 @@ function ButtonChangeBadgeNumber(props: Props) {
     };
     const handleSubmit = () => {
         if (officer.value?.BadgeNumber === badgeNumber) {
-            enqueueSnackbar(t('officer.error.badgeNumberSame'), {
+            enqueueSnackbar(t('Numer nie różni się od poprzedniego!'), {
                 variant: 'error',
             });
             return;
         }
         if (badgeNumber.length <= 0) {
-            enqueueSnackbar(t('officer.error.badgeNumberEmpty'), {
+            enqueueSnackbar(t('Wpisz numer odznaki!'), {
                 variant: 'error',
             });
             return;
@@ -60,7 +60,7 @@ function ButtonChangeBadgeNumber(props: Props) {
             badgeNumber,
         })
             .then(() => {
-                enqueueSnackbar(t('officer.success.badgeNumberChanged'), {
+                enqueueSnackbar(t('Zmieniono numer odznaki!'), {
                     variant: 'success',
                 });
             })
@@ -74,15 +74,15 @@ function ButtonChangeBadgeNumber(props: Props) {
     return (
         <React.Fragment>
             <SubmitButton {...props.ButtonProps} onClick={handleState(true)}>
-                {t('officer.badgeNumber')}
+                {t('Nr. odznaki')}
             </SubmitButton>
             <Dialog open={open} onClose={handleState(false)}>
-                <DialogTitle>{t('officer.action.setBadgeNumber')}</DialogTitle>
+                <DialogTitle>{t('Zmień numer odznaki')}</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         margin='dense'
-                        label={t('officer.badgeNumber')}
+                        label={t('Numer odznaki')}
                         fullWidth
                         value={badgeNumber}
                         onChange={(e) => setBadgeNumber(e.target.value)}
@@ -90,10 +90,10 @@ function ButtonChangeBadgeNumber(props: Props) {
                 </DialogContent>
                 <DialogActions>
                     <Button color='primary' onClick={handleState(false)}>
-                        {t('common.form.button.cancel')}
+                        {t('Anuluj')}
                     </Button>
                     <Button color='primary' onClick={handleSubmit}>
-                        {t('common.form.button.save')}
+                        {t('Zapisz')}
                     </Button>
                 </DialogActions>
             </Dialog>

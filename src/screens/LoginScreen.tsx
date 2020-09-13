@@ -46,7 +46,7 @@ interface ILoginForm {
 
 function LoginScreen() {
     const classes = useStyles();
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
     const { enqueueSnackbar } = useSnackbar();
 
     const history = useHistory();
@@ -75,7 +75,7 @@ function LoginScreen() {
             .catch((err) => {
                 setError('email', {
                     type: 'validate',
-                    message: `login.error.${err.code}`,
+                    message: `${err.code}`,
                 });
             });
 
@@ -112,25 +112,22 @@ function LoginScreen() {
             >
                 <Controller
                     className={classes.formField}
-                    as={
-                        <TextField
-                            label={t('login.form.email')}
-                            variant='filled'
-                            type='email'
-                            required
-                        />
-                    }
+                    as={<TextField label={t('E-mail')} variant='filled' type='email' required />}
                     name='email'
                     control={control}
                     defaultValue=''
                     rules={{
-                        required: t('login.error.emailEmpty') as string,
+                        required: t('Wprowadź adres e-mail') as string,
                         validate: (value: string) => {
                             const res = validate(
                                 { value },
                                 {
                                     value: {
-                                        email: { message: `^${t('login.error.emailInvalid')}` },
+                                        email: {
+                                            message: `^${t(
+                                                'Podany adres e-mail jest nieprawidłowy'
+                                            )}`,
+                                        },
                                     },
                                 }
                             );
@@ -140,23 +137,16 @@ function LoginScreen() {
                 />
                 <Controller
                     className={classes.formField}
-                    as={
-                        <TextField
-                            label={t('login.form.password')}
-                            variant='filled'
-                            type='password'
-                            required
-                        />
-                    }
+                    as={<TextField label={t('Hasło')} variant='filled' type='password' required />}
                     name='password'
                     control={control}
                     defaultValue=''
                     rules={{
-                        required: t('login.error.passwordEmpty') as string,
+                        required: t('Wprowadź hasło') as string,
                     }}
                 />
 
-                <SubmitButton className={classes.loginButton}>{t('Login')}</SubmitButton>
+                <SubmitButton className={classes.loginButton}>{t('Zaloguj się')}</SubmitButton>
             </form>
         </Container>
     );

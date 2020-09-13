@@ -17,7 +17,7 @@ function PermissionSelect(props: Props) {
     return (
         <TextField
             select
-            label={t('rank.permissions')}
+            label={t('Permisje')}
             value={props.value}
             onChange={(e) => props.onChange && props.onChange(e.target.value)}
             fullWidth
@@ -25,7 +25,7 @@ function PermissionSelect(props: Props) {
         >
             {permissions.value.map((item) => (
                 <MenuItem key={item} value={item}>
-                    {t(`permission.${item}`)}
+                    {t(`${item}`)}
                 </MenuItem>
             ))}
         </TextField>

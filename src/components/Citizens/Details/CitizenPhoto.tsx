@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
             transform: 'translateX(-50%)',
             color: 'red',
             fontWeight: 'bold',
-            fontSize: '38px',
+            fontSize: '32px',
             textShadow: '0 0 5px black',
         },
         isOfficer: {
@@ -76,7 +76,7 @@ function CitizenPhoto(props: Props) {
 
             const image = new Image();
             image.onerror = () => {
-                snackbar.enqueueSnackbar(t('citizen.error.notAnImageUrl'), {
+                snackbar.enqueueSnackbar(t('W schowku nie znaleziono zdjęcia!'), {
                     variant: 'error',
                 });
                 setAppBarProgress(null);
@@ -87,7 +87,7 @@ function CitizenPhoto(props: Props) {
                     imageUrl: src,
                 })
                     .then(() => {
-                        snackbar.enqueueSnackbar(t('citizen.success.imageSet'), {
+                        snackbar.enqueueSnackbar(t('Zmieniono zdjęcie obywatela!'), {
                             variant: 'success',
                         });
                     })
@@ -117,13 +117,8 @@ function CitizenPhoto(props: Props) {
         >
             <img className={citizenPhotoClassName} src={imageSrc} alt='' />
             {citizen.value?.IsWanted && (
-                <Typography
-                    style={{
-                        fontSize: (t('citizen.state.wanted.onImageFontSize') as unknown) as number,
-                    }}
-                    className={classes.isWanted}
-                >
-                    {t('citizen.state.wanted.label').toUpperCase()}
+                <Typography className={classes.isWanted}>
+                    {t('Poszukiwany').toUpperCase()}
                 </Typography>
             )}
             {citizen.value?.IsOfficer && <OfficerBadge {...props} />}

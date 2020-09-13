@@ -61,7 +61,7 @@ export const createChiefCall = functions.https.onCall(
 
         /* ******************************************************************* */
         await makeDiscordLog({
-            channel: 'accounts',
+            channel: 'log',
             title: 'CHIEF ACCOUNT',
             customMessage: (msg) =>
                 msg

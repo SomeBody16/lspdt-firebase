@@ -53,7 +53,7 @@ function CrimeDialog(props: Props) {
                 <TextField
                     className={classes.formField}
                     fullWidth
-                    label={t('crime.name')}
+                    label={t('Nazwa')}
                     value={crime.Name}
                     onChange={(e) => setCrime({ ...crime, Name: e.target.value })}
                 />
@@ -84,10 +84,8 @@ function CrimeDialog(props: Props) {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={props.onClose}>{t('common.form.button.cancel')}</Button>
-                <Button onClick={() => props.onSave(crime as ICrime)}>
-                    {t('common.form.button.save')}
-                </Button>
+                <Button onClick={props.onClose}>{t('Anuluj')}</Button>
+                <Button onClick={() => props.onSave(crime as ICrime)}>{t('Zapisz')}</Button>
             </DialogActions>
         </Dialog>
     );

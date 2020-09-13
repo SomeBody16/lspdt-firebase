@@ -3,10 +3,10 @@ import Button, { ButtonProps } from '@material-ui/core/Button';
 import { useTranslation } from 'react-i18next';
 
 function ResetButton(props: ButtonProps) {
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
     return (
         <Button variant='contained' color='secondary' {...props}>
-            {t('common.form.reset')}
+            {t('Resetuj')}
         </Button>
     );
 }

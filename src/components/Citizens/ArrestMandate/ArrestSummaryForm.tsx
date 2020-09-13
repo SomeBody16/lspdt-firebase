@@ -187,7 +187,7 @@ function ArrestSummaryForm() {
             author: formValue.author,
         })
             .then(() => {
-                enqueueSnackbar(t('citizen.success.makeWantedSuccess'), {
+                enqueueSnackbar(t('Wystawiono list gończy!'), {
                     variant: 'success',
                 });
                 history.replace(`/tablet/citizen/${citizenId}`);
@@ -217,7 +217,7 @@ function ArrestSummaryForm() {
             author: formValue.author,
         })
             .then(() => {
-                enqueueSnackbar(t('citizen.success.arrestMandateSuccess'), {
+                enqueueSnackbar(t('Zapisano wpis w kartotece!'), {
                     variant: 'success',
                 });
                 history.replace(`/tablet/citizen/${citizenId}`);
@@ -232,7 +232,7 @@ function ArrestSummaryForm() {
         <form onSubmit={handleSubmit(onConfirm)} className={classes.form}>
             <TextField
                 className={classes.formField}
-                label={t('citizen.name')}
+                label={t('Imię')}
                 variant='filled'
                 value={citizen.value?.Name || '...'}
                 disabled
@@ -240,7 +240,7 @@ function ArrestSummaryForm() {
             />
             <TextField
                 className={classes.formField}
-                label={t('citizen.surname')}
+                label={t('Nazwisko')}
                 variant='filled'
                 value={citizen.value?.Surname || '...'}
                 disabled
@@ -258,7 +258,7 @@ function ArrestSummaryForm() {
                             ),
                         }}
                         type='number'
-                        label={t('crime.penalty')}
+                        label={t('Grzywna')}
                         variant='filled'
                     />
                 }
@@ -278,7 +278,7 @@ function ArrestSummaryForm() {
                             ),
                         }}
                         type='number'
-                        label={t('crime.judgment')}
+                        label={t('Odsiadka')}
                         variant='filled'
                     />
                 }
@@ -297,7 +297,7 @@ function ArrestSummaryForm() {
                                 </InputAdornment>
                             ),
                         }}
-                        label={t('common.author')}
+                        label={t('Autor')}
                         variant='filled'
                     />
                 }
@@ -309,7 +309,7 @@ function ArrestSummaryForm() {
                 <FormControlLabel
                     className={classes.formField}
                     control={<Checkbox onChange={(e) => handleIncludeWanted(e.target.checked)} />}
-                    label={t('citizen.state.wanted.includeInCrimes')}
+                    label={t('Dołącz list gończy')}
                 />
             )}
 
@@ -337,7 +337,7 @@ function ArrestSummaryForm() {
                 }
             >
                 <div className={classes.button}>
-                    <span>{t('common.summary')}</span>
+                    <span>{t('Podsumowanie')}</span>
                     <span>{emojify(':speech_balloon:')}</span>
                 </div>
             </Button>
@@ -349,7 +349,7 @@ function ArrestSummaryForm() {
                 disabled={formValue.penalty <= 0}
             >
                 <div className={classes.button}>
-                    <span>{t('citizen.action.mandate')}</span>
+                    <span>{t('Faktura')}</span>
                     <span>{emojify(':dollar:')}</span>
                 </div>
             </Button>
@@ -362,7 +362,7 @@ function ArrestSummaryForm() {
                 disabled={formValue.judgment <= 0}
             >
                 <div className={classes.button}>
-                    <span>{t('citizen.action.arrest')}</span>
+                    <span>{t('Aresztowanie')}</span>
                     <span>{emojify(':cop:')}</span>
                 </div>
             </Button>
@@ -378,7 +378,7 @@ function ArrestSummaryForm() {
                 }
             >
                 <div className={classes.button}>
-                    <span>{t('citizen.action.makeWanted')}</span>
+                    <span>{t('List gończy')}</span>
                     <span>{emojify(':spy:')}</span>
                 </div>
             </MakeWantedButton>
@@ -390,7 +390,7 @@ function ArrestSummaryForm() {
                 }
             >
                 <div className={classes.button}>
-                    <span>{t('common.form.button.confirm')}</span>
+                    <span>{t('Potwierdź')}</span>
                     <span>{emojify(':clipboard:')}</span>
                 </div>
             </ConfirmButton>

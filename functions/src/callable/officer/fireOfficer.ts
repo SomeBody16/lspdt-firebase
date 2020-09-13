@@ -58,15 +58,15 @@ export const fireOfficerCall = functions.https.onCall(
                     {
                         Id: '',
                         Content: ':x:',
-                        Description: 'fired',
+                        Description: 'Zwolnienie',
                     },
                 ],
-                Title: 'fired',
+                Title: 'Zwolniony ze służby',
                 ImageUrl: citizenDoc.get('ImageUrl'),
             },
             {
                 channel: 'registry',
-                title: 'Officer fired',
+                title: 'Zwolnienie',
             }
         );
 

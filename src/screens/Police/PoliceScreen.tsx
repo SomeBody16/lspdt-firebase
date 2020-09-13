@@ -54,15 +54,15 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function PolicemanData(officer: IOfficer) {
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
 
     const data = [
         {
-            property: t('citizen.details.birthDate'),
+            property: t('Data urodzenia'),
             value: officer.Citizen.BirthDate,
         },
         {
-            property: t('citizen.details.phoneNumber'),
+            property: t('Numer telefonu'),
             value: officer.Citizen.PhoneNumber,
         },
     ];
@@ -124,7 +124,7 @@ function PolicemanRow(officer: IOfficer) {
 }
 
 function PoliceScreen() {
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
 
     const officers = useAllOfficers();
 
@@ -134,9 +134,9 @@ function PoliceScreen() {
                 <TableHead>
                     <TableRow>
                         <TableCell />
-                        <TableCell>{t('citizen.details.nameSurname')}</TableCell>
-                        <TableCell align='right'>{t('officer.details.rank')}</TableCell>
-                        <TableCell align='right'>{t('officer.details.badgeNumber')}</TableCell>
+                        <TableCell>{t('Imię i nazwisko')}</TableCell>
+                        <TableCell align='right'>{t('Stopień')}</TableCell>
+                        <TableCell align='right'>{t('Nr. odznaki')}</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

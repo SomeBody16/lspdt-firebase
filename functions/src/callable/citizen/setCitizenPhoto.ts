@@ -63,15 +63,15 @@ export const setCitizenPhotoCall = functions.https.onCall(
                     {
                         Id: '',
                         Content: ':frame_photo:',
-                        Description: 'photoChange',
+                        Description: 'Zmiana zdjęcia',
                     },
                 ],
-                Title: 'photoChange',
+                Title: 'Zmiana zdjęcia',
                 ImageUrl: data.imageUrl,
             },
             {
                 channel: 'registry',
-                title: 'Photo change',
+                title: 'Zmiana zdjęcia',
             }
         );
 

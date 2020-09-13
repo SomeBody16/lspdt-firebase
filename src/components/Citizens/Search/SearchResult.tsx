@@ -69,7 +69,7 @@ function SearchResult(props: Props) {
     const [t] = useTranslation('common');
 
     if (!props.searchResult || props.searchResult.length <= 0) {
-        return <Typography>{t('citizen.search.emptyResult')}</Typography>;
+        return <Typography>{t('Brak wyników')}</Typography>;
     }
     return (
         <div className={classes.root}>

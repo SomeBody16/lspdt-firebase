@@ -41,7 +41,7 @@ function AddPrefixButton() {
         setAppBarProgress('indeterminate');
 
         addPrefix({ prefix })
-            .then(() => enqueueSnackbar(t('prefix.success.added'), { variant: 'success' }))
+            .then(() => enqueueSnackbar(t('Dodano!'), { variant: 'success' }))
             .finally(() => {
                 setAppBarProgress(null);
                 setDisabled(false);
@@ -56,7 +56,7 @@ function AddPrefixButton() {
         <React.Fragment>
             <PrefixDialog
                 open={isDialogOpen}
-                title={t('prefix.action.add')}
+                title={t('Dodaj ikonę')}
                 onClose={handleState(false)}
                 onSave={handleSave}
             />

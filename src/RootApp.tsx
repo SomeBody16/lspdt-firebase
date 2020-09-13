@@ -20,9 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         buildNumber: {
             position: 'fixed',
-            bottom: theme.spacing(1),
-            right: theme.spacing(1),
-            fontSize: '80%',
+            bottom: theme.spacing(0.5),
+            right: theme.spacing(0.5),
+            fontSize: '60%',
         },
     })
 );

@@ -52,14 +52,14 @@ function CitizenActionButton(props: Props) {
     const options = React.useMemo(
         (): ISplitButtonOption[] => [
             {
-                label: t('citizen.action.arrestMandate'),
+                label: t('Aresztuj | Faktura'),
                 show:
                     claims.value?.admin ||
                     claims.value?.permissions?.includes('accessArrestMandate'),
                 action: () => history.push(`/tablet/citizen/${citizenId}/arrest-mandate`),
             },
             {
-                label: t('citizen.action.setPhoneNumber'),
+                label: t('Nr. telefonu'),
                 show:
                     claims.value?.admin ||
                     claims.value?.permissions?.includes('setCitizenPhoneNumber'),
@@ -69,7 +69,7 @@ function CitizenActionButton(props: Props) {
                 },
             },
             {
-                label: t('citizen.action.recruit'),
+                label: t('Zatrudnij'),
                 show:
                     (claims.value?.admin ||
                         claims.value?.permissions?.includes('recruitOfficer')) &&
@@ -78,14 +78,12 @@ function CitizenActionButton(props: Props) {
                     setIsInProgress(true);
 
                     recruitCitizen({ citizenId })
-                        .then(() =>
-                            enqueueSnackbar(t('citizen.succes.recruit'), { variant: 'success' })
-                        )
+                        .then(() => enqueueSnackbar(t('Zatrudniono!'), { variant: 'success' }))
                         .finally(handleFinish);
                 },
             },
             {
-                label: t('citizen.action.makeRegistration'),
+                label: t('Wpis w kartotece'),
                 show:
                     claims.value?.admin ||
                     claims.value?.permissions?.includes('makeCitizenRegistration'),

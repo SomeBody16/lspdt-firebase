@@ -8,7 +8,7 @@ function PrefixSelect(props: TextFieldProps) {
     const [t] = useTranslation('lang');
     const prefixes = useAllPrefixes();
     return (
-        <TextField select label={t('prefix.content')} {...props}>
+        <TextField select label={t('Ikona')} {...props}>
             {prefixes.value.map((prefix) => (
                 <MenuItem key={prefix.Id} value={prefix.Id}>
                     <EmojiPrefix prefix={prefix} /> {prefix.Description}

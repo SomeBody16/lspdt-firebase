@@ -80,7 +80,7 @@ function MakeCitizenRegistrationDialog(props: Props) {
         }
 
         if (makeRegistrationForm.getValues('prefixesIds').length <= 0) {
-            enqueueSnackbar(t('prefixesEmpty'), { variant: 'error' });
+            enqueueSnackbar(t('Brak ikon!'), { variant: 'error' });
             makeRegistrationForm.clearErrors();
             return;
         }
@@ -92,7 +92,7 @@ function MakeCitizenRegistrationDialog(props: Props) {
             ...makeRegistrationForm.getValues(),
         })
             .then(() =>
-                enqueueSnackbar(t('citizen.success.registrationAdded'), {
+                enqueueSnackbar(t('Dodano wpis!'), {
                     variant: 'success',
                 })
             )
@@ -113,16 +113,16 @@ function MakeCitizenRegistrationDialog(props: Props) {
                     autoComplete='off'
                     noValidate
                 >
-                    <DialogTitle>{t('citizen.action.makeRegistration')}</DialogTitle>
+                    <DialogTitle>{t('Dodaj wpis do rejestru')}</DialogTitle>
                     <DialogContent className={classes.dialogContent}>
                         <Controller
                             className={classes.formField}
-                            as={<TextField label={t('common.form.title')} fullWidth />}
+                            as={<TextField label={t('Tytuł')} fullWidth />}
                             name='title'
                             control={makeRegistrationForm.control}
                             defaultValue=''
                             rules={{
-                                required: t('common.form.error.titleEmpty') as string,
+                                required: t('Podaj tytuł!') as string,
                             }}
                         />
                         <Controller
@@ -146,14 +146,7 @@ function MakeCitizenRegistrationDialog(props: Props) {
                         />
                         <Controller
                             className={classes.formField}
-                            as={
-                                <TextField
-                                    label={t('common.form.description')}
-                                    fullWidth
-                                    multiline
-                                    rows={3}
-                                />
-                            }
+                            as={<TextField label={t('Opis')} fullWidth multiline rows={3} />}
                             name='description'
                             control={makeRegistrationForm.control}
                             defaultValue=''
@@ -161,9 +154,9 @@ function MakeCitizenRegistrationDialog(props: Props) {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose} color='primary'>
-                            {t('common.form.button.cancel')}
+                            {t('Anuluj')}
                         </Button>
-                        <Button onClick={onSubmit}>{t('common.form.button.save')}</Button>
+                        <Button onClick={onSubmit}>{t('Zapisz')}</Button>
                     </DialogActions>
                 </form>
             </FormProvider>

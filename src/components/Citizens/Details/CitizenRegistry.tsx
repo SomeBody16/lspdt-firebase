@@ -89,7 +89,7 @@ function RegistryItem(props: IRegistryItemProps) {
             TransitionProps={{ unmountOnExit: true }}
         >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>{t(`registry.${props.item.Title}`, titleProps)}</Typography>
+                <Typography>{t(props.item.Title, titleProps)}</Typography>
                 <Typography className={classes.prefixes}>
                     {props.item.Prefixes.map((item) => (
                         <EmojiPrefix key={item.Content} size={24} prefix={item} />
@@ -134,11 +134,11 @@ function CitizenRegistry(props: Props) {
         <div className={classes.root}>
             <div className={classes.pagination}>
                 <Button disabled={isLoading} onClick={prevPage}>
-                    {t('common.form.previous')}
+                    {t('Poprzednie')}
                 </Button>
                 {currentPage}
                 <Button disabled={isLoading} onClick={nextPage}>
-                    {t('common.form.next')}
+                    {t('Następne')}
                 </Button>
             </div>
             {isLoading && <LinearProgress color='secondary' />}

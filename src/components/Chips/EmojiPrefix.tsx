@@ -18,9 +18,9 @@ function EmojiPrefix(props: Props) {
             height: `${props.size || 32}px`,
         },
     };
-    const translation: string = t(`registry.${props.prefix?.Description}`);
+    const translation: string = t(props.prefix?.Description || '');
     return (
-        <Tooltip title={translation.replace('registry.', '')}>
+        <Tooltip title={translation}>
             <span className={props.className}>{emojify(props.prefix?.Content || '', options)}</span>
         </Tooltip>
     );

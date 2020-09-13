@@ -78,7 +78,7 @@ function SetCitizenPhoneNumberDialog(props: Props) {
             citizenId: citizenId,
             ...getValues(),
         })
-            .then(() => enqueueSnackbar(t('citizen.success.phoneChanged'), { variant: 'success' }))
+            .then(() => enqueueSnackbar(t('Zmieniono numer telefonu!'), { variant: 'success' }))
             .finally(() => {
                 setAppBarProgress(null);
                 props.onFinish();
@@ -90,14 +90,14 @@ function SetCitizenPhoneNumberDialog(props: Props) {
     return (
         <Dialog onClose={handleClose} open={props.open}>
             <form className={classes.form} autoComplete='off' noValidate>
-                <DialogTitle>{t('citizen.action.setPhoneNumber')}</DialogTitle>
+                <DialogTitle>{t('Ustaw numer telefonu')}</DialogTitle>
                 <DialogContent>
                     <Controller
                         // className={classes.formField}
                         as={
                             <TextField
-                                placeholder={t('citizen.example.phoneNumber')}
-                                label={t('citizen.phoneNumber')}
+                                placeholder={t('000-0000')}
+                                label={t('Numer telefonu')}
                                 fullWidth
                                 inputProps={{
                                     className: classes.phoneField,
@@ -109,22 +109,22 @@ function SetCitizenPhoneNumberDialog(props: Props) {
                         control={control}
                         defaultValue={citizen.value?.PhoneNumber || ''}
                         rules={{
-                            required: t('citizen.error.phoneNumberEmpty') as string,
+                            required: t('Wpisz numer telefonu!') as string,
                             pattern: {
                                 value: /^[0-9]{3}-[0-9]{4}$/,
-                                message: t('citizen.error.phoneNumberInvalid'),
+                                message: t('Nieprawidłowy numer telefonu!'),
                             },
                             validate: (value: string) =>
                                 value !== citizen.value?.PhoneNumber ||
-                                (t('citizen.error.phoneNumberSame') as string),
+                                (t('Numer telefonu nie różni się od poprzedniego!') as string),
                         }}
                     />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color='primary'>
-                        {t('common.form.button.cancel')}
+                        {t('Anuluj')}
                     </Button>
-                    <Button onClick={onSubmit}>{t('common.form.button.save')}</Button>
+                    <Button onClick={onSubmit}>{t('Zapisz')}</Button>
                 </DialogActions>
             </form>
         </Dialog>

@@ -20,7 +20,7 @@ export const makeCitizenWantedCall = functions.https.onCall(
         }
 
         const error =
-            (await utils.requirePermissions(context.auth?.uid, ['setCitizenPhoneNumber'])) ||
+            (await utils.requirePermissions(context.auth?.uid, ['accessArrestMandate'])) ||
             (await utils.requireValidated(data, {
                 citizenId: {
                     validFirebaseId: 'citizens',
@@ -79,26 +79,26 @@ export const makeCitizenWantedCall = functions.https.onCall(
                         Description: 'wanted',
                     },
                 ],
-                Title: 'newWanted',
+                Title: 'List gończy',
                 Description: data.author,
                 Crimes: crimes,
                 ImageUrl: citizenDoc.get('ImageUrl'),
             },
             {
                 channel: 'wanted',
-                title: 'WANTED',
+                title: 'List gończy',
                 customMessage: (msg) =>
                     msg
-                        .addField('Reason', crimes.map((c) => c.Name).join(', '))
+                        .addField('Powód', crimes.map((c) => c.Name).join(', '))
                         .addField(
-                            'Penalty',
+                            'Grzywna',
                             crimes
                                 .map((c) => +c.Penalty)
                                 .reduce((prev, curr) => prev + curr, 0)
                                 .toString()
                         )
                         .addField(
-                            'Judgment',
+                            'Odsiadka',
                             crimes
                                 .map((c) => +c.Judgment)
                                 .reduce((prev, curr) => prev + curr, 0)

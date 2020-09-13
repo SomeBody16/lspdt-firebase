@@ -63,22 +63,22 @@ export const setOfficerRankCall = functions.https.onCall(
                     {
                         Id: '',
                         Content: ':chart_with_upwards_trend::chart_with_downwards_trend:',
-                        Description: 'rankChange',
+                        Description: 'Zmiana rangi',
                     },
                 ],
-                Title: 'rankChange',
+                Title: 'Zmiana rangi',
                 ImageUrl: citizenDoc.get('ImageUrl'),
             },
             {
                 channel: 'registry',
-                title: 'Rank change',
+                title: 'Zmiana rangi',
                 customMessage: (msg) =>
                     msg
                         .addField(
-                            'Old',
+                            ':older_man:',
                             `${officerDoc.data()?.Rank.Callsign} | ${officerDoc.data()?.Rank.Name}`
                         )
-                        .addField('New', `${rankDoc.data()?.Callsign} | ${rankDoc.data()?.Name}`),
+                        .addField(':new:', `${rankDoc.data()?.Callsign} | ${rankDoc.data()?.Name}`),
             }
         );
 

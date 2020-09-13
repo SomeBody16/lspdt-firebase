@@ -25,7 +25,7 @@ function DeleteRankButton(props: Props) {
         setDisabled(true);
 
         deleteRank({ rankId: props.rankId })
-            .then(() => enqueueSnackbar(t('rank.message.deleted'), { variant: 'success' }))
+            .then(() => enqueueSnackbar(t('Usunięto!'), { variant: 'success' }))
             .finally(() => {
                 setAppBarProgress(null);
                 setDisabled(false);

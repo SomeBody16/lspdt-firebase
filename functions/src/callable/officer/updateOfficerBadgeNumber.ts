@@ -59,19 +59,19 @@ export const updateOfficerBadgeNumberCall = functions.https.onCall(
                     {
                         Id: '',
                         Content: ':1234:',
-                        Description: 'badgeNumberChange',
+                        Description: 'Zmiana numeru odznaki',
                     },
                 ],
-                Title: 'badgeNumberChange',
+                Title: 'Zmiana numeru odznaki',
                 ImageUrl: citizenDoc.get('ImageUrl'),
             },
             {
                 channel: 'registry',
-                title: 'Badge number change',
+                title: 'Zmiana numeru odznaki',
                 customMessage: (msg) =>
                     msg
-                        .addField('Old', officerDoc.data()?.BadgeNumber || '')
-                        .addField('New', data.badgeNumber),
+                        .addField(':older_man:', officerDoc.data()?.BadgeNumber || '')
+                        .addField(':new:', data.badgeNumber),
             }
         );
 

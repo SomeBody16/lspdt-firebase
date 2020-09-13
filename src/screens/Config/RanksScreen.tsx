@@ -80,9 +80,9 @@ function RanksScreen() {
                     <TableHead>
                         <TableRow>
                             <TableCell className={classes.buttonsCell} />
-                            <TableCell>{t('rank.name')}</TableCell>
-                            <TableCell align='right'>{t('rank.image')}</TableCell>
-                            <TableCell align='right'>{t('rank.callsign')}</TableCell>
+                            <TableCell>{t('Ranga')}</TableCell>
+                            <TableCell align='right'>{t('Odznaka')}</TableCell>
+                            <TableCell align='right'>{t('Callsign')}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

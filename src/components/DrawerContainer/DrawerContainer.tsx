@@ -101,7 +101,7 @@ function DrawerContainer(props: any) {
     const classes = useStyles();
     const user = useAuthChanged();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
 
     const [loadingProgress, setLoadingProgress] = React.useState<number | 'indeterminate' | null>(
         null
@@ -128,7 +128,7 @@ function DrawerContainer(props: any) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant='h5' noWrap className={classes.title}>
-                        {t('app.title')}
+                        {t('LSPD Tablet')}
                     </Typography>
 
                     <Hidden xsDown>

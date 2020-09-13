@@ -25,7 +25,7 @@ function DeletePrefixButton(props: Props) {
         setDisabled(true);
 
         deletePrefix({ prefixId: props.prefixId })
-            .then(() => enqueueSnackbar(t('prefix.success.deleted'), { variant: 'success' }))
+            .then(() => enqueueSnackbar(t('Usunięto!'), { variant: 'success' }))
             .finally(() => {
                 setAppBarProgress(null);
                 setDisabled(false);

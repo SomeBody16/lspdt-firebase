@@ -55,21 +55,21 @@ function RankDialog(props: Props) {
                 <TextField
                     className={classes.formField}
                     fullWidth
-                    label={t('rank.name')}
+                    label={t('Nazwa')}
                     value={rank.Name || ''}
                     onChange={(e) => setRank({ ...rank, Name: e.target.value })}
                 />
                 <TextField
                     className={classes.formField}
                     fullWidth
-                    label={t('rank.callsign')}
+                    label={t('Callsign')}
                     value={rank.Callsign || ''}
                     onChange={(e) => setRank({ ...rank, Callsign: e.target.value })}
                 />
                 <TextField
                     className={classes.formField}
                     fullWidth
-                    label={t('rank.image')}
+                    label={t('Odznaka')}
                     value={rank.ImageUrl || ''}
                     onChange={(e) => setRank({ ...rank, ImageUrl: e.target.value })}
                     InputProps={{
@@ -95,10 +95,8 @@ function RankDialog(props: Props) {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={props.onClose}>{t('common.form.button.cancel')}</Button>
-                <Button onClick={() => props.onSave(rank as IRank)}>
-                    {t('common.form.button.save')}
-                </Button>
+                <Button onClick={props.onClose}>{t('Anuluj')}</Button>
+                <Button onClick={() => props.onSave(rank as IRank)}>{t('Zapisz')}</Button>
             </DialogActions>
         </Dialog>
     );

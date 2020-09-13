@@ -26,7 +26,7 @@ export function penaltyJudgmentStr(props: Props, translationResponse: UseTransla
 }
 
 function PenaltyJudgment(props: Props) {
-    return <span>{penaltyJudgmentStr(props, useTranslation('common'))}</span>;
+    return <span>{penaltyJudgmentStr(props, useTranslation('lang'))}</span>;
 }
 
 export default PenaltyJudgment;

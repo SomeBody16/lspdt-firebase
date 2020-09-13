@@ -7,7 +7,6 @@ import { I18nextProvider } from 'react-i18next';
 import i18next from 'i18next';
 
 import pl from './locale/pl.json';
-import pl_old from './locale/pl_old.json';
 
 import './firebase';
 
@@ -16,7 +15,6 @@ i18next.init({
     lng: 'pl',
     resources: {
         pl: {
-            common: pl_old,
             lang: pl,
         },
     },

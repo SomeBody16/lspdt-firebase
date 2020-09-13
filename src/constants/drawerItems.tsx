@@ -78,7 +78,7 @@ function DrawerListItem(item: DrawerItemProps) {
         path: newUrl,
         exact: item.exact,
     });
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
 
     const claims = useClaims();
     if (!claims.value?.admin) {

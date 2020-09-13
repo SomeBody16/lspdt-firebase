@@ -21,23 +21,23 @@ function CitizenInfoItem(props: { icon: any; label: string; value: string }) {
 
 function CitizenInfo(props: Props) {
     const citizen = useCitizen(props.citizenId);
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
 
     return (
         <List>
             <CitizenInfoItem
                 icon={<FaceIcon />}
-                label={t('citizen.details.nameSurname')}
+                label={t('Imię i nazwisko')}
                 value={`${citizen.value?.Name || '...'} ${citizen.value?.Surname || '...'}`}
             />
             <CitizenInfoItem
                 icon={<TodayIcon />}
-                label={t('citizen.details.birthDate')}
+                label={t('Data urodzenia')}
                 value={citizen.value?.BirthDate || '...'}
             />
             <CitizenInfoItem
                 icon={<PhoneAndroidIcon />}
-                label={t('citizen.details.phoneNumber')}
+                label={t('Numer telefonu')}
                 value={citizen.value?.PhoneNumber || '...'}
             />
         </List>

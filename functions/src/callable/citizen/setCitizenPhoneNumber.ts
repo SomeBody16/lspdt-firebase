@@ -69,21 +69,21 @@ export const setCitizenPhoneNumberCall = functions.https.onCall(
                     {
                         Id: '',
                         Content: ':telephone:',
-                        Description: 'phoneChange',
+                        Description: 'Zmiana numeru',
                     },
                 ],
-                Title: 'phoneChange',
+                Title: 'Nowy numer telefonu',
                 Description: `${citizenDoc.data()?.PhoneNumber || ''} => ${data.phoneNumber}`,
                 ImageUrl: citizenDoc.get('ImageUrl'),
             },
             {
                 channel: 'registry',
-                title: 'Phone change',
+                title: 'Nowy numer telefonu',
                 customMessage: (msg) =>
                     msg
                         .setDescription('')
-                        .addField('Old', citizenDoc.data()?.PhoneNumber || '')
-                        .addField('New', data.phoneNumber),
+                        .addField(':older_man:', citizenDoc.data()?.PhoneNumber || '')
+                        .addField(':new:', data.phoneNumber),
             }
         );
 

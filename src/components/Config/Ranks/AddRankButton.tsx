@@ -41,7 +41,7 @@ function AddRankButton() {
         setAppBarProgress('indeterminate');
 
         addRank({ rank })
-            .then(() => enqueueSnackbar(t('rank.message.added'), { variant: 'success' }))
+            .then(() => enqueueSnackbar(t('Dodano!'), { variant: 'success' }))
             .finally(() => {
                 setAppBarProgress(null);
                 setDisabled(false);
@@ -56,7 +56,7 @@ function AddRankButton() {
         <React.Fragment>
             <PrefixDialog
                 open={isDialogOpen}
-                title={t('rank.action.add')}
+                title={t('Dodaj rangę')}
                 onClose={handleState(false)}
                 onSave={handleSave}
             />

@@ -3,24 +3,32 @@ import IRank from '../models/rank.interface';
 import IOfficer from '../models/officer.interface';
 
 export const Unauthenticated = () =>
-    new functions.https.HttpsError('unauthenticated', 'server.error.unauthenticated');
+    new functions.https.HttpsError('unauthenticated', 'Nieautoryzowany dostęp');
 
 export const PermissionDenied = (permission: string) =>
-    new functions.https.HttpsError('permission-denied', 'server.error.permissionDenied', {
+    new functions.https.HttpsError('permission-denied', 'Brak permisji: {{permission}}', {
         permission,
     });
 
 export const InvalidArgument = (details: any) =>
-    new functions.https.HttpsError('invalid-argument', 'server.error.invalidArgument', details);
+    new functions.https.HttpsError('invalid-argument', 'Nieprawidłowy argument funkcji', details);
 
 export const CitizenNotFound = (citizenId: string) =>
-    new functions.https.HttpsError('not-found', 'server.error.citizenNotFound', { citizenId });
+    new functions.https.HttpsError('not-found', 'Nieznaleziono obywatela o id {{citizenId}}', {
+        citizenId,
+    });
 
 export const OfficerNotFound = (officerId: string) =>
-    new functions.https.HttpsError('not-found', 'server.error.officerNotFound', { officerId });
+    new functions.https.HttpsError(
+        'not-found',
+        'Nieznaleziono funkcjonariusza o id {{officerId}}',
+        { officerId }
+    );
 
 export const PrefixNotFound = (prefixId: string) =>
-    new functions.https.HttpsError('not-found', 'server.error.prefixNotFound', { prefixId });
+    new functions.https.HttpsError('not-found', 'Nieznaleziono ikony o id {{prefixId}}', {
+        prefixId,
+    });
 
 // export const OfficerExistsForCitizen = (citizenId: string) =>
 //     new functions.https.HttpsError('already-exists', 'server.error.officerExistsForCitizen', {
@@ -28,13 +36,19 @@ export const PrefixNotFound = (prefixId: string) =>
 //     });
 
 export const RankNotFound = (rankId: string) =>
-    new functions.https.HttpsError('not-found', 'server.error.rankNotFound', { rankId });
+    new functions.https.HttpsError('not-found', 'Nieznaleziono rangi o id {{rankId}}', { rankId });
 
 export const CrimeNotFound = (crimeId: string) =>
-    new functions.https.HttpsError('not-found', 'server.error.crimeNotFound', { rankId: crimeId });
+    new functions.https.HttpsError('not-found', 'Nieznaleziono przestępstwa o id {{crimeId}}', {
+        crimeId,
+    });
 
 export const OfficerWithThisRankExists = (rank: IRank, officers: IOfficer[]) =>
-    new functions.https.HttpsError('invalid-argument', 'server.error.officerWithThisRankExists', {
-        rank: rank.Name,
-        officer: officers[0].BadgeNumber,
-    });
+    new functions.https.HttpsError(
+        'invalid-argument',
+        'Zmień rangę oficera {{officer}} aby usunąć {{rank}}',
+        {
+            rank: rank.Name,
+            officer: officers[0].BadgeNumber,
+        }
+    );

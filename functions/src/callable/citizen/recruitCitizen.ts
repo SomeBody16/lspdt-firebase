@@ -60,10 +60,10 @@ export const recruitCitizenCall = functions.https.onCall(
         const discordLogOptions: IDiscordLogOptions[] = [
             {
                 channel: 'registry',
-                title: 'New policeman',
+                title: 'Nowy policjant',
                 customMessage: (msg) =>
                     msg.addField(
-                        'Rank',
+                        'Ranga',
                         `${officerDoc.get('Rank.Callsign')} | ${officerDoc.get('Rank.Name')}`
                     ),
             },
@@ -72,11 +72,11 @@ export const recruitCitizenCall = functions.https.onCall(
         if (newUserRequest) {
             discordLogOptions.push({
                 channel: 'accounts',
-                title: 'New account',
+                title: 'Nowe konto',
                 customMessage: (msg) =>
                     msg
                         .addField('**:e_mail: E-mail**', newUserRequest?.email || '')
-                        .addField('**:lock: Password**', newUserRequest?.password || ''),
+                        .addField('**:lock: Hasło**', newUserRequest?.password || ''),
             });
         }
 
@@ -94,10 +94,10 @@ export const recruitCitizenCall = functions.https.onCall(
                     {
                         Id: '',
                         Content: ':new::cop:',
-                        Description: 'newCop',
+                        Description: 'Nowy policjant',
                     },
                 ],
-                Title: 'newCop',
+                Title: 'Nowy policjant',
                 ImageUrl: citizenDoc.get('ImageUrl'),
             },
             discordLogOptions

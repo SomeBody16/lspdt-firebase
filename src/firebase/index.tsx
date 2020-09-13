@@ -1,7 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import * as vision from '@google-cloud/vision';
 import { useAllCrimesHook } from './hooks/useAllCrimes';
 import { useAllOfficersHook } from './hooks/useAllOfficers';
 import { useAllPermissionsHook } from './hooks/useAllPermissions';

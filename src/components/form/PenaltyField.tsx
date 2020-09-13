@@ -14,7 +14,7 @@ function PenaltyField(props?: TextFieldProps) {
                 ),
             }}
             type='number'
-            label={t('crime.penalty')}
+            label={t('Grzywna')}
             {...props}
         />
     );

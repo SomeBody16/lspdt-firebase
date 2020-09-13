@@ -20,7 +20,7 @@ interface Props {
 
 function DateTimeChip(props: Props) {
     const classes = useStyles();
-    const [t, i18n] = useTranslation('common');
+    const [t, i18n] = useTranslation('lang');
 
     const dateTime = new Date(props.children);
     const template = t(`intl.dateTime.${props.template}`, { returnObjects: true }) as object;

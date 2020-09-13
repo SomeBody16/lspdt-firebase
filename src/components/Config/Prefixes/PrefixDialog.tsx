@@ -52,14 +52,14 @@ function PrefixDialog(props: Props) {
                 <TextField
                     className={classes.formField}
                     fullWidth
-                    label={t('prefix.description')}
+                    label={t('Przeznaczenie')}
                     value={prefix.Description}
                     onChange={(e) => setPrefix({ ...prefix, Description: e.target.value })}
                 />
                 <TextField
                     className={classes.formField}
                     fullWidth
-                    label={t('prefix.content')}
+                    label={t('Grafika')}
                     value={prefix.Content}
                     onChange={(e) => setPrefix({ ...prefix, Content: e.target.value })}
                     InputProps={{
@@ -72,10 +72,8 @@ function PrefixDialog(props: Props) {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={props.onClose}>{t('common.form.button.cancel')}</Button>
-                <Button onClick={() => props.onSave(prefix as IPrefix)}>
-                    {t('common.form.button.save')}
-                </Button>
+                <Button onClick={props.onClose}>{t('Anuluj')}</Button>
+                <Button onClick={() => props.onSave(prefix as IPrefix)}>{t('Zapisz')}</Button>
             </DialogActions>
         </Dialog>
     );

@@ -56,7 +56,7 @@ function CrimeRow(crime: ICrime) {
 }
 
 function ConfigCrimesScreen() {
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
 
     const crimes = useAllCrimes();
 
@@ -67,13 +67,9 @@ function ConfigCrimesScreen() {
                     <TableHead>
                         <TableRow>
                             <TableCell />
-                            <TableCell>{t('citizen.form.arrestMandate.crime')}</TableCell>
-                            <TableCell align='right'>
-                                {t('citizen.form.arrestMandate.penalty')}
-                            </TableCell>
-                            <TableCell align='right'>
-                                {t('citizen.form.arrestMandate.judgment')}
-                            </TableCell>
+                            <TableCell>{t('Przestępstwo')}</TableCell>
+                            <TableCell align='right'>{t('Grzywna')}</TableCell>
+                            <TableCell align='right'>{t('Odsiadka')}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

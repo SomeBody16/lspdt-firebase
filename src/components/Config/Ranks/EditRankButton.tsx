@@ -34,7 +34,7 @@ function EditRankButton(props: Props) {
         setAppBarProgress('indeterminate');
 
         editRank({ rank })
-            .then(() => enqueueSnackbar(t('rank.message.edited'), { variant: 'success' }))
+            .then(() => enqueueSnackbar(t('Edytowano!'), { variant: 'success' }))
             .finally(() => {
                 setDisabled(false);
                 setAppBarProgress(null);
@@ -49,7 +49,7 @@ function EditRankButton(props: Props) {
         <React.Fragment>
             <PrefixDialog
                 open={isDialogOpen}
-                title={t('rank.action.edit')}
+                title={t('Edytuj rangę')}
                 onClose={handleState(false)}
                 onSave={handleSave}
                 rankId={props.rankId}
