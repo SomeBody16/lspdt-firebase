@@ -11,7 +11,6 @@ import { SnackbarProvider } from 'notistack';
 import ProvideProviders, { IProviderWithProps } from './components/utils/ProvideProviders';
 
 import packageJson from '../package.json';
-import firebase from 'firebase';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -45,14 +44,6 @@ function RootApp() {
             Props: { theme },
         },
     ];
-
-    React.useEffect(() => {
-        const call = firebase.functions().httpsCallable('findByIdScan');
-        console.log('calling find');
-        call({ filePath: 'id.png' })
-            .then((data) => console.log(JSON.stringify(data)))
-            .catch(console.error);
-    }, []);
 
     return (
         <Router>

@@ -1,54 +1,76 @@
 import * as functions from 'firebase-functions';
 import * as utils from '../../utils';
 import * as admin from 'firebase-admin';
+import * as modelsUtil from '../../utils/models';
 import ICitizen from '../../models/citizen.interface';
+import { Unauthenticated } from '../../utils/errors';
+import { makeRegistration } from '../../registry/makeRegistration';
+import IOfficer from '../../models/officer.interface';
 
 export interface ICreateCitizenProps {
     uid: string;
     citizen: ICitizen; // Name, Surname, BirthDate
-    password: string;
 }
 
-export const createCitizenCall = functions.https.onRequest(async (req, res) => {
-    const data: ICreateCitizenProps = req.body;
-    const error = await utils.requireValidated(data, {
-        uid: {
-            presence: true,
-            type: 'string',
-        },
-        citizen: {
-            ModelCitizen: ['Name', 'Surname', 'BirthDate'],
-        },
-        password: {
-            presence: true,
-            type: 'string',
-        },
-    });
+export const createCitizenCall = functions.https.onCall(
+    async (data: ICreateCitizenProps, context: functions.https.CallableContext) => {
+        if (!context.auth?.uid) {
+            throw Unauthenticated();
+        }
 
-    if (error) {
-        throw error;
-    }
-    /* ******************************************************************* */
-    const serverDoc = await admin.firestore().collection('config').doc('server').get();
+        const error = await utils.requireValidated(data, {
+            uid: {
+                presence: true,
+                type: 'string',
+            },
+            citizen: {
+                ModelCitizen: ['Name', 'Surname', 'BirthDate'],
+            },
+        });
 
-    const serverPassword = serverDoc.get('Password');
-    console.log('serverPassword', serverPassword);
-    console.log('data.password', data.password);
-    if (!serverPassword || serverPassword !== data.password) {
-        throw new functions.https.HttpsError('unauthenticated', 'Invalid server password');
-    }
-
-    await admin
-        .firestore()
-        .collection('citizens')
-        .doc(data.uid)
-        .set({
+        if (error) {
+            throw error;
+        }
+        /* ******************************************************************* */
+        const citizenDocData: ICitizen = {
             ...data.citizen,
+            Id: data.uid,
             CreateTime: Date.now(),
             IsOfficer: false,
             IsWanted: false,
             IsChief: false,
-        });
+        };
 
-    res.sendStatus(201);
-});
+        await admin.firestore().collection('citizens').doc(data.uid).set(citizenDocData);
+        /* ******************************************************************* */
+        const officerDoc = await modelsUtil.readOfficer(context.auth.uid);
+        const idScan = admin.storage().bucket('citizens-ids').file(data.uid);
+        await idScan.makePublic();
+        const ImageUrl = `https://storage.googleapis.com/citizens-ids/${data.uid}`;
+        await makeRegistration(
+            {
+                Citizen: citizenDocData,
+                OfficerAuthor: {
+                    ...(officerDoc.data() as IOfficer),
+                    Id: officerDoc.id,
+                },
+                Prefixes: [
+                    {
+                        Id: '',
+                        Content: ':open_file_folder:',
+                        Description: 'Otwarcie kartoteki',
+                    },
+                ],
+                Title: 'Otwarcie kartoteki',
+                ImageUrl,
+            },
+            {
+                channel: 'registry',
+                title: 'Otwarcie kartoteki',
+                customMessage: (msg) => msg.setDescription('').setImage(ImageUrl),
+            }
+        );
+
+        return 1;
+    }
+);

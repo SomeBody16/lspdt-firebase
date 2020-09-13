@@ -1,0 +1,104 @@
+[debug] [2020-09-13T18:48:13.030Z] ----------------------------------------------------------------------
+[debug] [2020-09-13T18:48:13.032Z] Command:       D:\src\nodejs\node.exe D:\src\nodejs\node_modules\firebase-tools\lib\bin\firebase.js functions:shell
+[debug] [2020-09-13T18:48:13.033Z] CLI Version:   8.10.0
+[debug] [2020-09-13T18:48:13.033Z] Platform:      win32
+[debug] [2020-09-13T18:48:13.033Z] Node Version:  v12.18.3
+[debug] [2020-09-13T18:48:13.034Z] Time:          Sun Sep 13 2020 20:48:13 GMT+0200 (GMT+02:00)
+[debug] [2020-09-13T18:48:13.035Z] ----------------------------------------------------------------------
+[debug] [2020-09-13T18:48:13.035Z] 
+[debug] [2020-09-13T18:48:13.046Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-09-13T18:48:13.047Z] > authorizing via signed-in user
+[debug] [2020-09-13T18:48:13.047Z] [iam] checking project fivem-lspdt-atomicrp for permissions ["firebase.projects.get"]
+[debug] [2020-09-13T18:48:13.051Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/fivem-lspdt-atomicrp:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-09-13T18:48:13.887Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 13 Sep 2020 18:48:13 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=724","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-09-13T18:48:15.902Z] [functions] Using node@12 from host.
+[debug] [2020-09-13T18:48:15.904Z] defaultcredentials: writing to file C:\Users\Filip\AppData\Roaming\firebase\f_nowakowski2000_gmail.com_application_default_credentials.json
+[debug] [2020-09-13T18:48:15.906Z] DEBUG: Setting GAC to C:\Users\Filip\AppData\Roaming\firebase\f_nowakowski2000_gmail.com_application_default_credentials.json
+[debug] [2020-09-13T18:48:15.914Z] [functions] Watching "D:\Filip\Code\React\lspdtablet\functions" for Cloud Functions...
+[debug] [2020-09-13T18:48:15.932Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-09-13T18:48:15.932Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-09-13T18:48:15.932Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2020-09-13T18:48:15.932Z] DEBUG: [worker-~diagnostic~-db913ec5-e348-4ae5-a99e-b4706418990a]: Assigning socketPath: \\?\pipe\D:\Filip\Code\React\lspdtablet\functions\796
+[debug] [2020-09-13T18:48:15.932Z] DEBUG: [worker-~diagnostic~-db913ec5-e348-4ae5-a99e-b4706418990a]: BUSY
+[debug] [2020-09-13T18:48:16.635Z] DEBUG: [runtime-status] [796] Functions runtime initialized. {"cwd":"D:\\Filip\\Code\\React\\lspdtablet\\functions","node_version":"12.18.3"}
+[debug] [2020-09-13T18:48:16.642Z] DEBUG: [runtime-status] [796] Disabled runtime features: undefined
+[debug] [2020-09-13T18:48:16.647Z] DEBUG: [runtime-status] [796] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.13.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-09-13T18:48:16.652Z] DEBUG: [runtime-status] [796] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-09-13T18:48:16.653Z] DEBUG: [runtime-status] [796] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-09-13T18:48:16.655Z] DEBUG: [runtime-status] [796] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2020-09-13T18:48:16.656Z] DEBUG: [runtime-status] [796] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-09-13T18:48:16.737Z] DEBUG: [runtime-status] [796] Checked functions.config() {"config":{}}
+[debug] [2020-09-13T18:48:16.737Z] DEBUG: [runtime-status] [796] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}}
+[debug] [2020-09-13T18:48:16.738Z] DEBUG: [runtime-status] [796] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-09-13T18:48:16.740Z] DEBUG: [runtime-status] [796] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.13.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-09-13T18:48:16.742Z] DEBUG: [runtime-status] [796] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-09-13T18:48:16.743Z] DEBUG: [runtime-status] [796] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.13.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2020-09-13T18:48:17.598Z] DEBUG: [runtime-status] [796] initializeApp(DEFAULT) {"databaseURL":"https://fivem-lspdt-atomicrp.firebaseio.com","storageBucket":"fivem-lspdt-atomicrp.appspot.com","projectId":"fivem-lspdt-atomicrp"}
+[warn] !  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production. {"metadata":{"emulator":{"name":"functions"},"message":"The Cloud Firestore emulator is not running, so calls to Firestore will affect production."}}
+[debug] [2020-09-13T18:48:18.074Z] [functions[setCitizenPhoneNumber]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/setCitizenPhoneNumber).
+[debug] [2020-09-13T18:48:18.074Z] [functions[makeCitizenRegistration]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/makeCitizenRegistration).
+[debug] [2020-09-13T18:48:18.074Z] [functions[recruitCitizen]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/recruitCitizen).
+[debug] [2020-09-13T18:48:18.074Z] [functions[setCitizenPhoto]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/setCitizenPhoto).
+[debug] [2020-09-13T18:48:18.074Z] [functions[makeCitizenWanted]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/makeCitizenWanted).
+[debug] [2020-09-13T18:48:18.074Z] [functions[confirmArrestMandate]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/confirmArrestMandate).
+[debug] [2020-09-13T18:48:18.074Z] [functions[findByIdScan]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/findByIdScan).
+[debug] [2020-09-13T18:48:18.074Z] [functions[updateOfficerBadgeNumber]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/updateOfficerBadgeNumber).
+[debug] [2020-09-13T18:48:18.075Z] [functions[setOfficerRank]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/setOfficerRank).
+[debug] [2020-09-13T18:48:18.075Z] [functions[fireOfficer]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/fireOfficer).
+[debug] [2020-09-13T18:48:18.075Z] [functions[addCrime]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/addCrime).
+[debug] [2020-09-13T18:48:18.075Z] [functions[editCrime]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/editCrime).
+[debug] [2020-09-13T18:48:18.075Z] [functions[deleteCrime]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/deleteCrime).
+[debug] [2020-09-13T18:48:18.075Z] [functions[addPrefix]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/addPrefix).
+[debug] [2020-09-13T18:48:18.075Z] [functions[editPrefix]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/editPrefix).
+[debug] [2020-09-13T18:48:18.075Z] [functions[deletePrefix]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/deletePrefix).
+[debug] [2020-09-13T18:48:18.075Z] [functions[addRank]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/addRank).
+[debug] [2020-09-13T18:48:18.075Z] [functions[editRank]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/editRank).
+[debug] [2020-09-13T18:48:18.075Z] [functions[deleteRank]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/deleteRank).
+[debug] [2020-09-13T18:48:18.075Z] [functions[listPermissions]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/listPermissions).
+[debug] [2020-09-13T18:48:18.075Z] [functions[createChief]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/createChief).
+[debug] [2020-09-13T18:48:18.076Z] [functions[createCitizen]] http function initialized (http://localhost:5000/fivem-lspdt-atomicrp/us-central1/createCitizen).
+[info] i  functions: Loaded functions: setCitizenPhoneNumber, makeCitizenRegistration, recruitCitizen, setCitizenPhoto, makeCitizenWanted, confirmArrestMandate, findByIdScan, updateOfficerBadgeNumber, setOfficerRank, fireOfficer, addCrime, editCrime, deleteCrime, addPrefix, editPrefix, deletePrefix, addRank, editRank, deleteRank, listPermissions, createChief, createCitizen 
+[warn] !  functions: The following emulators are not running, calls to these services will affect production: firestore, database, pubsub 
+[debug] [2020-09-13T18:48:18.091Z] DEBUG: [worker-~diagnostic~-db913ec5-e348-4ae5-a99e-b4706418990a]: IDLE
+[debug] [2020-09-13T18:49:11.482Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-09-13T18:49:11.485Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-09-13T18:49:11.485Z] Accepted request POST /fivem-lspdt-atomicrp/us-central1/createChief --> createChief
+[debug] [2020-09-13T18:49:11.502Z] DEBUG: [worker-pool] addWorker(createChief)
+[debug] [2020-09-13T18:49:11.502Z] DEBUG: [worker-pool] Adding worker with key createChief, total=1
+[debug] [2020-09-13T18:49:11.503Z] DEBUG: [worker-pool] submitWork(triggerId=createChief)
+[debug] [2020-09-13T18:49:11.503Z] DEBUG: [worker-createChief-fac56339-b1e2-4542-8e73-e8f8aa5f6827]: Assigning socketPath: \\?\pipe\D:\Filip\Code\React\lspdtablet\functions\12364
+[debug] [2020-09-13T18:49:11.503Z] DEBUG: [worker-createChief-fac56339-b1e2-4542-8e73-e8f8aa5f6827]: BUSY
+[debug] [2020-09-13T18:49:12.146Z] DEBUG: [runtime-status] [12364] Functions runtime initialized. {"cwd":"D:\\Filip\\Code\\React\\lspdtablet\\functions","node_version":"12.18.3"}
+[debug] [2020-09-13T18:49:12.150Z] DEBUG: [runtime-status] [12364] Disabled runtime features: undefined
+[debug] [2020-09-13T18:49:12.156Z] DEBUG: [runtime-status] [12364] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.13.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-09-13T18:49:12.161Z] DEBUG: [runtime-status] [12364] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-09-13T18:49:12.162Z] DEBUG: [runtime-status] [12364] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-09-13T18:49:12.164Z] DEBUG: [runtime-status] [12364] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2020-09-13T18:49:12.165Z] DEBUG: [runtime-status] [12364] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-09-13T18:49:12.228Z] DEBUG: [runtime-status] [12364] Checked functions.config() {"config":{}}
+[debug] [2020-09-13T18:49:12.229Z] DEBUG: [runtime-status] [12364] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}}
+[debug] [2020-09-13T18:49:12.230Z] DEBUG: [runtime-status] [12364] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-09-13T18:49:12.231Z] DEBUG: [runtime-status] [12364] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.13.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-09-13T18:49:12.232Z] DEBUG: [runtime-status] [12364] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-09-13T18:49:12.232Z] DEBUG: [runtime-status] [12364] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.13.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2020-09-13T18:49:12.970Z] DEBUG: [runtime-status] [12364] initializeApp(DEFAULT) {"databaseURL":"https://fivem-lspdt-atomicrp.firebaseio.com","storageBucket":"fivem-lspdt-atomicrp.appspot.com","projectId":"fivem-lspdt-atomicrp"}
+[warn] !  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"createChief"},"message":"The Cloud Firestore emulator is not running, so calls to Firestore will affect production."}}
+[debug] [2020-09-13T18:49:13.411Z] DEBUG: [runtime-status] [12364] Trigger "createChief" has been found, beginning invocation!
+[debug] [2020-09-13T18:49:13.411Z] [functions] Beginning execution of "createChief"
+[debug] [2020-09-13T18:49:13.411Z] DEBUG: [runtime-status] [12364] triggerDefinition {"httpsTrigger":{},"labels":{"deployment-callable":"true"},"name":"createChief","entryPoint":"createChief"}
+[debug] [2020-09-13T18:49:13.412Z] DEBUG: [runtime-status] [12364] Running createChief in mode HTTPS
+[debug] [2020-09-13T18:49:13.417Z] DEBUG: [runtime-status] [12364] Attempting to listen to socketPath: \\?\pipe\D:\Filip\Code\React\lspdtablet\functions\12364
+[debug] [2020-09-13T18:49:13.422Z] DEBUG: [functions] Runtime ready! Sending request!
+[debug] [2020-09-13T18:49:13.456Z] DEBUG: [runtime-status] [12364] Ephemeral server handling POST request
+[debug] [2020-09-13T18:49:13.459Z] DEBUG: [runtime-status] [12364] No callable functions auth found
+[debug] [2020-09-13T18:49:13.462Z] DEBUG: [runtime-status] [12364] Ephemeral server survived.
+[warn] !  Google API requested!
+   - URL: "https://oauth2.googleapis.com/token"
+   - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"createChief"},"message":"Google API requested!\n   - URL: \"https://oauth2.googleapis.com/token\"\n   - Be careful, this may be a production service."}}
+[warn] !  External network resource requested!
+   - URL: "https://discordapp.com/api/webhooks/754775178269032548/CtDD08EcEDJF50saKPutB_qFjiPw8vJMG1-hWiSXSlo0u2qZpzFw867BO5VdPXlOLzE9"
+ - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"createChief"},"message":"External network resource requested!\n   - URL: \"https://discordapp.com/api/webhooks/754775178269032548/CtDD08EcEDJF50saKPutB_qFjiPw8vJMG1-hWiSXSlo0u2qZpzFw867BO5VdPXlOLzE9\"\n - Be careful, this may be a production service."}}
+[debug] [2020-09-13T18:49:16.059Z] [functions] Finished "createChief" in ~2s
+[debug] [2020-09-13T18:49:16.060Z] DEBUG: [worker-createChief-fac56339-b1e2-4542-8e73-e8f8aa5f6827]: IDLE
+[debug] [2020-09-13T18:49:16.060Z] [work-queue] {"queueLength":0,"workRunningCount":0}

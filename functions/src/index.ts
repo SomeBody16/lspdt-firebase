@@ -22,6 +22,7 @@ import { editRankCall } from './callable/config/ranks/editRank';
 import { deleteRankCall } from './callable/config/ranks/deleteRank';
 import { createChiefCall } from './callable/server/createChief';
 import { createCitizenCall } from './callable/server/createCitizen';
+import { findByIdScanCall } from './callable/citizen/findByIdScan';
 
 admin.initializeApp();
 admin.firestore().settings({
@@ -35,6 +36,7 @@ export const recruitCitizen = recruitCitizenCall;
 export const setCitizenPhoto = setCitizenPhotoCall;
 export const makeCitizenWanted = makeCitizenWantedCall;
 export const confirmArrestMandate = confirmArrestMandateCall;
+export const findByIdScan = findByIdScanCall;
 
 // Officer
 export const updateOfficerBadgeNumber = updateOfficerBadgeNumberCall;

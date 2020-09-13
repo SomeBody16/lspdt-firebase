@@ -5,10 +5,15 @@ import { TextField } from '@material-ui/core';
 import { useForm, Controller } from 'react-hook-form';
 import { useSubmitButton } from '../../form';
 import ResetButton from '../../form/ResetButton';
-import Alert from '@material-ui/lab/Alert';
 import firebase from 'firebase';
-import ICitizen from '../../../../functions/src/models/citizen.interface';
 import { useTranslation } from 'react-i18next';
+import { useSnackbar } from 'notistack';
+import useFivemBridge from '../../../hooks/useFivemBridge';
+import { AppBarProgressContext } from '../../DrawerContainer/DrawerContainer';
+import { useFunction } from '../../../firebase';
+import { IFindByIdScanProps } from '../../../../functions/src/callable/citizen/findByIdScan';
+import * as uuid from 'uuid';
+import { IMakeSearchData } from '../../../screens/Citizens/SearchCitizensScreen';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -25,7 +30,10 @@ const useStyles = makeStyles((theme: Theme) =>
         buttonsContainer: {
             width: '100%',
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
+        },
+        button: {
+            marginLeft: theme.spacing(1),
         },
         alert: {
             marginTop: theme.spacing(2),
@@ -35,7 +43,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
-    setSearchResult: React.Dispatch<React.SetStateAction<ICitizen[]>>;
+    setStatus: React.Dispatch<React.SetStateAction<string>>;
+    setIdScan: React.Dispatch<React.SetStateAction<HTMLImageElement | undefined>>;
+    setActiveStep: React.Dispatch<React.SetStateAction<number>>;
+    makeSearch: (data: IMakeSearchData) => void;
 }
 
 interface ISearchFormInput {
@@ -46,43 +57,116 @@ interface ISearchFormInput {
 
 function SearchForm(props: Props) {
     const classes = useStyles();
-    const [t] = useTranslation('common');
+    const [t] = useTranslation('lang');
+    const { enqueueSnackbar } = useSnackbar();
+    const setAppBarProgress = React.useContext(AppBarProgressContext);
 
-    const { control, handleSubmit, reset, watch, errors } = useForm<ISearchFormInput>();
-    const [SubmitButton, setSubmitLoading] = useSubmitButton();
+    const { control, handleSubmit, reset, watch, errors, clearErrors } = useForm<
+        ISearchFormInput
+    >();
+    const [SubmitButton] = useSubmitButton();
 
     const watchFields = watch();
     const disableNameSurname = watchFields?.phoneNumber?.length > 0;
     const disablePhoneNumber = (watchFields?.name || watchFields?.surname)?.length > 0;
 
     const onSubmit = async (data: ISearchFormInput) => {
-        setSubmitLoading(true);
-
-        let query = firebase.firestore().collection('citizens').limit(10);
-        if (disableNameSurname) {
-            query = query.where('PhoneNumber', '==', data.phoneNumber);
-        } else {
-            query = query.where('Name', '==', data.name).where('Surname', '==', data.surname);
-        }
-
-        const result = await query.get();
-        props.setSearchResult(
-            result.docs.map(
-                (d) =>
-                    ({
-                        ...d.data(),
-                        Id: d.id,
-                    } as ICitizen)
-            )
-        );
-
-        setSubmitLoading(false);
+        props.setIdScan(undefined);
+        disableNameSurname
+            ? props.makeSearch({ phoneNumber: data.phoneNumber })
+            : props.makeSearch({ name: data.name, surname: data.surname });
     };
 
     const validateField = (skip: boolean, errorStr: string) => {
         if (skip) return undefined;
         return (value: string) => (value.length > 0 ? true : errorStr);
     };
+
+    const error = errors.name || errors.surname || errors.phoneNumber;
+    React.useEffect(() => {
+        if (!error || !error.message) return;
+        enqueueSnackbar(t(error.message), { variant: 'error' });
+        clearErrors();
+    }, [clearErrors, enqueueSnackbar, error, t]);
+
+    const findByIdScan = useFunction<IFindByIdScanProps, string>('findByIdScan');
+    const fivemBridge = useFivemBridge();
+    React.useEffect(() => {
+        return fivemBridge.onPasteImage(async (src) => {
+            props.setActiveStep(1);
+            props.setStatus(t('Wczytywanie dokumentu'));
+
+            const image = new Image();
+            props.setIdScan(image);
+            image.onerror = () => {
+                enqueueSnackbar(t('W schowku nie znaleziono zdjęcia!'), {
+                    variant: 'error',
+                });
+                props.setActiveStep(0);
+            };
+            image.onload = () => {
+                props.setStatus(t('Skanowanie'));
+
+                const idScanRef = firebase.storage().ref(uuid.v4() + '.png');
+                const uploadTask = idScanRef.putString(src, 'data_url');
+
+                uploadTask.on(
+                    'state_changed',
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        setAppBarProgress(progress);
+                    },
+                    (err) => {
+                        enqueueSnackbar(t(err.message), { variant: 'error' });
+                        props.setActiveStep(0);
+                    },
+                    async () => {
+                        setAppBarProgress(null);
+
+                        const idText = (await findByIdScan({
+                            filePath: uploadTask.snapshot.ref.name,
+                        })) as string;
+                        const lines = idText.split('\n');
+
+                        /**
+                         * [0] - RP
+                         * [1] - Dowód osobisty
+                         * [2] - Samuel Buddy
+                         * [3] - Data urodzenia : 06-01-2000
+                         * [4] - Wzrost: 185
+                         * [5] - Płeć: m
+                         * [6] - Ubezpieczenie - Brak
+                         */
+                        if (
+                            lines.length < 5 ||
+                            !/Dowód osobisty/.test(lines[1]) ||
+                            !/Data urodzenia.+/.test(lines[3]) ||
+                            !/Wzrost.+/.test(lines[4])
+                        ) {
+                            enqueueSnackbar(t('Błąd skanowania'), { variant: 'error' });
+                            props.setActiveStep(0);
+                            return;
+                        }
+
+                        const idContent = {
+                            Name: lines[2].split(' ')[0],
+                            Surname: lines[2].split(' ')[1],
+                            BirthDate: lines[3].split(' : ')[1],
+                            Height: lines[4].split(': ')[1],
+                        };
+                        props.makeSearch({
+                            uuid: uploadTask.snapshot.ref.name,
+                            name: idContent.Name,
+                            surname: idContent.Surname,
+                            idContent,
+                        });
+                    }
+                );
+            };
+
+            image.src = src;
+        });
+    }, [fivemBridge, setAppBarProgress, enqueueSnackbar, t, props, findByIdScan]);
 
     return (
         <form
@@ -95,8 +179,8 @@ function SearchForm(props: Props) {
                 className={classes.formField}
                 as={
                     <TextField
-                        placeholder={t('citizen.example.name')}
-                        label={t('citizen.details.name')}
+                        placeholder={t('Samuel')}
+                        label={t('Imię')}
                         disabled={disableNameSurname}
                         fullWidth
                     />
@@ -105,15 +189,18 @@ function SearchForm(props: Props) {
                 control={control}
                 defaultValue=''
                 rules={{
-                    validate: validateField(disableNameSurname, t('citizen.form.error.nameEmpty')),
+                    validate: validateField(
+                        disableNameSurname,
+                        t('Podaj imię i nazwisko lub nr. telefonu!')
+                    ),
                 }}
             />
             <Controller
                 className={classes.formField}
                 as={
                     <TextField
-                        placeholder={t('citizen.example.surname')}
-                        label={t('citizen.details.surname')}
+                        placeholder={t('Buddy')}
+                        label={t('Nazwisko')}
                         disabled={disableNameSurname}
                         fullWidth
                     />
@@ -124,7 +211,7 @@ function SearchForm(props: Props) {
                 rules={{
                     validate: validateField(
                         disableNameSurname,
-                        t('citizen.form.error.surnameEmpty')
+                        t('Podaj imię i nazwisko lub nr. telefonu!')
                     ),
                 }}
             />
@@ -132,8 +219,8 @@ function SearchForm(props: Props) {
                 className={classes.formField}
                 as={
                     <TextField
-                        placeholder={t('citizen.example.phoneNumber')}
-                        label={t('citizen.details.phoneNumber')}
+                        placeholder={t('000-0000')}
+                        label={t('Numer telefonu')}
                         disabled={disablePhoneNumber}
                         fullWidth
                     />
@@ -144,29 +231,18 @@ function SearchForm(props: Props) {
                 rules={{
                     validate: validateField(
                         disablePhoneNumber,
-                        t('citizen.form.error.phoneNumberEmpty')
+                        t('Podaj imię i nazwisko lub nr. telefonu!')
                     ),
                     pattern: {
                         value: /[0-9]{3}-[0-9]{4}/,
-                        message: t('citizen.form.error.phoneNumberInvalid'),
+                        message: t('Nieprawidłowy numer telefonu!'),
                     },
                 }}
             />
             <div className={classes.buttonsContainer}>
-                <SubmitButton>{t('common.form.search')}</SubmitButton>
-                <ResetButton onClick={() => reset()} />
+                <SubmitButton className={classes.button}>{t('Wyszukaj')}</SubmitButton>
+                <ResetButton className={classes.button} onClick={() => reset()} />
             </div>
-
-            {Object.keys(errors).map((key, index) => {
-                const err = (key as unknown) as keyof ISearchFormInput;
-                const errorStr = errors[err]?.message;
-                if (!errorStr) return null;
-                return (
-                    <Alert key={errors[err]?.message} className={classes.alert} severity='error'>
-                        {errorStr}
-                    </Alert>
-                );
-            })}
         </form>
     );
 }

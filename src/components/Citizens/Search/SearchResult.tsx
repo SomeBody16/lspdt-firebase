@@ -41,9 +41,13 @@ function CitizenItem(citizen: ICitizen & { isLast: boolean }) {
         <div>
             <ListItem>
                 <ListItemAvatar>
-                    <Avatar>
-                        <PersonIcon />
-                    </Avatar>
+                    {citizen.ImageUrl ? (
+                        <Avatar alt={citizen.Name} src={citizen.ImageUrl} />
+                    ) : (
+                        <Avatar>
+                            <PersonIcon />
+                        </Avatar>
+                    )}
                 </ListItemAvatar>
                 <ListItemText
                     primary={`${citizen.Name} ${citizen.Surname}`}
