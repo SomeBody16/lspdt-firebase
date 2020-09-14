@@ -32,6 +32,10 @@ function DeleteRankButton(props: Props) {
             });
     };
 
+    React.useEffect(() => {
+        setDisabled(props.rankId === 'default');
+    }, [props.rankId]);
+
     const claims = useClaims();
     if (!claims.value?.admin && !claims.value?.permissions?.includes('manageRanks')) {
         return null;

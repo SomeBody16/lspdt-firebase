@@ -1,4 +1,5 @@
 export default interface ICitizen {
+    Server: string;
     Id: string;
     Name: string;
     Surname: string;

@@ -11,6 +11,7 @@ import { SnackbarProvider } from 'notistack';
 import ProvideProviders, { IProviderWithProps } from './components/utils/ProvideProviders';
 
 import packageJson from '../package.json';
+import useServer from './firebase/hooks/useServer';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -20,9 +21,10 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         buildNumber: {
             position: 'fixed',
-            bottom: theme.spacing(0.5),
-            right: theme.spacing(0.5),
+            bottom: theme.spacing(0.1),
+            left: theme.spacing(0.1),
             fontSize: '60%',
+            zIndex: 9999,
         },
     })
 );
@@ -31,6 +33,7 @@ function RootApp() {
     const classes = useStyles();
 
     const user = useAuthChanged();
+    const Server = useServer();
 
     const providers: IProviderWithProps[] = [
         {
@@ -62,7 +65,9 @@ function RootApp() {
                             )}
                         </Route>
                     </Switch>
-                    <div className={classes.buildNumber}>{packageJson.build.unique}</div>
+                    <div className={classes.buildNumber}>
+                        {packageJson.build.unique}-{Server}
+                    </div>
                 </div>
             </ProvideProviders>
         </Router>

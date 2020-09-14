@@ -71,7 +71,6 @@ function CitizenPhoto(props: Props) {
     const fivemBridge = useFivemBridge();
     React.useEffect(() => {
         return fivemBridge.onPasteImage(async (src) => {
-            console.log('src', src);
             setAppBarProgress('indeterminate');
 
             const image = new Image();

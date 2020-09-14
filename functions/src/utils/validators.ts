@@ -30,11 +30,7 @@ export const validFirebaseId = async (id: any, collection: string | undefined) =
         {
             id: {
                 presence: true,
-                format: {
-                    pattern: '^[a-z0-9]+$',
-                    flags: 'i',
-                    message: 'docuementIdInvalid',
-                },
+                type: 'string',
             },
         }
     );

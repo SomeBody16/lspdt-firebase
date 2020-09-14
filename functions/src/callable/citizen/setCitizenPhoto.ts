@@ -17,6 +17,7 @@ export const setCitizenPhotoCall = functions.https.onCall(
             throw Unauthenticated();
         }
 
+        const Server = await utils.getUserServer(context.auth.uid);
         const error =
             (await utils.requirePermissions(context.auth?.uid, ['setCitizenPhoto'])) ||
             (await utils.requireValidated(
@@ -51,6 +52,7 @@ export const setCitizenPhotoCall = functions.https.onCall(
         const officerDoc = await modelsUtil.readOfficer(context.auth.uid);
         await makeRegistration(
             {
+                Server,
                 Citizen: {
                     ...(citizenDoc.data() as ICitizen),
                     Id: citizenDoc.id,
@@ -61,6 +63,7 @@ export const setCitizenPhotoCall = functions.https.onCall(
                 },
                 Prefixes: [
                     {
+                        Server,
                         Id: '',
                         Content: ':frame_photo:',
                         Description: 'Zmiana zdjęcia',

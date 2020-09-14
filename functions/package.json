@@ -7,10 +7,7 @@
         "shell": "npm run build && firebase functions:shell",
         "start": "npm run shell",
         "logs": "firebase functions:log",
-        "deploy:dev": "npm run use:dev && firebase deploy --only functions",
-        "deploy:atomicrp": "npm run use:atomicrp && firebase deploy --only functions",
-        "use:dev": "firebase use fivem-lspdt",
-        "use:atomicrp": "firebase use fivem-lspdt-atomicrp"
+        "deploy": "firebase deploy --only functions"
     },
     "engines": {
         "node": "12"

@@ -20,6 +20,7 @@ export const makeCitizenRegistrationCall = functions.https.onCall(
             throw Unauthenticated();
         }
 
+        const Server = await utils.getUserServer(context.auth.uid);
         const error =
             (await utils.requirePermissions(context.auth?.uid, ['makeCitizenRegistration'])) ||
             (await utils.requireValidated(
@@ -61,6 +62,7 @@ export const makeCitizenRegistrationCall = functions.https.onCall(
 
         await makeRegistration(
             {
+                Server,
                 Citizen: {
                     ...(citizenDoc.data() as ICitizen),
                     Id: citizenDoc.id,

@@ -14,6 +14,43 @@ import { useFunction } from '../../../firebase';
 import { IFindByIdScanProps } from '../../../../functions/src/callable/citizen/findByIdScan';
 import * as uuid from 'uuid';
 import { IMakeSearchData } from '../../../screens/Citizens/SearchCitizensScreen';
+import useServer from '../../../firebase/hooks/useServer';
+
+const testAndExtract = (
+    variant: string
+): {
+    test: (lines: string[]) => boolean;
+    extract: (lines: string[]) => Exclude<IMakeSearchData['idContent'], undefined>;
+} => {
+    switch (variant) {
+        case 'sincity':
+            return {
+                test: (lines) =>
+                    lines.length >= 8 && /LOS SANTOS/.test(lines[0]) && /PODPIS/.test(lines[6]),
+                extract: (lines) => ({
+                    Name: lines[1].split(' ')[0],
+                    Surname: lines[1].split(' ')[1],
+                    BirthDate: lines[5],
+                    Height: lines[4].split(' ')[1],
+                }),
+            };
+
+        default:
+            return {
+                test: (lines) =>
+                    lines.length >= 5 &&
+                    /Dowód osobisty/.test(lines[1]) &&
+                    /Data urodzenia.+/.test(lines[3]) &&
+                    /Wzrost.+/.test(lines[4]),
+                extract: (lines) => ({
+                    Name: lines[2].split(' ')[0],
+                    Surname: lines[2].split(' ')[1],
+                    BirthDate: lines[3].split(' : ')[1],
+                    Height: lines[4].split(': ')[1],
+                }),
+            };
+    }
+};
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -56,6 +93,7 @@ interface ISearchFormInput {
 }
 
 function SearchForm(props: Props) {
+    const Server = useServer();
     const classes = useStyles();
     const [t] = useTranslation('lang');
     const { enqueueSnackbar } = useSnackbar();
@@ -128,32 +166,16 @@ function SearchForm(props: Props) {
                         })) as string;
                         const lines = idText.split('\n');
 
-                        /**
-                         * [0] - RP
-                         * [1] - Dowód osobisty
-                         * [2] - Samuel Buddy
-                         * [3] - Data urodzenia : 06-01-2000
-                         * [4] - Wzrost: 185
-                         * [5] - Płeć: m
-                         * [6] - Ubezpieczenie - Brak
-                         */
-                        if (
-                            lines.length < 5 ||
-                            !/Dowód osobisty/.test(lines[1]) ||
-                            !/Data urodzenia.+/.test(lines[3]) ||
-                            !/Wzrost.+/.test(lines[4])
-                        ) {
+                        const { test, extract } = testAndExtract(Server || 'dev');
+
+                        if (!test(lines)) {
+                            console.log({ lines, env: process.env });
                             enqueueSnackbar(t('Błąd skanowania'), { variant: 'error' });
                             props.setActiveStep(0);
                             return;
                         }
 
-                        const idContent = {
-                            Name: lines[2].split(' ')[0],
-                            Surname: lines[2].split(' ')[1],
-                            BirthDate: lines[3].split(' : ')[1],
-                            Height: lines[4].split(': ')[1],
-                        };
+                        const idContent = extract(lines);
                         props.makeSearch({
                             uuid: uploadTask.snapshot.ref.name,
                             name: idContent.Name,
@@ -166,7 +188,7 @@ function SearchForm(props: Props) {
 
             image.src = src;
         });
-    }, [fivemBridge, setAppBarProgress, enqueueSnackbar, t, props, findByIdScan]);
+    }, [fivemBridge, setAppBarProgress, enqueueSnackbar, t, props, findByIdScan, Server]);
 
     return (
         <form

@@ -28,6 +28,12 @@ export const deleteRankCall = functions.https.onCall(
             throw error;
         }
         /* ******************************************************************* */
+        if (data.rankId === 'default') {
+            throw new functions.https.HttpsError(
+                'permission-denied',
+                'Tej rangi nie można skasować (ranga serwerowa)'
+            );
+        }
         const rankDoc = await modelsUtil.readRank(data.rankId);
 
         const officersOfRankQuery = await admin

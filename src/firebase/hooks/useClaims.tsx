@@ -23,8 +23,11 @@ export function useClaimsHook(): {
         readPermissions();
     }, [currentUser]);
 
-    return {
-        value: claims,
-        isLoading,
-    };
+    return React.useMemo(
+        () => ({
+            value: claims,
+            isLoading,
+        }),
+        [claims, isLoading]
+    );
 }

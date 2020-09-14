@@ -69,7 +69,6 @@ function AddCitizenForm(props: Props) {
                         citizen: {
                             ...values,
                             Id: props.makeSearchData?.uuid || '',
-                            CreateTime: Date.now(),
                         },
                         uid: props.makeSearchData?.uuid || '',
                     })

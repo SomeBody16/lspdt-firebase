@@ -20,7 +20,7 @@ function DeleteCrimeButton(props: Props) {
     const deleteCrime = useFunction<IDeleteCrimeProps, void>('deleteCrime');
 
     const [disabled, setDisabled] = React.useState<boolean>(false);
-    const handleDelete = () => {
+    const handleDelete = React.useCallback(() => {
         setAppBarProgress('indeterminate');
         setDisabled(true);
 
@@ -30,7 +30,7 @@ function DeleteCrimeButton(props: Props) {
                 setAppBarProgress(null);
                 setDisabled(false);
             });
-    };
+    }, [deleteCrime, enqueueSnackbar, props.crimeId, setAppBarProgress, t]);
 
     return (
         <IconButton disabled={disabled} size='small' onClick={handleDelete}>

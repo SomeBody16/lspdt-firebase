@@ -14,6 +14,7 @@ export const addPrefixCall = functions.https.onCall(
             throw Unauthenticated();
         }
 
+        const Server = await utils.getUserServer(context.auth.uid);
         const error =
             (await utils.requirePermissions(context.auth?.uid, ['managePrefixes'])) ||
             (await utils.requireValidated(data, {
@@ -26,7 +27,10 @@ export const addPrefixCall = functions.https.onCall(
             throw error;
         }
         /* ******************************************************************* */
-        await admin.firestore().collection('prefixes').add(data.prefix);
+        await admin
+            .firestore()
+            .collection('prefixes')
+            .add({ ...data.prefix, Server });
         /* ******************************************************************* */
         return 1;
     }

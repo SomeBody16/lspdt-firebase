@@ -1,6 +1,7 @@
 import React from 'react';
 import IRegistration from '../../../functions/src/models/registration.interface';
 import firebase from 'firebase';
+import useServer from './useServer';
 
 const sizePerPage = 10;
 
@@ -15,6 +16,8 @@ export type TUseCitizenRegistryResult = {
 export function useCitizenRegistryHook(citizenId: string): TUseCitizenRegistryResult {
     const [registry, setRegistry] = React.useState<IRegistration[]>([]);
 
+    const Server = useServer();
+
     const [currentPage, setCurrentPage] = React.useState<number>(1);
     const [lastVisible, setLastVisible] = React.useState<
         firebase.firestore.DocumentSnapshot<any>[]
@@ -23,11 +26,12 @@ export function useCitizenRegistryHook(citizenId: string): TUseCitizenRegistryRe
     const [noMore, setNoMore] = React.useState<boolean>(false);
 
     React.useEffect(() => {
-        if (!citizenId) return;
+        if (!citizenId || !Server) return;
         setIsLoading(true);
         let query = firebase
             .firestore()
             .collection('registry')
+            .where('Server', '==', Server)
             .where('Citizen.Id', '==', citizenId)
             .orderBy('CreateTime', 'desc')
             .limit(sizePerPage);
@@ -53,7 +57,7 @@ export function useCitizenRegistryHook(citizenId: string): TUseCitizenRegistryRe
             setLastVisible(lastVisible);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [citizenId, currentPage]);
+    }, [citizenId, currentPage, Server]);
 
     return {
         registry,

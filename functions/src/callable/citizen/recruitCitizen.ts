@@ -17,6 +17,7 @@ export const recruitCitizenCall = functions.https.onCall(
             throw Unauthenticated();
         }
 
+        const Server = await utils.getUserServer(context.auth.uid);
         const error =
             (await utils.requirePermissions(context.auth?.uid, ['recruitOfficer'])) ||
             (await utils.requireValidated(data, {
@@ -39,7 +40,7 @@ export const recruitCitizenCall = functions.https.onCall(
             .get();
 
         if (query.empty) {
-            newUserRequest = await createNewOfficer(citizenDoc);
+            newUserRequest = await createNewOfficer(citizenDoc, Server);
         } else {
             // Officer exists, turn him on
             const newOfficerDoc = query.docs[0];
@@ -51,6 +52,7 @@ export const recruitCitizenCall = functions.https.onCall(
                     ...newOfficerDoc.data(),
                     Id: newOfficerDoc.id,
                     IsFired: false,
+                    Server,
                 });
             });
         }
@@ -82,6 +84,7 @@ export const recruitCitizenCall = functions.https.onCall(
 
         await makeRegistration(
             {
+                Server,
                 Citizen: {
                     ...(citizenDoc.data() as ICitizen),
                     Id: citizenDoc.id,
@@ -92,6 +95,7 @@ export const recruitCitizenCall = functions.https.onCall(
                 },
                 Prefixes: [
                     {
+                        Server,
                         Id: '',
                         Content: ':new::cop:',
                         Description: 'Nowy policjant',
@@ -108,16 +112,20 @@ export const recruitCitizenCall = functions.https.onCall(
 );
 
 export const createNewOfficer = async (
-    citizenDoc: FirebaseFirestore.DocumentSnapshot<ICitizen>
+    citizenDoc: FirebaseFirestore.DocumentSnapshot<ICitizen>,
+    Server: string
 ): Promise<admin.auth.CreateRequest> => {
     const userCreateRequest: admin.auth.CreateRequest = {
-        email: `${citizenDoc.data()?.Name}.${citizenDoc.data()?.Surname}@lspdt.com`.toLowerCase(),
+        email: `${citizenDoc.data()?.Name}.${
+            citizenDoc.data()?.Surname
+        }@${Server}.com`.toLowerCase(),
         emailVerified: true,
         password: utils.generatePassword(10),
-        displayName: `${citizenDoc.data()?.Name} ${citizenDoc.data()?.Surname}`,
+        displayName: `${citizenDoc.data()?.Name} ${citizenDoc.data()?.Surname} | ${Server}`,
         disabled: false,
     };
     const newUser = await admin.auth().createUser(userCreateRequest);
+    await admin.auth().setCustomUserClaims(newUser.uid, { Server });
 
     // Create new rank if default not exists
     const defaultRankDoc = await modelsUtil.readRank('default');
@@ -127,6 +135,7 @@ export const createNewOfficer = async (
         .collection('officers')
         .doc(newUser.uid)
         .set({
+            Server,
             BadgeNumber: '--',
             IsFired: false,
             Citizen: {

@@ -8,6 +8,7 @@ import { makeDiscordLog } from '../../registry/makeRegistration';
 export interface ICreateChiefProps {
     uid: string;
     password: string;
+    server: string;
 }
 
 export const createChiefCall = functions.https.onCall(
@@ -26,7 +27,7 @@ export const createChiefCall = functions.https.onCall(
             throw error;
         }
         /* ******************************************************************* */
-        const serverDoc = await admin.firestore().collection('config').doc('server').get();
+        const serverDoc = await admin.firestore().collection('server').doc(data.server).get();
 
         const serverPassword = serverDoc.get('Password');
         if (!serverPassword || serverPassword !== data.password) {
@@ -38,6 +39,7 @@ export const createChiefCall = functions.https.onCall(
             .firestore()
             .collection('citizens')
             .where('IsChief', '==', true)
+            .where('Server', '==', data.server)
             .get();
         if (!adminQuery.empty) {
             throw new functions.https.HttpsError('already-exists', 'Chief already exists', {
@@ -47,10 +49,11 @@ export const createChiefCall = functions.https.onCall(
 
         const citizenDoc = await modelsUtil.readCitizen(data.uid);
 
-        const newUserRequest = await createNewOfficer(citizenDoc);
+        const newUserRequest = await createNewOfficer(citizenDoc, data.server);
         await admin.auth().setCustomUserClaims(newUserRequest.uid || '', {
             admin: true,
             permissions: [],
+            Server: data.server,
         });
         await citizenDoc.ref.update('IsChief', true);
         await admin
@@ -61,6 +64,7 @@ export const createChiefCall = functions.https.onCall(
 
         /* ******************************************************************* */
         await makeDiscordLog({
+            Server: data.server,
             channel: 'log',
             title: 'CHIEF ACCOUNT',
             customMessage: (msg) =>

@@ -4,6 +4,7 @@ import ICitizen from './citizen.interface';
 import ICrime from './crime.interface';
 
 export default interface IRegistration {
+    Server: string;
     Id: string;
     Citizen: ICitizen;
     Prefixes: IPrefix[];

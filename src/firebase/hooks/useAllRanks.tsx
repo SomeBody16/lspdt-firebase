@@ -1,6 +1,7 @@
 import React from 'react';
 import IRank from '../../../functions/src/models/rank.interface';
 import firebase from 'firebase';
+import useServer from './useServer';
 
 export function useAllRanksHook(): {
     value: IRank[];
@@ -9,11 +10,15 @@ export function useAllRanksHook(): {
     const [ranks, setRanks] = React.useState<IRank[]>([]);
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
+    const Server = useServer();
+
     React.useEffect(() => {
+        if (!Server) return;
         setIsLoading(true);
         return firebase
             .firestore()
             .collection('ranks')
+            .where('Server', '==', Server)
             .orderBy('Callsign')
             .onSnapshot((query) => {
                 setRanks(
@@ -24,7 +29,7 @@ export function useAllRanksHook(): {
                 );
                 setIsLoading(false);
             });
-    }, []);
+    }, [Server]);
 
     return {
         value: ranks,

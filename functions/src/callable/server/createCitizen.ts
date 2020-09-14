@@ -9,7 +9,7 @@ import IOfficer from '../../models/officer.interface';
 
 export interface ICreateCitizenProps {
     uid: string;
-    citizen: ICitizen; // Name, Surname, BirthDate
+    citizen: Omit<ICitizen, 'Server' | 'CreateTime'>; // Name, Surname, BirthDate
 }
 
 export const createCitizenCall = functions.https.onCall(
@@ -18,6 +18,7 @@ export const createCitizenCall = functions.https.onCall(
             throw Unauthenticated();
         }
 
+        const Server = await utils.getUserServer(context.auth.uid);
         const error = await utils.requireValidated(data, {
             uid: {
                 presence: true,
@@ -39,16 +40,18 @@ export const createCitizenCall = functions.https.onCall(
             IsOfficer: false,
             IsWanted: false,
             IsChief: false,
+            Server,
         };
 
         await admin.firestore().collection('citizens').doc(data.uid).set(citizenDocData);
         /* ******************************************************************* */
         const officerDoc = await modelsUtil.readOfficer(context.auth.uid);
-        const idScan = admin.storage().bucket('citizens-ids').file(data.uid);
+        const idScan = admin.storage().bucket('lspdt-fivem-prod.appspot.com').file(data.uid);
         await idScan.makePublic();
-        const ImageUrl = `https://storage.googleapis.com/citizens-ids/${data.uid}`;
+        const ImageUrl = `https://storage.googleapis.com/lspdt-fivem-prod.appspot.com/${data.uid}`;
         await makeRegistration(
             {
+                Server,
                 Citizen: citizenDocData,
                 OfficerAuthor: {
                     ...(officerDoc.data() as IOfficer),
@@ -56,6 +59,7 @@ export const createCitizenCall = functions.https.onCall(
                 },
                 Prefixes: [
                     {
+                        Server,
                         Id: '',
                         Content: ':open_file_folder:',
                         Description: 'Otwarcie kartoteki',

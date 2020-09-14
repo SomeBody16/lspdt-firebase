@@ -27,6 +27,12 @@ export const editRankCall = functions.https.onCall(
             throw error;
         }
         /* ******************************************************************* */
+        if (data.rank.Id === 'default') {
+            throw new functions.https.HttpsError(
+                'permission-denied',
+                'Tej rangi nie można edytować (ranga serwerowa)'
+            );
+        }
         const rankDoc = await modelsUtil.readRank(data.rank.Id);
         await rankDoc.ref.update({
             ...rankDoc.data(),

@@ -36,6 +36,18 @@ export const requirePermissions = async (
     return;
 };
 
+export const getUserServer = async (userUid: string): Promise<string> => {
+    const user = await admin.auth().getUser(userUid);
+    const server = user.customClaims?.Server;
+    if (!server) {
+        throw new functions.https.HttpsError(
+            'failed-precondition',
+            'Użytkownik nie ma przydzielonego serwera'
+        );
+    }
+    return server;
+};
+
 export const citizenStr = (citizen: ICitizen) => {
     return `${citizen.Name} ${citizen.Surname} | ${citizen.Id}`;
 };

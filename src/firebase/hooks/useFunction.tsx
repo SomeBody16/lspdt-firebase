@@ -21,7 +21,7 @@ function catchError({ err, useTranslationResponse, snackbar }: ICatchErrorProps)
 export function useFunctionHook<T = any, R = boolean>(
     name: string
 ): (props?: T) => Promise<R | void> {
-    const useTranslationResponse = useTranslation();
+    const useTranslationResponse = useTranslation('lang');
     const snackbar = useSnackbar();
 
     return async (props?: T): Promise<R | void> => {

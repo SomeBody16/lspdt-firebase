@@ -20,6 +20,41 @@
             }
         }
     },
+    "internal": "Nieznany błąd serwera",
+    "INTERNAL": "Nieznany błąd serwera",
+    "app": {
+        "drawer": {
+            "summary": {
+                "icon": ":bar_chart:",
+                "text": "Podsumowanie"
+            },
+            "citizens": {
+                "icon": ":family_mwgb:",
+                "text": "Mieszkańcy"
+            },
+            "vehicles": {
+                "icon": ":red_car:",
+                "text": "Pojazdy"
+            },
+            "police": {
+                "icon": ":cop:",
+                "text": "Policjanci"
+            },
+            "crimes": {
+                "icon": ":page_facing_up:",
+                "text": "Taryfikator"
+            },
+            "prefixes": {
+                "icon": ":question:",
+                "text": "Ikony"
+            },
+            "ranks": {
+                "icon": ":lock:",
+                "text": "Rangi"
+            }
+        }
+    },
+
     "emailEmpty": "Wprowadź adres e-mail",
     "emailInvalid": "Podany adres e-mail jest nieprawidłowy",
     "passwordEmpty": "Wprowadź hasło",
@@ -40,6 +75,7 @@
     "makeCitizenRegistration": "Możliwość własnego wpisu do rejestru mieszkańca.",
     "accessArrestMandate": "Możliwość aresztowania/ wystawienia faktury dla mieszkańca.",
     "recruitOfficer": "Możliwość zatrudnienia lub przywrócenia do służby policjanta.",
+    "setCitizenPhoto": "Możliwość zmiany zdjęcia mieszkańca.",
 
     "changeOfficerBadgeNumber": "Możliwość zmiany numeru odznaki funkcjonariusza.",
     "changeOfficerRank": "Możliwość zmiany rangi funkcjonariusza.",

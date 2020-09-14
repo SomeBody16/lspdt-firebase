@@ -77,10 +77,10 @@ export const readRank = async (
 
     if (!doc.exists && rankId === 'default') {
         await doc.ref.set({
-            Callsign: 'X',
+            Callsign: 'R',
             ImageUrl:
                 'https://vignette.wikia.nocookie.net/gtawiki/images/7/7f/LSPD_logo_GTA_V.png/revision/latest/top-crop/width/360/height/450?cb=20150425201508',
-            Name: 'Police Chief',
+            Name: 'Rekrut',
         });
         return readRank(rankId);
     }

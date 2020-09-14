@@ -1,15 +1,7 @@
 import React from 'react';
 import { Theme, createStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
-import {
-    Drawer,
-    Divider,
-    Stepper,
-    Step,
-    StepContent,
-    StepLabel,
-    StepButton,
-} from '@material-ui/core';
+import { Stepper, Step, StepContent, StepLabel, StepButton } from '@material-ui/core';
 import SearchResult from '../../components/Citizens/Search/SearchResult';
 import SearchForm from '../../components/Citizens/Search/SearchForm';
 import ICitizen from '../../../functions/src/models/citizen.interface';
@@ -17,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import IdScan from '../../components/Citizens/Search/IdScan';
 import firebase from 'firebase';
 import AddCitizenForm from '../../components/Citizens/Search/AddCitizenForm';
+import useServer from '../../firebase/hooks/useServer';
 
 const drawerWidth = 240;
 
@@ -59,6 +52,7 @@ function SearchCitizensScreen() {
     const classes = useStyles();
     const [t] = useTranslation('lang');
     const [activeStep, setActiveStep] = React.useState(0);
+    const Server = useServer();
 
     const [status, setStatus] = React.useState<string>('');
     const [idScan, setIdScan] = React.useState<HTMLImageElement>();
@@ -71,7 +65,11 @@ function SearchCitizensScreen() {
         setActiveStep(1);
         setStatus(t('Sprawdzanie bazy danych'));
 
-        let query = firebase.firestore().collection('citizens').limit(10);
+        let query = firebase
+            .firestore()
+            .collection('citizens')
+            .where('Server', '==', Server || 'dev')
+            .limit(10);
         if (data.phoneNumber) {
             query = query.where('PhoneNumber', '==', data.phoneNumber);
         } else {

@@ -38,4 +38,5 @@ export const AllPermissions = [
 export default interface IUserClaims {
     admin?: boolean;
     permissions?: ElementType<typeof AllPermissions>;
+    Server?: string;
 }

@@ -6,6 +6,7 @@ import IOfficer from '../models/officer.interface';
 import ICrime from '../models/crime.interface';
 
 export interface IRegistrationProps {
+    Server: string;
     Title: string;
     Description?: string;
     Prefixes: IPrefix[];
@@ -17,6 +18,7 @@ export interface IRegistrationProps {
 }
 
 export interface IDiscordLogOptions {
+    Server?: string;
     channel: 'accounts' | 'punishments' | 'registry' | 'wanted' | 'log';
     title: string;
     customMessage?: (msg: MessageBuilder) => MessageBuilder;
@@ -68,16 +70,18 @@ export const makeDiscordLog = async (discordLogOptions: IDiscordLogOptions) => {
     let channelWebhookUrl =
         'https://discordapp.com/api/webhooks/754808609656799313/UQu4bnqmKkAOt5SrkHyJczZC_jNvGLBw1qMI-sPqiW3s3X3GH6rfLTwgzbAxt5gDaWuP';
     if (discordLogOptions.channel !== 'log') {
-        const webhooksDoc = await admin.firestore().collection('config').doc('webhooks').get();
-        channelWebhookUrl = webhooksDoc.get(discordLogOptions.channel);
+        const webhooksDoc = await admin
+            .firestore()
+            .collection('server')
+            .doc(discordLogOptions.Server || 'dev')
+            .get();
+        channelWebhookUrl = webhooksDoc.get(`Webhook.${discordLogOptions.channel}`);
         if (!webhooksDoc.exists || !channelWebhookUrl) return;
     }
 
     const hook = new Webhook(channelWebhookUrl);
     hook.setUsername(
-        discordLogOptions.channel === 'log'
-            ? process.env.GCLOUD_PROJECT || 'PROJECT'
-            : 'LSPD Tablet'
+        discordLogOptions.channel === 'log' ? discordLogOptions.Server || 'dev' : 'LSPD Tablet'
     );
     hook.setAvatar('https://t7.rbxcdn.com/0bf0b1236401f5ba95b1c72a95c7df96');
 

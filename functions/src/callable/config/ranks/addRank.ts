@@ -14,6 +14,7 @@ export const addRankCall = functions.https.onCall(
             throw Unauthenticated();
         }
 
+        const Server = await utils.getUserServer(context.auth.uid);
         const error =
             (await utils.requirePermissions(context.auth?.uid, ['manageRanks'])) ||
             (await utils.requireValidated(data, {
@@ -26,7 +27,10 @@ export const addRankCall = functions.https.onCall(
             throw error;
         }
         /* ******************************************************************* */
-        await admin.firestore().collection('ranks').add(data.rank);
+        await admin
+            .firestore()
+            .collection('ranks')
+            .add({ ...data.rank, Server });
         /* ******************************************************************* */
         return 1;
     }

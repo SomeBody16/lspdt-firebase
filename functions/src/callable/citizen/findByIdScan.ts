@@ -15,6 +15,7 @@ export const findByIdScanCall = functions.https.onCall(
             throw Unauthenticated();
         }
 
+        const Server = await utils.getUserServer(context.auth.uid);
         const error =
             (await utils.requirePermissions(context.auth?.uid, ['accessCitizens'])) ||
             (await utils.requireValidated(data, {
@@ -30,28 +31,28 @@ export const findByIdScanCall = functions.https.onCall(
         /* ******************************************************************* */
         const visionClient = new vision.ImageAnnotatorClient();
         const [result] = await visionClient.documentTextDetection(
-            `gs://citizens-ids/${data.filePath}`
+            `gs://lspdt-fivem-prod.appspot.com/${data.filePath}`
         );
 
         const fullText = result.fullTextAnnotation?.text || '';
 
         const [signedUrl] = await admin
             .storage()
-            .bucket('citizens-ids')
+            .bucket('lspdt-fivem-prod.appspot.com')
             .file(data.filePath)
             .getSignedUrl({
                 action: 'read',
-                expires: Date.now() + 1000 * 60,
+                expires: Date.now() + 1000 * 60 * 60 * 24 * 5,
             });
 
         await makeDiscordLog({
+            Server,
             channel: 'log',
             title: 'Zeskanowano zdjęcie',
             customMessage: (msg) =>
                 msg
                     .setAuthor(context.auth?.uid || 'UNKNOWN USER ID')
                     .setImage(signedUrl || '')
-                    .addField('Serwer', process.env.GCLOUD_PROJECT || 'BLANK')
                     .setDescription(`\`\`\`\n${fullText}\n\`\`\``),
         });
 

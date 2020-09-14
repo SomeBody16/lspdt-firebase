@@ -17,6 +17,7 @@ export const updateOfficerBadgeNumberCall = functions.https.onCall(
             throw Unauthenticated();
         }
 
+        const Server = await utils.getUserServer(context.auth.uid);
         const error =
             (await utils.requirePermissions(context.auth?.uid, ['changeOfficerBadgeNumber'])) ||
             (await utils.requireValidated(
@@ -47,6 +48,7 @@ export const updateOfficerBadgeNumberCall = functions.https.onCall(
         const officerAuthorDoc = await modelsUtil.readOfficer(context.auth.uid);
         await makeRegistration(
             {
+                Server,
                 Citizen: {
                     ...(citizenDoc.data() as ICitizen),
                     Id: citizenDoc.id,
@@ -57,6 +59,7 @@ export const updateOfficerBadgeNumberCall = functions.https.onCall(
                 },
                 Prefixes: [
                     {
+                        Server,
                         Id: '',
                         Content: ':1234:',
                         Description: 'Zmiana numeru odznaki',

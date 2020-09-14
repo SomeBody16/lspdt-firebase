@@ -15,6 +15,7 @@ export const addCrimeCall = functions.https.onCall(
             throw Unauthenticated();
         }
 
+        const Server = await utils.getUserServer(context.auth.uid);
         const error =
             (await utils.requirePermissions(context.auth?.uid, ['manageCrimes'])) ||
             (await utils.requireValidated(data, {
@@ -33,6 +34,7 @@ export const addCrimeCall = functions.https.onCall(
             .collection('crimes')
             .add({
                 ...data.crime,
+                Server,
                 Prefix: {
                     ...prefixDoc.data(),
                     Id: prefixDoc.id,

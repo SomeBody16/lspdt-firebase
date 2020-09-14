@@ -2,6 +2,7 @@ import ICitizen from './citizen.interface';
 import IRank from './rank.interface';
 
 export default interface IOfficer {
+    Server: string;
     Id: string;
     Citizen: ICitizen;
     Rank: IRank;
