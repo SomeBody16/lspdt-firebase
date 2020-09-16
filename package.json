@@ -38,7 +38,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "nbn && react-scripts build",
-    "deploy": "firebase deploy --only hosting"
+    "deploy": "firebase deploy --only hosting",
+    "build-deploy": "npm run build && npm run deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -61,9 +62,9 @@
     "node-build-number": "^1.0.2"
   },
   "build": {
-    "unique": "lspdt:v3.0.0-dev[build:15]",
-    "number": 15,
-    "timestamp": "2020-9-14 17:34:46",
+    "unique": "lspdt:v3.0.0-dev[build:23]",
+    "number": 23,
+    "timestamp": "2020-9-16 14:52:02",
     "git-branch": "dev",
     "git-user": "SomeBody16 <filip.nowakowski2000@outlook.com>",
     "git-version": "2.28.0",

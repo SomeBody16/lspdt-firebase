@@ -26,12 +26,12 @@ const testAndExtract = (
         case 'sincity':
             return {
                 test: (lines) =>
-                    lines.length >= 8 && /LOS SANTOS/.test(lines[0]) && /PODPIS/.test(lines[6]),
+                    lines.length >= 10 && /LOS SANTOS/.test(lines[0]) && /PODPIS/.test(lines[6]),
                 extract: (lines) => ({
                     Name: lines[1].split(' ')[0],
                     Surname: lines[1].split(' ')[1],
-                    BirthDate: lines[5],
-                    Height: lines[4].split(' ')[1],
+                    BirthDate: lines[10],
+                    Height: lines[7],
                 }),
             };
 
@@ -110,9 +110,15 @@ function SearchForm(props: Props) {
 
     const onSubmit = async (data: ISearchFormInput) => {
         props.setIdScan(undefined);
+        const idContent: Exclude<IMakeSearchData['idContent'], undefined> = {
+            Name: data.name,
+            Surname: data.surname,
+            BirthDate: '',
+            Height: '',
+        };
         disableNameSurname
-            ? props.makeSearch({ phoneNumber: data.phoneNumber })
-            : props.makeSearch({ name: data.name, surname: data.surname });
+            ? props.makeSearch({ phoneNumber: data.phoneNumber, idContent })
+            : props.makeSearch({ name: data.name, surname: data.surname, idContent });
     };
 
     const validateField = (skip: boolean, errorStr: string) => {

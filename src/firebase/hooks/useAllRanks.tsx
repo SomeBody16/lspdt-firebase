@@ -20,6 +20,7 @@ export function useAllRanksHook(): {
             .collection('ranks')
             .where('Server', '==', Server)
             .orderBy('Callsign')
+            .orderBy('Name')
             .onSnapshot((query) => {
                 setRanks(
                     query.docs.map((doc) => ({

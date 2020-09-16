@@ -85,5 +85,6 @@
 
     "managePrefixes": "Możliwość dodania, zmiany, usunięcia ikon.",
 
-    "manageRanks": "Możliwość dodania, zmiany, usunięcia rangi."
+    "manageRanks": "Możliwość dodania, zmiany, usunięcia rangi.",
+    "accessPermissions": "Możliwość wypisania wszystkich permisjii (Wymagane przy zarządzaniu rangami)"
 }

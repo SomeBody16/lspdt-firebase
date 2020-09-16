@@ -33,7 +33,10 @@ export const AllPermissions = [
 
     // Ranks
     'manageRanks', // Buttons visibility: Add, Edit and Delete
-];
+
+    // Permissions
+    'accessPermissions',
+] as const;
 
 export default interface IUserClaims {
     admin?: boolean;

@@ -38,7 +38,7 @@ function useFivemBridge(): IFivemBridge {
                             closeSnackbar(key);
                         }}
                     >
-                        {t('common.form.button.copy')}
+                        {t('Kopiuj')}
                     </Button>
                 ),
             });

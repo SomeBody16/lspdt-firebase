@@ -1,11 +1,12 @@
 import * as functions from 'firebase-functions';
 import IRank from '../models/rank.interface';
 import IOfficer from '../models/officer.interface';
+import { AllPermissions } from '../models/user-claims.interface';
 
 export const Unauthenticated = () =>
     new functions.https.HttpsError('unauthenticated', 'Nieautoryzowany dostęp');
 
-export const PermissionDenied = (permission: string) =>
+export const PermissionDenied = (permission: typeof AllPermissions[number]) =>
     new functions.https.HttpsError('permission-denied', 'Brak permisji: {{permission}}', {
         permission,
     });

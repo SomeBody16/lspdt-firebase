@@ -3,6 +3,7 @@ import * as admin from 'firebase-admin';
 import { Unauthenticated, PermissionDenied } from './errors';
 import ICitizen from '../models/citizen.interface';
 import { requireValidated as _requireValidated } from './validators';
+import { AllPermissions } from '../models/user-claims.interface';
 
 export const generatePassword = (length: number) => {
     const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -15,7 +16,7 @@ export const generatePassword = (length: number) => {
 
 export const requirePermissions = async (
     userUid: string | undefined,
-    permissions: string[]
+    permissions: typeof AllPermissions[number][]
 ): Promise<functions.https.HttpsError | undefined> => {
     if (!userUid) {
         return Unauthenticated();
@@ -25,10 +26,12 @@ export const requirePermissions = async (
     if (!creatorUser.customClaims) {
         return PermissionDenied(permissions[0]);
     }
+
     if (creatorUser.customClaims['admin']) return;
 
+    const userPermissions: typeof AllPermissions[number][] = creatorUser.customClaims.permissions;
     for (const requiredPermission of permissions) {
-        if (!creatorUser.customClaims[requiredPermission]) {
+        if (!userPermissions.includes(requiredPermission)) {
             return PermissionDenied(requiredPermission);
         }
     }

@@ -59,10 +59,13 @@ export const makeRegistration = async (
 
     if (Array.isArray(discordLogOptions)) {
         for (const options of discordLogOptions) {
-            await sendMessage(options);
+            await sendMessage({ ...options, Server: options.Server || props.Server });
         }
     } else if (typeof discordLogOptions === 'object') {
-        await sendMessage(discordLogOptions);
+        await sendMessage({
+            ...discordLogOptions,
+            Server: discordLogOptions.Server || props.Server,
+        });
     }
 };
 

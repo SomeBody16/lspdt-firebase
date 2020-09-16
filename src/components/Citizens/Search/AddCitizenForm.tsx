@@ -11,6 +11,7 @@ import { useFunction } from '../../../firebase';
 import { ICreateCitizenProps } from '../../../../functions/src/callable/server/createCitizen';
 import { useSnackbar } from 'notistack';
 import { useHistory } from 'react-router-dom';
+import * as uuid from 'uuid';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -65,16 +66,17 @@ function AddCitizenForm(props: Props) {
                 onSubmit={async (values, { setSubmitting }) => {
                     setAppBarProgress('indeterminate');
 
+                    const uid = props.makeSearchData?.uuid || uuid.v4();
                     createCitizen({
                         citizen: {
                             ...values,
-                            Id: props.makeSearchData?.uuid || '',
+                            Id: uid,
                         },
-                        uid: props.makeSearchData?.uuid || '',
+                        uid,
                     })
                         .then(() => {
                             enqueueSnackbar(t('Założono kartoteke!'), { variant: 'success' });
-                            history.push(`/tablet/citizen/${props.makeSearchData?.uuid || ''}`);
+                            history.push(`/tablet/citizen/${uid}`);
                         })
                         .finally(() => {
                             setAppBarProgress(null);

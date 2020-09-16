@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import * as functions from 'firebase-functions';
 import { setCitizenPhoneNumberCall } from './callable/citizen/setCitizenPhoneNumber';
 import { makeCitizenRegistrationCall } from './callable/citizen/makeCitizenRegistration';
 import { recruitCitizenCall } from './callable/citizen/recruitCitizen';
@@ -64,3 +65,10 @@ export const listPermissions = listPermissionsCall;
 // Server
 export const createChief = createChiefCall;
 export const createCitizen = createCitizenCall;
+
+export const tmp = functions.https.onCall(async (data, context) => {
+    const res = admin.auth().listUsers();
+    (await res).users.forEach((user) => {
+        console.log(user.displayName, user.customClaims);
+    });
+});

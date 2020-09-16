@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
             marginBottom: theme.spacing(2),
         },
         loginButton: {
-            width: '20%',
+            width: '30%',
         },
         alert: {
             marginBottom: theme.spacing(3),

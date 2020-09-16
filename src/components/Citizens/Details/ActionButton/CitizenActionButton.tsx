@@ -103,7 +103,7 @@ function CitizenActionButton(props: Props) {
                     <CircularProgress color='secondary' />
                 </div>
             ) : (
-                <SplitButton options={options} />
+                <SplitButton options={options.filter((o) => o.show)} />
             )}
 
             <SetCitizenPhoneNumberDialog

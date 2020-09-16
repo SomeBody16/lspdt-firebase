@@ -43,11 +43,19 @@ export const createCitizenCall = functions.https.onCall(
             Server,
         };
 
-        await admin.firestore().collection('citizens').doc(data.uid).set(citizenDocData);
+        const target = admin.firestore().collection('citizens');
+        if (data.uid && data.uid.length > 0) {
+            await target.doc(data.uid).set(citizenDocData);
+        } else {
+            await target.add(citizenDocData);
+        }
         /* ******************************************************************* */
         const officerDoc = await modelsUtil.readOfficer(context.auth.uid);
         const idScan = admin.storage().bucket('lspdt-fivem-prod.appspot.com').file(data.uid);
-        await idScan.makePublic();
+        const [idScanExists] = await idScan.exists();
+        if (idScanExists) {
+            await idScan.makePublic();
+        }
         const ImageUrl = `https://storage.googleapis.com/lspdt-fivem-prod.appspot.com/${data.uid}`;
         await makeRegistration(
             {
@@ -71,7 +79,7 @@ export const createCitizenCall = functions.https.onCall(
             {
                 channel: 'registry',
                 title: 'Otwarcie kartoteki',
-                customMessage: (msg) => msg.setDescription('').setImage(ImageUrl),
+                customMessage: (msg) => msg.setDescription('').setImage(ImageUrl || ''),
             }
         );
 
