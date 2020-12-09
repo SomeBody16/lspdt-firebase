@@ -14,6 +14,7 @@ import RanksScreen from '../screens/Config/RanksScreen';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import routerPages from './routerPages';
 import { useTranslation } from 'react-i18next';
+import WantedScreen from "../screens/Wanted/WantedScreen";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -42,6 +43,11 @@ const drawerItems: DrawerItemProps[] = [
         url: 'citizens',
         component: <SearchCitizensScreen />,
         requiredPermission: 'accessCitizens',
+    },
+    {
+        url: 'wanted-list',
+        component: <WantedScreen />,
+        requiredPermission: 'accessWanted',
     },
     // {
     //     url: 'vehicles',

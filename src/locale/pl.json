@@ -32,6 +32,10 @@
                 "icon": ":family_mwgb:",
                 "text": "Mieszkańcy"
             },
+            "wanted-list": {
+                "icon": ":spy:",
+                "text": "Poszukiwani"
+            },
             "vehicles": {
                 "icon": ":red_car:",
                 "text": "Pojazdy"

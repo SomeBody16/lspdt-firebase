@@ -7,6 +7,7 @@ export const AllPermissions = [
     // Drawer
     'accessSummary', // Tab visibility: Summary
     'accessCitizens', // Tab visibility: Citizens
+    'accessWanted',
     'accessVehicles', // Tab visibility: Vehicles
     'accessPolice', // Tab visibility: Police
     'accessCrimes', // Tab visibility: Crimes
