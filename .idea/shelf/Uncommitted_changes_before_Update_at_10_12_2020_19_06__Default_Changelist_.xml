@@ -1,0 +1,9 @@
+<changelist name="Uncommitted_changes_before_Update_at_10_12_2020_19_06_[Default_Changelist]" date="1607623561940" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_12_2020_19_06_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 10.12.2020 19:06 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="fivem/server.lua" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>

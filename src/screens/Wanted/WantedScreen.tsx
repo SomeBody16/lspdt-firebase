@@ -5,74 +5,82 @@ import ICitizen from "../../../functions/src/models/citizen.interface";
 import {useHistory} from "react-router-dom";
 import {
   Avatar,
-  Divider,
+  Divider, Grid,
   IconButton, List,
   ListItem,
   ListItemAvatar,
   ListItemSecondaryAction,
-  ListItemText
+  ListItemText, Paper
 } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import MoreIcon from "@material-ui/icons/More";
+import {useWantedList} from "../../firebase";
+import CitizenInfo from "../../components/Citizens/Details/CitizenInfo";
+import CitizenPhoto from "../../components/Citizens/Details/CitizenPhoto";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     // Component styles
+    paper: {
+      // padding: theme.spacing(2),
+      color: theme.palette.text.secondary,
+    },
   })
 );
 
-function CitizenItem(citizen: ICitizen & { isLast: boolean }) {
+function CitizenItem({ Id }: ICitizen) {
+  const classes = useStyles();
   const history = useHistory();
 
-  const handleMoreButtonClick = () => {
-    history.push(`/tablet/citizen/${citizen.Id}`);
+  const handleClick = () => {
+    history.push(`/tablet/citizen/${Id}`);
   };
 
   return (
-    <div>
-      <ListItem>
-        <ListItemAvatar>
-          {citizen.ImageUrl ? (
-            <Avatar alt={citizen.Name} src={citizen.ImageUrl} />
-          ) : (
-            <Avatar>
-              <PersonIcon />
-            </Avatar>
-          )}
-        </ListItemAvatar>
-        <ListItemText
-          primary={`${citizen.Name} ${citizen.Surname}`}
-          secondary={citizen.BirthDate}
-        />
-        <ListItemSecondaryAction>
-          <IconButton edge='end' onClick={handleMoreButtonClick}>
-            <MoreIcon />
-          </IconButton>
-        </ListItemSecondaryAction>
-      </ListItem>
-      {!citizen.isLast && <Divider />}
-    </div>
+    <Grid item xs={4}>
+      <Paper className={classes.paper} onClick={handleClick}>
+        <CitizenPhoto citizenId={Id} />
+        <CitizenInfo citizenId={Id} modeWanted />
+      </Paper>
+    </Grid>
   );
 }
 
-function WantedScreen() {
-  const classes = useStyles();
-
-  const citizen: ICitizen = {
-    BirthDate: '06-01-2000',
-    CreateTime: Date.now(),
-    Id: 'asd',
-    Name: 'Samuel',
-    Surname: 'Buddy',
-    Server: 'dev',
-    PhoneNumber: '123-1234'
+function groupArr<T>(data: T[], n: number): T[][] {
+  const group: any[][] = [];
+  for (let i = 0, j = 0; i < data.length; i++) {
+    if (i >= n && i % n === 0)
+      j++;
+    group[j] = group[j] || [];
+    group[j].push(data[i])
   }
+  return group;
+}
 
+function WantedScreen() {
+  const wantedList = useWantedList();
+
+  // return (
+  //   <React.Fragment>
+  //     { groupArr(wantedList.citizens, 3).map((group, index) => (
+  //       <Grid container spacing={2} key={index}>
+  //         { group.map(citizen => <CitizenItem {...citizen} key={citizen.Id} />) }
+  //       </Grid>
+  //     )) }
+  //   </React.Fragment>
+  // )
   return (
-    <List>
-      <CitizenItem {...citizen} isLast={true} />
-    </List>
-  );
+    <Grid container spacing={2}>
+      {wantedList.citizens.map(citizen => (
+        <CitizenItem {...citizen} key={citizen.Id} />
+      ))}
+    </Grid>
+  )
+  // return (
+  //   <List>
+  //     <CitizenItem {...citizen} isLast={true} />
+  //   </List>
+  // );
 }
 
 export default WantedScreen;
