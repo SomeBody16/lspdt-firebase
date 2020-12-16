@@ -45,7 +45,7 @@ function CrimeRow(crime: ICrime) {
                 </div>
             </TableCell>
             <TableCell>
-                <EmojiPrefix prefix={crime.Prefix} /> {crime.Name}
+                <EmojiPrefix prefix={crime.Prefix} /> {crime.Name} {crime.Recidivism ? '(R)' : ''}
             </TableCell>
             <TableCell align='right'>{penaltyStr(crime.Penalty, useTranslationResponse)}</TableCell>
             <TableCell align='right'>

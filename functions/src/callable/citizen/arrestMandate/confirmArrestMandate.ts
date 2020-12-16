@@ -51,9 +51,24 @@ export const confirmArrestMandateCall = functions.https.onCall(
             });
         }
 
+        const recidivismIdsTmp: string[] = [];
+        const citizenRecidivism = citizenDoc.get('Recidivism') || {} as ICitizen['Recidivism'];
+        for (const crime of crimes.filter(c => c.Recidivism)) {
+            if (!recidivismIdsTmp.includes(crime.Id)) {
+                if (crime.Id in citizenRecidivism) {
+                    citizenRecidivism[crime.Id]++;
+                }
+                else {
+                    citizenRecidivism[crime.Id] = 1;
+                }
+                recidivismIdsTmp.push(crime.Id);
+            }
+        }
+
         await citizenDoc.ref.update({
             IsWanted: false,
             WantedCrimesIds: [],
+            Recidivism: citizenRecidivism
         });
 
         /* ******************************************************************* */

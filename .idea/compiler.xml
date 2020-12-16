@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="TypeScriptCompiler">
-    <option name="nodeInterpreterTextField" value="wsl://UBUNTU1804@/home/filipn/.nvm/versions/node/v14.15.0/bin/node" />
+    <option name="nodeInterpreterTextField" value="node" />
   </component>
 </project>

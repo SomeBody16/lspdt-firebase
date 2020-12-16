@@ -2,12 +2,12 @@ import React from 'react';
 import { Theme, createStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    Button,
-    TextField,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  TextField, FormControlLabel,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import ICrime from '../../../../functions/src/models/crime.interface';
@@ -16,6 +16,8 @@ import PenaltyField from '../../form/PenaltyField';
 import JudgmentField from '../../form/JudgmentField';
 import PrefixSelect from '../../form/PrefixSelect';
 import IPrefix from '../../../../functions/src/models/prefix.interface';
+import Checkbox from '@material-ui/core/Checkbox';
+import {Check} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -81,6 +83,21 @@ function CrimeDialog(props: Props) {
                             ) as IPrefix,
                         })
                     }
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      className={classes.formField}
+                      checked={crime.Recidivism || false}
+                      onChange={(e) =>
+                        setCrime({
+                          ...crime,
+                          Recidivism: e.target.checked
+                        })
+                      }
+                    />
+                  }
+                  label="Recydywa"
                 />
             </DialogContent>
             <DialogActions>

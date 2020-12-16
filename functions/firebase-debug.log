@@ -1,0 +1,64 @@
+[debug] [2020-12-16T18:50:58.088Z] ----------------------------------------------------------------------
+[debug] [2020-12-16T18:50:58.091Z] Command:       D:\src\nodejs\node.exe D:\src\nodejs\node_modules\firebase-tools\lib\bin\firebase.js functions:shell
+[debug] [2020-12-16T18:50:58.091Z] CLI Version:   8.10.0
+[debug] [2020-12-16T18:50:58.091Z] Platform:      win32
+[debug] [2020-12-16T18:50:58.091Z] Node Version:  v12.18.3
+[debug] [2020-12-16T18:50:58.092Z] Time:          Wed Dec 16 2020 19:50:58 GMT+0100 (GMT+01:00)
+[debug] [2020-12-16T18:50:58.093Z] ----------------------------------------------------------------------
+[debug] [2020-12-16T18:50:58.093Z] 
+[debug] [2020-12-16T18:50:58.103Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-12-16T18:50:58.103Z] > authorizing via signed-in user
+[debug] [2020-12-16T18:50:58.103Z] [iam] checking project lspdt-fivem-prod for permissions ["firebase.projects.get"]
+[debug] [2020-12-16T18:50:58.107Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lspdt-fivem-prod:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-12-16T18:50:58.911Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 16 Dec 2020 18:50:57 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=701","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-12-16T18:51:00.960Z] [functions] Using node@12 from host.
+[debug] [2020-12-16T18:51:00.961Z] defaultcredentials: writing to file C:\Users\Filip\AppData\Roaming\firebase\f_nowakowski2000_gmail.com_application_default_credentials.json
+[debug] [2020-12-16T18:51:00.964Z] DEBUG: Setting GAC to C:\Users\Filip\AppData\Roaming\firebase\f_nowakowski2000_gmail.com_application_default_credentials.json
+[debug] [2020-12-16T18:51:00.973Z] [functions] Watching "D:\Filip\Code\React\lspdtablet\functions" for Cloud Functions...
+[debug] [2020-12-16T18:51:00.992Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-12-16T18:51:00.992Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-12-16T18:51:00.992Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2020-12-16T18:51:00.992Z] DEBUG: [worker-~diagnostic~-4604053e-1036-4502-8090-4048ef7617ba]: Assigning socketPath: \\?\pipe\D:\Filip\Code\React\lspdtablet\functions\9148
+[debug] [2020-12-16T18:51:00.993Z] DEBUG: [worker-~diagnostic~-4604053e-1036-4502-8090-4048ef7617ba]: BUSY
+[debug] [2020-12-16T18:51:02.044Z] DEBUG: [runtime-status] [9148] Functions runtime initialized. {"cwd":"D:\\Filip\\Code\\React\\lspdtablet\\functions","node_version":"12.18.3"}
+[debug] [2020-12-16T18:51:02.049Z] DEBUG: [runtime-status] [9148] Disabled runtime features: undefined
+[debug] [2020-12-16T18:51:02.055Z] DEBUG: [runtime-status] [9148] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.13.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-12-16T18:51:02.061Z] DEBUG: [runtime-status] [9148] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-12-16T18:51:02.063Z] DEBUG: [runtime-status] [9148] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-12-16T18:51:02.065Z] DEBUG: [runtime-status] [9148] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2020-12-16T18:51:02.066Z] DEBUG: [runtime-status] [9148] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-12-16T18:51:02.138Z] DEBUG: [runtime-status] [9148] Checked functions.config() {"config":{}}
+[debug] [2020-12-16T18:51:02.138Z] DEBUG: [runtime-status] [9148] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}}
+[debug] [2020-12-16T18:51:02.139Z] DEBUG: [runtime-status] [9148] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-12-16T18:51:02.141Z] DEBUG: [runtime-status] [9148] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.13.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-12-16T18:51:02.141Z] DEBUG: [runtime-status] [9148] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.11.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-12-16T18:51:02.142Z] DEBUG: [runtime-status] [9148] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.13.0","resolution":"D:\\Filip\\Code\\React\\lspdtablet\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2020-12-16T18:51:02.943Z] DEBUG: [runtime-status] [9148] initializeApp(DEFAULT) {"databaseURL":"https://lspdt-fivem-prod.firebaseio.com","storageBucket":"lspdt-fivem-prod.appspot.com","projectId":"lspdt-fivem-prod"}
+[warn] !  functions: The Cloud Firestore emulator is not running, so calls to Firestore will affect production. {"metadata":{"emulator":{"name":"functions"},"message":"The Cloud Firestore emulator is not running, so calls to Firestore will affect production."}}
+[debug] [2020-12-16T18:51:03.417Z] [functions[setCitizenPhoneNumber]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/setCitizenPhoneNumber).
+[debug] [2020-12-16T18:51:03.418Z] [functions[makeCitizenRegistration]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/makeCitizenRegistration).
+[debug] [2020-12-16T18:51:03.418Z] [functions[recruitCitizen]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/recruitCitizen).
+[debug] [2020-12-16T18:51:03.418Z] [functions[setCitizenPhoto]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/setCitizenPhoto).
+[debug] [2020-12-16T18:51:03.418Z] [functions[makeCitizenWanted]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/makeCitizenWanted).
+[debug] [2020-12-16T18:51:03.418Z] [functions[confirmArrestMandate]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/confirmArrestMandate).
+[debug] [2020-12-16T18:51:03.418Z] [functions[findByIdScan]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/findByIdScan).
+[debug] [2020-12-16T18:51:03.418Z] [functions[updateOfficerBadgeNumber]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/updateOfficerBadgeNumber).
+[debug] [2020-12-16T18:51:03.418Z] [functions[setOfficerRank]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/setOfficerRank).
+[debug] [2020-12-16T18:51:03.418Z] [functions[fireOfficer]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/fireOfficer).
+[debug] [2020-12-16T18:51:03.418Z] [functions[addCrime]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/addCrime).
+[debug] [2020-12-16T18:51:03.418Z] [functions[editCrime]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/editCrime).
+[debug] [2020-12-16T18:51:03.418Z] [functions[deleteCrime]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/deleteCrime).
+[debug] [2020-12-16T18:51:03.418Z] [functions[addPrefix]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/addPrefix).
+[debug] [2020-12-16T18:51:03.418Z] [functions[editPrefix]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/editPrefix).
+[debug] [2020-12-16T18:51:03.419Z] [functions[deletePrefix]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/deletePrefix).
+[debug] [2020-12-16T18:51:03.419Z] [functions[addRank]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/addRank).
+[debug] [2020-12-16T18:51:03.419Z] [functions[editRank]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/editRank).
+[debug] [2020-12-16T18:51:03.419Z] [functions[deleteRank]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/deleteRank).
+[debug] [2020-12-16T18:51:03.419Z] [functions[listPermissions]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/listPermissions).
+[debug] [2020-12-16T18:51:03.419Z] [functions[createChief]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/createChief).
+[debug] [2020-12-16T18:51:03.419Z] [functions[createCitizen]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/createCitizen).
+[debug] [2020-12-16T18:51:03.419Z] [functions[tmp]] http function initialized (http://localhost:5000/lspdt-fivem-prod/us-central1/tmp).
+[info] i  functions: Loaded functions: setCitizenPhoneNumber, makeCitizenRegistration, recruitCitizen, setCitizenPhoto, makeCitizenWanted, confirmArrestMandate, findByIdScan, updateOfficerBadgeNumber, setOfficerRank, fireOfficer, addCrime, editCrime, deleteCrime, addPrefix, editPrefix, deletePrefix, addRank, editRank, deleteRank, listPermissions, createChief, createCitizen, tmp 
+[warn] !  functions: The following emulators are not running, calls to these services will affect production: firestore, database, pubsub 
+[debug] [2020-12-16T18:51:03.492Z] DEBUG: [worker-~diagnostic~-4604053e-1036-4502-8090-4048ef7617ba]: IDLE

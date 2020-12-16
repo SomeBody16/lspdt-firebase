@@ -13,4 +13,8 @@ export default interface ICitizen {
 
     IsWanted?: boolean;
     WantedCrimesIds?: string[];
+
+    Recidivism?: {
+        [key: string]: number;
+    };
 }

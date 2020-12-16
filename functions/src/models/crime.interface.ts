@@ -7,4 +7,6 @@ export default interface ICrime {
     Penalty: number;
     Judgment: number;
     Prefix: IPrefix;
+
+    Recidivism?: boolean;
 }

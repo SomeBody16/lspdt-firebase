@@ -11,7 +11,7 @@ import {
     Button,
     LinearProgress,
 } from '@material-ui/core';
-import { useCitizenRegistry } from '../../../firebase';
+import {useCitizen, useCitizenRegistry} from '../../../firebase';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IRegistration from '../../../../functions/src/models/registration.interface';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +20,8 @@ import DateTimeChip from '../../Chips/DateTimeChip';
 import EmojiPrefix from '../../Chips/EmojiPrefix';
 import CrimeChip from '../../Chips/CrimeChip';
 import { penaltyStr, judgmentStr } from '../../Chips/PenaltyJudgment';
+import {useParams} from "react-router-dom";
+import {crimeRecidivism} from "../ArrestMandate/ArrestCrimesList";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -67,17 +69,20 @@ function RegistryItem(props: IRegistryItemProps) {
         props.setExpanded(isExpanded ? props.item.Id : false);
     };
 
+    const { citizenId } = useParams() as any;
+    const citizen = useCitizen(citizenId);
+
     const titleProps = {
         penalty: !props.item.Crimes
             ? 0
             : penaltyStr(
-                  props.item.Crimes.reduce((prev, curr) => prev + curr.Penalty, 0),
+                  props.item.Crimes.reduce((prev, curr) => prev + crimeRecidivism(curr, curr.Penalty, citizen.value, 0.5), 0),
                   useTranslationResponse
               ),
         judgment: !props.item.Crimes
             ? 0
             : judgmentStr(
-                  props.item.Crimes.reduce((prev, curr) => prev + curr.Judgment, 0),
+                  props.item.Crimes.reduce((prev, curr) => prev + crimeRecidivism(curr, curr.Judgment, citizen.value, 1.0), 0),
                   useTranslationResponse
               ),
     };
@@ -89,7 +94,7 @@ function RegistryItem(props: IRegistryItemProps) {
             TransitionProps={{ unmountOnExit: true }}
         >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>{t(props.item.Title, titleProps)}</Typography>
+                <Typography>{props.item.Crimes ? 'Odsiadka' : t(props.item.Title, titleProps)}</Typography>
                 <Typography className={classes.prefixes}>
                     {props.item.Prefixes.map((item) => (
                         <EmojiPrefix key={item.Content} size={24} prefix={item} />
@@ -104,7 +109,7 @@ function RegistryItem(props: IRegistryItemProps) {
             {props.item.Crimes && (
                 <AccordionDetails className={classes.crimes}>
                     {props.item.Crimes.map((crime) => (
-                        <CrimeChip key={Date.now()} {...crime} />
+                        <CrimeChip key={crime.Id} {...crime} />
                     ))}
                 </AccordionDetails>
             )}
