@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect, useLocation} from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles, Theme, createStyles, ThemeProvider } from '@material-ui/core/styles';
 
@@ -12,6 +12,36 @@ import ProvideProviders, { IProviderWithProps } from './components/utils/Provide
 
 import packageJson from '../package.json';
 import useServer from './firebase/hooks/useServer';
+
+import './firebase';
+import firebase from 'firebase';
+import 'firebase/analytics';
+
+function analyticsSetUserProperties() {
+    const currentUser = firebase.auth().currentUser
+    if (!currentUser) return;
+    firebase.firestore()
+        .collection('officers')
+        .doc(firebase.auth().currentUser?.uid || '')
+        .get()
+        .then(officerDoc => {
+            const params = officerDoc.get('Rank');
+            firebase.analytics().setUserProperties(params);
+            firebase.analytics().logEvent('login', params);
+        });
+}
+
+const PageAnalytics = () => {
+    const location = useLocation();
+    useEffect(() => {
+        firebase.analytics().logEvent('page_view', location);
+    }, [location]);
+
+    const currentUser = firebase.auth().currentUser;
+    useEffect(analyticsSetUserProperties, [currentUser]);
+    
+    return null;
+}
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -52,6 +82,7 @@ function RootApp() {
         <Router>
             <ProvideProviders providers={providers}>
                 <CssBaseline />
+                <PageAnalytics/>
                 <div className={classes.root}>
                     <Switch>
                         <Route exact path='/'>

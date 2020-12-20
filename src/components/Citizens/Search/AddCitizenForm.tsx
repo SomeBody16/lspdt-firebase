@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import React from 'react';
 import { Theme, createStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
@@ -67,15 +68,17 @@ function AddCitizenForm(props: Props) {
                     setAppBarProgress('indeterminate');
 
                     const uid = props.makeSearchData?.uuid || uuid.v4();
+                    const citizen = {
+                        ...values,
+                        Id: uid,
+                    }
                     createCitizen({
-                        citizen: {
-                            ...values,
-                            Id: uid,
-                        },
+                        citizen,
                         uid,
                     })
                         .then(() => {
                             enqueueSnackbar(t('Założono kartoteke!'), { variant: 'success' });
+                            firebase.analytics().logEvent('citizen_search_created', citizen);
                             history.push(`/tablet/citizen/${uid}`);
                         })
                         .finally(() => {

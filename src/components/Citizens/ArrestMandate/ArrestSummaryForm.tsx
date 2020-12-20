@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import React from 'react';
 import { Theme, createStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
@@ -132,6 +133,10 @@ function ArrestSummaryForm() {
     }, [fivemBridge]);
 
     const handleShowClick = () => {
+        firebase.analytics().logEvent('citizen_arrest_mandate_button', {
+            type: 'show',
+            officer: officerAuthor.value?.Id,
+        });
         fivemBridge.show(
             [
                 ...reasonStr(false).split(' '),
@@ -139,9 +144,18 @@ function ArrestSummaryForm() {
                 penaltyJudgmentStr(formValue, translationResponse),
             ].join(' ')
         );
+        firebase.analytics().logEvent('citizen_arrest_mandate', {
+            includeWanted,
+            citizenId,
+            author: formValue.author,
+        });
     };
 
     const handleMandateClick = async () => {
+        firebase.analytics().logEvent('citizen_arrest_mandate_button', {
+            type: 'mandate',
+            officer: officerAuthor.value?.Id,
+        });
         fivemBridge.mandate(closestId, formValue.penalty, [
             ...reasonStr().split(' '),
             penaltyJudgmentStr(formValue, translationResponse),
@@ -149,6 +163,10 @@ function ArrestSummaryForm() {
     };
 
     const handleArrestClick = async () => {
+        firebase.analytics().logEvent('citizen_arrest_mandate_button', {
+            type: 'arrest',
+            officer: officerAuthor.value?.Id,
+        });
         fivemBridge.arrest(closestId, formValue.judgment, reasonStr());
     };
 
@@ -175,6 +193,10 @@ function ArrestSummaryForm() {
     };
 
     const handleMakeWandedClick = () => {
+        firebase.analytics().logEvent('citizen_arrest_mandate_button', {
+            type: 'wanted',
+            officer: officerAuthor.value?.Id,
+        });
         setMakeWantedButtonLoading(true);
         setAppBarProgress('indeterminate');
 
@@ -185,6 +207,12 @@ function ArrestSummaryForm() {
                     crimesIds.push(crime.Id);
                 }
             }
+        });
+
+        firebase.analytics().logEvent('citizen_make_wanted', {
+            citizenId,
+            crimesIds,
+            author: formValue.author,
         });
 
         makeCitizenWanted({
@@ -205,6 +233,11 @@ function ArrestSummaryForm() {
     };
 
     const onConfirm = async (data: IArrestSummaryForm) => {
+        firebase.analytics().logEvent('citizen_arrest_mandate_button', {
+            type: 'confirm',
+            officer: officerAuthor.value?.Id,
+        });
+
         setConfirmButtonLoading(true);
         setAppBarProgress('indeterminate');
 
@@ -215,6 +248,13 @@ function ArrestSummaryForm() {
                     crimesIds.push(crime.Id);
                 }
             }
+        });
+
+        firebase.analytics().logEvent('citizen_arrest_mandate', {
+            includeWanted,
+            citizenId,
+            crimesIds,
+            author: formValue.author,
         });
 
         confirmArrestMandate({

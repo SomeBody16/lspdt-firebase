@@ -33,9 +33,10 @@ export interface ISplitButtonOption {
 
 interface Props {
     options: ISplitButtonOption[];
+    onClick?: (option: ISplitButtonOption) => void;
 }
 
-function SplitButton({ options }: Props) {
+function SplitButton({ options, onClick }: Props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
@@ -50,6 +51,7 @@ function SplitButton({ options }: Props) {
         event: React.MouseEvent<HTMLLIElement, MouseEvent>,
         index: number
     ) => {
+        onClick && onClick(options[index]);
         setSelectedIndex(index);
         setOpen(false);
     };

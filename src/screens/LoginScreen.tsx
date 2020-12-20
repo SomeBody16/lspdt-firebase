@@ -1,7 +1,11 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Container, TextField } from '@material-ui/core';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import '../firebase';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
 import { useSubmitButton } from '../components/form';
 import { useHistory } from 'react-router-dom';
 import { validate } from 'validate.js';

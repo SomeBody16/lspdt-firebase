@@ -4,12 +4,17 @@
     <list default="true" id="7e4867a6-a502-42e0-b4e2-94d4d3ce1849" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/firebase-debug.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/callable/config/ranks/addRank.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/config/ranks/addRank.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Citizens/ArrestMandate/ArrestCrimesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/ArrestMandate/ArrestCrimesList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RootApp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/RootApp.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Citizens/ArrestMandate/ArrestSummaryForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/ArrestMandate/ArrestSummaryForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Search/SearchForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Search/SearchForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Details/ActionButton/CitizenActionButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Details/ActionButton/CitizenActionButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Search/AddCitizenForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Search/AddCitizenForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Search/SearchResult.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Search/SearchResult.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form/SplitButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form/SplitButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase/hooks/useAllOfficers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/hooks/useAllOfficers.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Citizens/SearchCitizensScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Citizens/SearchCitizensScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/LoginScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/LoginScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +84,7 @@
       <recent name="D:\Filip\Code\React\lspdtablet\src\screens\WantedList" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build-deploy">
+  <component name="RunManager" selected="npm.start">
     <configuration name="build-deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -132,8 +137,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build-deploy" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.build-deploy" />
         <item itemvalue="npm.deploy (1)" />
         <item itemvalue="npm.shell" />
         <item itemvalue="npm.serve" />
@@ -154,7 +159,7 @@
       <workItem from="1607790703209" duration="206000" />
       <workItem from="1608143251527" duration="2755000" />
       <workItem from="1608243448505" duration="782000" />
-      <workItem from="1608474248124" duration="9454000" />
+      <workItem from="1608474248124" duration="14649000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1607623606732</created>
@@ -177,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608147257306</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Few fixes and translations">
+      <created>1608493932974</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608493932974</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,7 +211,8 @@
     <MESSAGE value="idea files" />
     <MESSAGE value="WantedList Screen" />
     <MESSAGE value="Recidivism and wanted-list screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Recidivism and wanted-list screen" />
+    <MESSAGE value="Few fixes and translations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Few fixes and translations" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

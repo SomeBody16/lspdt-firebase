@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import 'firebase/analytics';
 import { useAllCrimesHook } from './hooks/useAllCrimes';
 import { useAllOfficersHook } from './hooks/useAllOfficers';
 import { useAllPermissionsHook } from './hooks/useAllPermissions';
@@ -30,6 +31,7 @@ export const firebaseConfig = {
 };
 //
 firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 if (process.env.REACT_APP_USE_LOCAL_FUNCTIONS === 'true') {
     firebase.functions().useFunctionsEmulator('http://localhost:5001');
 }

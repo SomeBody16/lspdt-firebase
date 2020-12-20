@@ -65,6 +65,8 @@ function SearchCitizensScreen() {
         setActiveStep(1);
         setStatus(t('Sprawdzanie bazy danych'));
 
+        firebase.analytics().logEvent('citizen_search', data);
+
         let query = firebase
             .firestore()
             .collection('citizens')
@@ -84,6 +86,7 @@ function SearchCitizensScreen() {
                     Id: d.id,
                 } as ICitizen)
         );
+
         setSearchResult(citizens);
         setActiveStep(2);
     };

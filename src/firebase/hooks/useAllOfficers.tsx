@@ -20,7 +20,7 @@ export function useAllOfficersHook(): {
             .collection('officers')
             .where('Server', '==', Server)
             .where('IsFired', '==', false)
-            .orderBy('BadgeNumber', 'desc')
+            .orderBy('BadgeNumber', 'asc')
             .onSnapshot((query) => {
                 setOfficers(
                     query.docs.map((doc) => ({

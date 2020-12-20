@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import React from 'react';
 import { Theme, createStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
@@ -34,6 +35,7 @@ function CitizenItem(citizen: ICitizen & { isLast: boolean }) {
     const history = useHistory();
 
     const handleMoreButtonClick = () => {
+        firebase.analytics().logEvent('citizen_search_existed', citizen);
         history.push(`/tablet/citizen/${citizen.Id}`);
     };
 

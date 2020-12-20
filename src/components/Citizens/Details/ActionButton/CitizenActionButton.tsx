@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import React from 'react';
 import SplitButton, { ISplitButtonOption } from '../../../form/SplitButton';
 import { useTranslation } from 'react-i18next';
@@ -96,6 +97,13 @@ function CitizenActionButton(props: Props) {
         [citizen.value, claims.value, t, citizenId, history, recruitCitizen, enqueueSnackbar]
     );
 
+    const analyticsHandler = React.useCallback((option: ISplitButtonOption) => {
+        firebase.analytics().logEvent('citizen_details_action', {
+            citizenId,
+            option: option.label,
+        });
+    }, [citizenId]);
+
     return (
         <React.Fragment>
             {citizen.isLoading || claims.isLoading || isInProgress ? (
@@ -103,7 +111,7 @@ function CitizenActionButton(props: Props) {
                     <CircularProgress color='secondary' />
                 </div>
             ) : (
-                <SplitButton options={options.filter((o) => o.show)} />
+                <SplitButton options={options.filter((o) => o.show)} onClick={analyticsHandler} />
             )}
 
             <SetCitizenPhoneNumberDialog
