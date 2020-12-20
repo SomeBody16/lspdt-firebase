@@ -113,13 +113,16 @@ function ArrestSummaryForm() {
         );
     }, [officerAuthor.value, setValue]);
 
-    const reasonStr = (): string => {
-        return [
+    const reasonStr = (withAuthor = true): string => {
+        const res = [
             ...crimesWithCount
                 .filter((c) => c.count > 0)
                 .map((c) => `[${c.Name}${c.count > 0 ? ' x' + c.count : ''}]`),
-            formValue.author,
-        ].join(' ');
+        ];
+        if (withAuthor) {
+            res.push(formValue.author)
+        }
+        return res.join(' ');
     };
 
     const [closestId, setClosestId] = React.useState<number>(0);
@@ -131,7 +134,7 @@ function ArrestSummaryForm() {
     const handleShowClick = () => {
         fivemBridge.show(
             [
-                ...reasonStr().split(' '),
+                ...reasonStr(false).split(' '),
                 '\n',
                 penaltyJudgmentStr(formValue, translationResponse),
             ].join(' ')
@@ -139,7 +142,10 @@ function ArrestSummaryForm() {
     };
 
     const handleMandateClick = async () => {
-        fivemBridge.mandate(closestId, formValue.penalty, reasonStr());
+        fivemBridge.mandate(closestId, formValue.penalty, [
+            ...reasonStr().split(' '),
+            penaltyJudgmentStr(formValue, translationResponse),
+        ].join(' '));
     };
 
     const handleArrestClick = async () => {

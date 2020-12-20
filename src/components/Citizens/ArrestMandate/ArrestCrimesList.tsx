@@ -65,7 +65,7 @@ export function crimeName(item: ICrime, citizen: ICitizen | undefined): string {
     let name = item.Name;
     if (item.Recidivism) {
         const citizenRecidivism = citizen?.Recidivism;
-        name += ` (R${citizenRecidivism ? citizenRecidivism[item.Id] : 0})`;
+        name += ` (R${citizenRecidivism ? citizenRecidivism[item.Id] || 0 : 0})`;
     }
 
     return name;

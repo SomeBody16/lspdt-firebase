@@ -23,18 +23,6 @@ const testAndExtract = (
     extract: (lines: string[]) => Exclude<IMakeSearchData['idContent'], undefined>;
 } => {
     switch (variant) {
-        case 'sincity':
-            return {
-                test: (lines) =>
-                    lines.length >= 10 && /LOS SANTOS/.test(lines[0]) && /PODPIS/.test(lines[6]),
-                extract: (lines) => ({
-                    Name: lines[1].split(' ')[0],
-                    Surname: lines[1].split(' ')[1],
-                    BirthDate: lines[10],
-                    Height: lines[7],
-                }),
-            };
-
         default:
             return {
                 test: (lines) =>
@@ -221,6 +209,10 @@ function SearchForm(props: Props) {
                         disableNameSurname,
                         t('Podaj imię i nazwisko lub nr. telefonu!')
                     ),
+                    pattern: {
+                        value: /^[A-z]+$/,
+                        message: t('Nieprawidłowe znaki!'),
+                    },
                 }}
             />
             <Controller
@@ -241,6 +233,10 @@ function SearchForm(props: Props) {
                         disableNameSurname,
                         t('Podaj imię i nazwisko lub nr. telefonu!')
                     ),
+                    pattern: {
+                        value: /^[A-z]+$/,
+                        message: t('Nieprawidłowe znaki!'),
+                    },
                 }}
             />
             <Controller
@@ -262,7 +258,7 @@ function SearchForm(props: Props) {
                         t('Podaj imię i nazwisko lub nr. telefonu!')
                     ),
                     pattern: {
-                        value: /[0-9]{3}-[0-9]{4}/,
+                        value: /^[0-9]{3}-[0-9]{4}$/,
                         message: t('Nieprawidłowy numer telefonu!'),
                     },
                 }}

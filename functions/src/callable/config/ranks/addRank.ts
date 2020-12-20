@@ -19,7 +19,7 @@ export const addRankCall = functions.https.onCall(
             (await utils.requirePermissions(context.auth?.uid, ['manageRanks'])) ||
             (await utils.requireValidated(data, {
                 rank: {
-                    ModelRank: ['Name', 'Callsign', 'ImageUrl', 'Permissions'],
+                    ModelRank: ['Name', 'Callsign', 'Permissions'],
                 },
             }));
 

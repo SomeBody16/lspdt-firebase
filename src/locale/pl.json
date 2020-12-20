@@ -68,6 +68,7 @@
     "auth/wrong-password": "Podane hasło jest nieprawidłowe",
 
     "accessSummary": "Dostęp do zakładki \"Podsumowanie\".",
+    "accessWanted": "Dostęp do zakładki \"Poszukiwani\"",
     "accessCitizens": "Dostęp do zakładki \"Mieszkańcy\".",
     "accessVehicles": "Dostęp do zakładki \"Pojazdy\".",
     "accessPolice": "Dostęp do zakładki \"Policjanci\".",
