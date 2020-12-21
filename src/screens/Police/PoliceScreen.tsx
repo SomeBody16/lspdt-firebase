@@ -107,7 +107,7 @@ function PolicemanRow(officer: IOfficer) {
                     {officer.Rank.Name}
                 </TableCell>
                 <TableCell align='right'>
-                    <Avatar className={classes.officerBadgeNumber}>{officer.BadgeNumber}</Avatar>
+                    {officer.BadgeNumber}
                 </TableCell>
             </TableRow>
             <TableRow>
