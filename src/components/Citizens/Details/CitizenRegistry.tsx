@@ -87,6 +87,13 @@ function RegistryItem(props: IRegistryItemProps) {
               ),
     };
 
+    let title = props.item.Title;
+    if (title === '{{penalty}} | {{judgment}}') {
+        title = props.item.Crimes?.reduce((prev, curr) => prev + crimeRecidivism(curr, curr.Judgment, citizen.value, 1.0), 0)
+            ? 'Odsiadka'
+            : 'Mandat';
+    }
+
     return (
         <Accordion
             expanded={props.expanded}
@@ -94,7 +101,7 @@ function RegistryItem(props: IRegistryItemProps) {
             TransitionProps={{ unmountOnExit: true }}
         >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography>{props.item.Crimes ? 'Odsiadka' : t(props.item.Title, titleProps)}</Typography>
+                <Typography>{t(title, titleProps)}</Typography>
                 <Typography className={classes.prefixes}>
                     {props.item.Prefixes.map((item) => (
                         <EmojiPrefix key={item.Content} size={24} prefix={item} />
