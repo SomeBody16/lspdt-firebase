@@ -110,7 +110,7 @@ function CitizenActionButton(props: Props) {
                 },
             },
         ],
-        [citizen.value, claims.value, t, citizenId, history, recruitCitizen, enqueueSnackbar]
+        [t, claims.value, citizen.value, history, citizenId, recruitCitizen, enqueueSnackbar, cancelWanted]
     );
 
     const analyticsHandler = React.useCallback((option: ISplitButtonOption) => {

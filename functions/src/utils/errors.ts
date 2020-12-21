@@ -19,6 +19,11 @@ export const CitizenNotFound = (citizenId: string) =>
         citizenId,
     });
 
+export const RegistrationNotFound = (registrationId: string) =>
+    new functions.https.HttpsError('not-found', 'Nieznaleziono wpisu w rejestrze o id {{citizenId}}', {
+        registrationId,
+    });
+
 export const OfficerNotFound = (officerId: string) =>
     new functions.https.HttpsError(
         'not-found',

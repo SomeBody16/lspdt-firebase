@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import { Theme, createStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 import {
@@ -9,9 +9,9 @@ import {
     AccordionActions,
     Divider,
     Button,
-    LinearProgress,
+    LinearProgress, Menu, MenuItem, withStyles, MenuProps,
 } from '@material-ui/core';
-import {useCitizen, useCitizenRegistry} from '../../../firebase';
+import {useCitizen, useCitizenRegistry, useClaims, useFunction} from '../../../firebase';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IRegistration from '../../../../functions/src/models/registration.interface';
 import { useTranslation } from 'react-i18next';
@@ -22,6 +22,9 @@ import CrimeChip from '../../Chips/CrimeChip';
 import { penaltyStr, judgmentStr } from '../../Chips/PenaltyJudgment';
 import {useParams} from "react-router-dom";
 import {crimeRecidivism} from "../ArrestMandate/ArrestCrimesList";
+import {IRemoveRegistrationProps} from "../../../../functions/src/callable/citizen/removeRegistration";
+import {useSnackbar} from "notistack";
+import {AppBarProgressContext} from "../../DrawerContainer/DrawerContainer";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -51,6 +54,27 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
+
+const StyledMenu = withStyles({
+    paper: {
+        border: '1px solid red',
+    },
+})((props: MenuProps) => (
+    <Menu
+        elevation={0}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+        }}
+        transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+        }}
+        {...props}
+    />
+));
+
 interface Props {
     citizenId: string;
 }
@@ -59,6 +83,7 @@ interface IRegistryItemProps {
     item: IRegistration;
     expanded: boolean;
     setExpanded: React.Dispatch<React.SetStateAction<string | false>>;
+    handleOpenMenu: (event: React.MouseEvent<HTMLElement>, registrationId: string) => void;
 }
 
 function RegistryItem(props: IRegistryItemProps) {
@@ -99,6 +124,7 @@ function RegistryItem(props: IRegistryItemProps) {
             expanded={props.expanded}
             onChange={handleChange}
             TransitionProps={{ unmountOnExit: true }}
+            onContextMenu={e => props.handleOpenMenu(e, props.item.Id)}
         >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography>{t(title, titleProps)}</Typography>
@@ -141,6 +167,35 @@ function CitizenRegistry(props: Props) {
     );
     const [expanded, setExpanded] = React.useState<string | false>(false);
     const [t] = useTranslation('common');
+    const { enqueueSnackbar } = useSnackbar();
+
+    const setAppBarProgress = React.useContext(AppBarProgressContext);
+    const removeRegistration = useFunction<IRemoveRegistrationProps, void>('removeRegistration');
+    const claims = useClaims();
+    const [handleRemoveItem, setHandleRemoveItem] = useState<() => void>(() => null)
+    const canRemoveRegistration = claims.value?.admin || claims.value?.permissions?.includes('removeRegistration');
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const handleOpenMenu = useCallback((event: React.MouseEvent<HTMLElement>, registrationId: string) => {
+        if (canRemoveRegistration) {
+            setAnchorEl(event.currentTarget);
+            event.preventDefault();
+
+            setHandleRemoveItem(() => () => {
+                setAppBarProgress("indeterminate")
+                removeRegistration({
+                    registrationId,
+                    citizenId: props.citizenId,
+                })
+                    .then(() => enqueueSnackbar('Usunięto!', { variant: 'success' }))
+                    .finally(() => {
+                        setAppBarProgress(null);
+                    })
+            });
+        }
+    }, [canRemoveRegistration, enqueueSnackbar, props.citizenId, removeRegistration]);
+    const handleClose = useCallback(() => {
+        setAnchorEl(null);
+    }, []);
 
     return (
         <div className={classes.root}>
@@ -161,8 +216,18 @@ function CitizenRegistry(props: Props) {
                     item={item}
                     expanded={expanded === item.Id}
                     setExpanded={setExpanded}
+                    handleOpenMenu={handleOpenMenu}
                 />
             ))}
+
+            <StyledMenu
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <MenuItem onClick={handleRemoveItem}>Usuń</MenuItem>
+            </StyledMenu>
         </div>
     );
 }

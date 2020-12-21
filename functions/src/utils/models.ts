@@ -1,10 +1,11 @@
 import * as admin from 'firebase-admin';
-import { CitizenNotFound, OfficerNotFound, PrefixNotFound, CrimeNotFound } from './errors';
+import { CitizenNotFound, OfficerNotFound, PrefixNotFound, CrimeNotFound, RegistrationNotFound } from './errors';
 import ICitizen from '../models/citizen.interface';
 import IOfficer from '../models/officer.interface';
 import IPrefix from '../models/prefix.interface';
 import IRank from '../models/rank.interface';
 import ICrime from '../models/crime.interface';
+import IRegistration from "../models/registration.interface";
 
 export const readCitizen = async (
     citizenId: string
@@ -16,6 +17,18 @@ export const readCitizen = async (
     }
 
     return doc as FirebaseFirestore.DocumentSnapshot<ICitizen>;
+};
+
+export const readRegistration = async (
+    registrationId: string
+): Promise<FirebaseFirestore.DocumentSnapshot<IRegistration>> => {
+    const doc = await admin.firestore().collection('registry').doc(registrationId).get();
+
+    if (!doc.exists) {
+        throw RegistrationNotFound(registrationId);
+    }
+
+    return doc as FirebaseFirestore.DocumentSnapshot<IRegistration>;
 };
 
 export const readOfficer = async (

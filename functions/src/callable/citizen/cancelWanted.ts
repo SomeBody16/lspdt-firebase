@@ -18,7 +18,7 @@ export const cancelWantedCall = functions.https.onCall(
 
         const Server = await utils.getUserServer(context.auth.uid);
         const error =
-            (await utils.requirePermissions(context.auth?.uid, ['makeCitizenRegistration'])) ||
+            (await utils.requirePermissions(context.auth?.uid, ['cancelWanted'])) ||
             (await utils.requireValidated(
                 {
                     ...data,
