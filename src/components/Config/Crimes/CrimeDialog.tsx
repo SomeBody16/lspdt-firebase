@@ -17,7 +17,6 @@ import JudgmentField from '../../form/JudgmentField';
 import PrefixSelect from '../../form/PrefixSelect';
 import IPrefix from '../../../../functions/src/models/prefix.interface';
 import Checkbox from '@material-ui/core/Checkbox';
-import {Check} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -58,6 +57,13 @@ function CrimeDialog(props: Props) {
                     label={t('Nazwa')}
                     value={crime.Name}
                     onChange={(e) => setCrime({ ...crime, Name: e.target.value })}
+                />
+                <TextField
+                    className={classes.formField}
+                    fullWidth
+                    label={t('Komentarz')}
+                    value={crime.Comment}
+                    onChange={(e) => setCrime({ ...crime, Comment: e.target.value })}
                 />
                 <PenaltyField
                     className={classes.formField}

@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {ChangeEvent, useCallback, useMemo, useState} from 'react';
 import {Theme, createStyles} from '@material-ui/core/styles';
 import {makeStyles} from '@material-ui/styles';
 import {
@@ -7,7 +7,7 @@ import {
     Avatar,
     ListItemText,
     ListItem,
-    ListItemSecondaryAction,
+    ListItemSecondaryAction, IconButton, TextField,
 } from '@material-ui/core';
 import {useAllCrimes, useCitizen} from '../../../firebase';
 import EmojiPrefix from '../../Chips/EmojiPrefix';
@@ -17,6 +17,8 @@ import {red} from '@material-ui/core/colors';
 import {SelectedCrimesContext} from '../../../screens/Citizens/ArrestMandateScreen';
 import {useParams} from "react-router-dom";
 import ICitizen from "../../../../functions/src/models/citizen.interface";
+import {Feedback} from "@material-ui/icons";
+import {useSnackbar} from "notistack";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -27,6 +29,9 @@ const useStyles = makeStyles((theme: Theme) =>
             color: theme.palette.getContrastText(red[500]),
             backgroundColor: red[500],
         },
+        comment: {
+
+        }
     })
 );
 
@@ -36,6 +41,13 @@ export interface ICrimeWithCount extends ICrime {
 
 function CrimeItem(item: ICrimeWithCount & { handleChange: (e: any, item: ICrimeWithCount, count: 1 | -1) => void }) {
     const classes = useStyles();
+    const {enqueueSnackbar} = useSnackbar();
+
+    const commentClickHandler = useCallback((e:  React.MouseEvent) => {
+        enqueueSnackbar(item.Comment, {variant: 'warning'});
+        e.preventDefault();
+        e.stopPropagation();
+    }, [item, enqueueSnackbar]);
 
     return (
         <ListItem
@@ -52,12 +64,20 @@ function CrimeItem(item: ICrimeWithCount & { handleChange: (e: any, item: ICrime
                     <PenaltyJudgment penalty={item.Penalty} judgment={item.Judgment}/>
                 }
             />
-            {item.count > 0 && (
+            {(item.count > 0 || item.Comment) && (
                 <ListItemSecondaryAction
                     onClick={(e) => item.handleChange(e, item, 1)}
                     onContextMenu={(e) => item.handleChange(e, item, -1)}
                 >
-                    <Avatar className={classes.count}>{item.count}</Avatar>
+                    {item.count ? (
+                        <Avatar className={classes.count}>
+                            {item.count}
+                        </Avatar>
+                    ) : (
+                        <IconButton onClick={commentClickHandler}>
+                            <Feedback/>
+                        </IconButton>
+                    )}
                 </ListItemSecondaryAction>
             )}
         </ListItem>
@@ -117,12 +137,26 @@ function ArrestCrimesList() {
         event.preventDefault();
     };
 
+    const [filterValue, setFilterValue] = useState<string>('');
+    const filteredCrimes = useMemo(() => {
+        if (!filterValue) return crimesWithCount;
+        return crimesWithCount.filter(c => c.Name.includes(filterValue) || c.Comment?.includes(filterValue));
+    }, [filterValue, crimesWithCount]);
+
     return (
-        <List>
-            {crimesWithCount.map((item) => (
-                <CrimeItem {...item} handleChange={handleChange} key={item.Id}/>
-            ))}
-        </List>
+        <React.Fragment>
+            <TextField
+                label='Filtruj'
+                fullWidth
+                value={filterValue}
+                onInput={(e: ChangeEvent<HTMLInputElement>) => setFilterValue(e.target.value)}
+            />
+            <List>
+                {filteredCrimes.map((item) => (
+                    <CrimeItem {...item} handleChange={handleChange} key={item.Id}/>
+                ))}
+            </List>
+        </React.Fragment>
     );
 }
 

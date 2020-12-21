@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e4867a6-a502-42e0-b4e2-94d4d3ce1849" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/functions/src/callable/citizen/removeRegistration.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/cancelWanted.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/cancelWanted.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/models/user-claims.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/models/user-claims.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/utils/errors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/utils/errors.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/utils/models.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/utils/models.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Citizens/ArrestMandate/ArrestSummaryForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/ArrestMandate/ArrestSummaryForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Details/ActionButton/CitizenActionButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Details/ActionButton/CitizenActionButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Details/CitizenRegistry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Details/CitizenRegistry.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/locale/pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/locale/pl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/models/crime.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/models/crime.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Citizens/ArrestMandate/ArrestCrimesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/ArrestMandate/ArrestCrimesList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Config/Crimes/CrimeDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Config/Crimes/CrimeDialog.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +165,7 @@
       <workItem from="1608143251527" duration="2755000" />
       <workItem from="1608243448505" duration="782000" />
       <workItem from="1608474248124" duration="14649000" />
-      <workItem from="1608543980042" duration="8944000" />
+      <workItem from="1608543980042" duration="10897000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1607623606732</created>
@@ -246,7 +237,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608548525673</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Możliwość usunięcia wpisu w rejestrze obywatela.">
+      <created>1608564226858</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1608564226858</updated>
+    </task>
+    <task id="LOCAL-00012" summary="W przyciskach w Arrest | Faktura, nie wyświetla się ilość ani recydywy">
+      <created>1608564288861</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1608564288861</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,7 +280,9 @@
     <MESSAGE value="Po kliknięciu w ilość na `Aresztuj | Mandat` akcje też są wychwytywane" />
     <MESSAGE value="Możliwość wpisania imienia i nazwisko ze spacją" />
     <MESSAGE value="Możliwość anulowania statusu poszukiwanego" />
-    <option name="LAST_COMMIT_MESSAGE" value="Możliwość anulowania statusu poszukiwanego" />
+    <MESSAGE value="Możliwość usunięcia wpisu w rejestrze obywatela." />
+    <MESSAGE value="W przyciskach w Arrest | Faktura, nie wyświetla się ilość ani recydywy" />
+    <option name="LAST_COMMIT_MESSAGE" value="W przyciskach w Arrest | Faktura, nie wyświetla się ilość ani recydywy" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
