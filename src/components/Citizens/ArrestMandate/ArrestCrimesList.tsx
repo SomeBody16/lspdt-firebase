@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
-import { Theme, createStyles } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/styles';
+import {Theme, createStyles} from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/styles';
 import {
     List,
     ListItemAvatar,
@@ -13,8 +13,8 @@ import {useAllCrimes, useCitizen} from '../../../firebase';
 import EmojiPrefix from '../../Chips/EmojiPrefix';
 import PenaltyJudgment from '../../Chips/PenaltyJudgment';
 import ICrime from '../../../../functions/src/models/crime.interface';
-import { red } from '@material-ui/core/colors';
-import { SelectedCrimesContext } from '../../../screens/Citizens/ArrestMandateScreen';
+import {red} from '@material-ui/core/colors';
+import {SelectedCrimesContext} from '../../../screens/Citizens/ArrestMandateScreen';
 import {useParams} from "react-router-dom";
 import ICitizen from "../../../../functions/src/models/citizen.interface";
 
@@ -34,30 +34,33 @@ export interface ICrimeWithCount extends ICrime {
     count: number;
 }
 
-function CrimeItem(item: ICrimeWithCount & { handleChange: (e: any, item: ICrimeWithCount, count: 1 | -1) => void } ) {
+function CrimeItem(item: ICrimeWithCount & { handleChange: (e: any, item: ICrimeWithCount, count: 1 | -1) => void }) {
     const classes = useStyles();
 
     return (
-      <ListItem
-        className={item.count > 0 ? classes.selected : undefined}
-        onClick={(e) => item.handleChange(e, item, 1)}
-        onContextMenu={(e) => item.handleChange(e, item, -1)}
-      >
-          <ListItemAvatar>
-              <EmojiPrefix prefix={item.Prefix} />
-          </ListItemAvatar>
-          <ListItemText
-            primary={item.Name}
-            secondary={
-                <PenaltyJudgment penalty={item.Penalty} judgment={item.Judgment} />
-            }
-          />
-          {item.count > 0 && (
-            <ListItemSecondaryAction>
-                <Avatar className={classes.count}>{item.count}</Avatar>
-            </ListItemSecondaryAction>
-          )}
-      </ListItem>
+        <ListItem
+            className={item.count > 0 ? classes.selected : undefined}
+            onClick={(e) => item.handleChange(e, item, 1)}
+            onContextMenu={(e) => item.handleChange(e, item, -1)}
+        >
+            <ListItemAvatar>
+                <EmojiPrefix prefix={item.Prefix}/>
+            </ListItemAvatar>
+            <ListItemText
+                primary={item.Name}
+                secondary={
+                    <PenaltyJudgment penalty={item.Penalty} judgment={item.Judgment}/>
+                }
+            />
+            {item.count > 0 && (
+                <ListItemSecondaryAction
+                    onClick={(e) => item.handleChange(e, item, 1)}
+                    onContextMenu={(e) => item.handleChange(e, item, -1)}
+                >
+                    <Avatar className={classes.count}>{item.count}</Avatar>
+                </ListItemSecondaryAction>
+            )}
+        </ListItem>
     )
 }
 
@@ -70,6 +73,7 @@ export function crimeName(item: ICrime, citizen: ICitizen | undefined): string {
 
     return name;
 }
+
 export function crimeRecidivism(item: ICrime, value: number, citizen: ICitizen | undefined, multiplier: number): number {
     let result = value;
 
@@ -88,7 +92,7 @@ function ArrestCrimesList() {
 
     const [crimesWithCount, setCrimesWithCount] = React.useContext(SelectedCrimesContext);
 
-    const { citizenId } = useParams() as any;
+    const {citizenId} = useParams() as any;
     const citizen = useCitizen(citizenId);
 
     React.useEffect(() => {
@@ -116,7 +120,7 @@ function ArrestCrimesList() {
     return (
         <List>
             {crimesWithCount.map((item) => (
-              <CrimeItem {...item} handleChange={handleChange} key={item.Id} />
+                <CrimeItem {...item} handleChange={handleChange} key={item.Id}/>
             ))}
         </List>
     );
