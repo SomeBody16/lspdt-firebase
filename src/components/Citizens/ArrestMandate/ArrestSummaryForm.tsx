@@ -118,7 +118,7 @@ function ArrestSummaryForm() {
         const res = [
             ...crimesWithCount
                 .filter((c) => c.count > 0)
-                .map((c) => `[${c.Name}${c.count > 0 ? ' x' + c.count : ''}]`),
+                .map((c) => `[${c.Name}]`.replace(/ \(R\d+\)/, '')),
         ];
         if (withAuthor) {
             res.push(formValue.author)
