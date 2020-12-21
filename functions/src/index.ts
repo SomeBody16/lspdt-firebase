@@ -3,6 +3,7 @@ import * as functions from 'firebase-functions';
 import { setCitizenPhoneNumberCall } from './callable/citizen/setCitizenPhoneNumber';
 import { makeCitizenRegistrationCall } from './callable/citizen/makeCitizenRegistration';
 import { recruitCitizenCall } from './callable/citizen/recruitCitizen';
+import { cancelWantedCall } from "./callable/citizen/cancelWanted";
 import { setCitizenPhotoCall } from './callable/citizen/setCitizenPhoto';
 import { makeCitizenWantedCall } from './callable/citizen/arrestMandate/makeCitizenWanted';
 import { confirmArrestMandateCall } from './callable/citizen/arrestMandate/confirmArrestMandate';
@@ -36,6 +37,7 @@ export const makeCitizenRegistration = makeCitizenRegistrationCall;
 export const recruitCitizen = recruitCitizenCall;
 export const setCitizenPhoto = setCitizenPhotoCall;
 export const makeCitizenWanted = makeCitizenWantedCall;
+export const cancelWanted = cancelWantedCall;
 export const confirmArrestMandate = confirmArrestMandateCall;
 export const findByIdScan = findByIdScanCall;
 

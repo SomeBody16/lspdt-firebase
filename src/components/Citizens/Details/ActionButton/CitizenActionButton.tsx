@@ -9,6 +9,7 @@ import SetCitizenPhoneNumberDialog from './SetCitizenPhoneNumberDialog';
 import { IRecruitCitizenProps } from '../../../../../functions/src/callable/citizen/recruitCitizen';
 import { useSnackbar } from 'notistack';
 import MakeCitizenRegistrationDialog from './MakeCitizenRegistrationDialog';
+import {ICancelWantedProps} from "../../../../../functions/src/callable/citizen/cancelWanted";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -35,6 +36,7 @@ function CitizenActionButton(props: Props) {
     );
 
     const recruitCitizen = useFunction<IRecruitCitizenProps, void>('recruitCitizen');
+    const cancelWanted = useFunction<ICancelWantedProps, void>('cancelWanted');
 
     const { citizenId } = useParams() as any;
     const history = useHistory();
@@ -80,6 +82,20 @@ function CitizenActionButton(props: Props) {
 
                     recruitCitizen({ citizenId })
                         .then(() => enqueueSnackbar(t('Zatrudniono!'), { variant: 'success' }))
+                        .finally(handleFinish);
+                },
+            },
+            {
+                label: t('Anuluj poszukiwania'),
+                show:
+                    (claims.value?.admin ||
+                        claims.value?.permissions?.includes('cancelWanted')) &&
+                    citizen.value?.IsWanted,
+                action: () => {
+                    setIsInProgress(true);
+
+                    cancelWanted({ citizenId })
+                        .then(() => enqueueSnackbar('Anulowano poszukiwania!', { variant: 'success' }))
                         .finally(handleFinish);
                 },
             },

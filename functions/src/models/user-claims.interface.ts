@@ -19,6 +19,7 @@ export const AllPermissions = [
     'makeCitizenRegistration', // Option visibility: Make Citizen Registration
     'accessArrestMandate', // Option visibility: Arrest | Mandate
     'recruitOfficer', // Option visibility: Recruit
+    'cancelWanted', // Option visibility: Cancel wanted
     'setCitizenPhoto', // Ability to Ctrl+V image
 
     // Police

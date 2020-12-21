@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e4867a6-a502-42e0-b4e2-94d4d3ce1849" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/functions/src/callable/citizen/cancelWanted.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/recruitCitizen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/recruitCitizen.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Search/SearchForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Search/SearchForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/models/user-claims.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/models/user-claims.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Details/ActionButton/CitizenActionButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Details/ActionButton/CitizenActionButton.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +14,13 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -157,7 +165,7 @@
       <workItem from="1608143251527" duration="2755000" />
       <workItem from="1608243448505" duration="782000" />
       <workItem from="1608474248124" duration="14649000" />
-      <workItem from="1608543980042" duration="2375000" />
+      <workItem from="1608543980042" duration="3579000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1607623606732</created>
@@ -215,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608545315844</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Możliwość wpisania imienia i nazwisko ze spacją">
+      <created>1608546734114</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1608546734114</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +257,8 @@
     <MESSAGE value="Na ekranie policjantów, proste i zwyczajne wyświetlenie numeru odznaki" />
     <MESSAGE value="Zmiana mylącego labela `odznaka` na `zdjęcie odznaki (url)`" />
     <MESSAGE value="Po kliknięciu w ilość na `Aresztuj | Mandat` akcje też są wychwytywane" />
-    <option name="LAST_COMMIT_MESSAGE" value="Po kliknięciu w ilość na `Aresztuj | Mandat` akcje też są wychwytywane" />
+    <MESSAGE value="Możliwość wpisania imienia i nazwisko ze spacją" />
+    <option name="LAST_COMMIT_MESSAGE" value="Możliwość wpisania imienia i nazwisko ze spacją" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -81,6 +81,7 @@
     "accessArrestMandate": "Możliwość aresztowania/ wystawienia faktury dla mieszkańca.",
     "recruitOfficer": "Możliwość zatrudnienia lub przywrócenia do służby policjanta.",
     "setCitizenPhoto": "Możliwość zmiany zdjęcia mieszkańca.",
+    "cancelWanted": "Możliwość anulowania statusu poszukiwanego dla obywatela.",
 
     "changeOfficerBadgeNumber": "Możliwość zmiany numeru odznaki funkcjonariusza.",
     "changeOfficerRank": "Możliwość zmiany rangi funkcjonariusza.",
