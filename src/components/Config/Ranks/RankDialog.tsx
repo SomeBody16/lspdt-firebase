@@ -69,7 +69,7 @@ function RankDialog(props: Props) {
                 <TextField
                     className={classes.formField}
                     fullWidth
-                    label={t('Odznaka')}
+                    label={'Zdjęcie odznaki (url)'}
                     value={rank.ImageUrl || ''}
                     onChange={(e) => setRank({ ...rank, ImageUrl: e.target.value })}
                     InputProps={{
