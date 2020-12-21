@@ -210,8 +210,8 @@ function SearchForm(props: Props) {
                         t('Podaj imię i nazwisko lub nr. telefonu!')
                     ),
                     pattern: {
-                        value: /^[A-z]+$/,
-                        message: t('Nieprawidłowe znaki!'),
+                        value: /^[^ ][A-z ]+[^ ]$/,
+                        message: t('Usuń nieprawidłowe znaki z początku/końca imienia'),
                     },
                 }}
             />
@@ -234,8 +234,8 @@ function SearchForm(props: Props) {
                         t('Podaj imię i nazwisko lub nr. telefonu!')
                     ),
                     pattern: {
-                        value: /^[A-z]+$/,
-                        message: t('Nieprawidłowe znaki!'),
+                        value: /^[^ ][A-z ]+[^ ]$/,
+                        message: t('Usuń nieprawidłowe znaki z początku/końca naziwska'),
                     },
                 }}
             />

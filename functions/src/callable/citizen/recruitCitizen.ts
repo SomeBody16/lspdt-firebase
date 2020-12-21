@@ -115,10 +115,11 @@ export const createNewOfficer = async (
     citizenDoc: FirebaseFirestore.DocumentSnapshot<ICitizen>,
     Server: string
 ): Promise<admin.auth.CreateRequest> => {
+    const email = `${citizenDoc.data()?.Name}.${citizenDoc.data()?.Surname}@${Server}.com`
+        .toLowerCase().replace(/[^A-z.@]/g, '');
+    console.log('Creating email:', email);
     const userCreateRequest: admin.auth.CreateRequest = {
-        email: `${citizenDoc.data()?.Name}.${
-            citizenDoc.data()?.Surname
-        }@${Server}.com`.toLowerCase(),
+        email,
         emailVerified: true,
         password: utils.generatePassword(10),
         displayName: `${citizenDoc.data()?.Name} ${citizenDoc.data()?.Surname} | ${Server}`,
