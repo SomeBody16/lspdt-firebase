@@ -85,7 +85,7 @@ export const changeRecidivismCall = functions.https.onCall(
                 ImageUrl: citizenDoc.get('ImageUrl'),
             },
             {
-                channel: 'punishments',
+                channel: 'registry',
                 title: 'Manualna zmiana poziomu recydywy',
                 customMessage: (msg) =>
                     msg

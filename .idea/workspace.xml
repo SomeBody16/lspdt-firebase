@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e4867a6-a502-42e0-b4e2-94d4d3ce1849" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/functions/src/callable/citizen/arrestMandate/changeRecidivism.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/arrestMandate/confirmArrestMandate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/arrestMandate/confirmArrestMandate.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/models/user-claims.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/models/user-claims.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Citizens/ArrestMandate/ArrestCrimesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/ArrestMandate/ArrestCrimesList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Citizens/ArrestMandate/ArrestSummaryForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/ArrestMandate/ArrestSummaryForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/locale/pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/locale/pl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/arrestMandate/changeRecidivism.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/arrestMandate/changeRecidivism.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +80,7 @@
       <recent name="D:\Filip\Code\React\lspdtablet\src\screens\WantedList" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.react-build-deploy">
+  <component name="RunManager" selected="npm.react-start">
     <configuration name="functions-deploy" type="js.build_tools.npm" temporary="true">
       <package-json value="$PROJECT_DIR$/functions/package.json" />
       <command value="run" />
@@ -148,9 +140,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.react-start" />
         <item itemvalue="npm.react-build-deploy" />
         <item itemvalue="npm.functions-deploy" />
-        <item itemvalue="npm.react-start" />
         <item itemvalue="npm.functions-shell" />
         <item itemvalue="npm.functions-serve" />
       </list>
@@ -175,6 +167,7 @@
       <workItem from="1608650809101" duration="2505000" />
       <workItem from="1608669165532" duration="5273000" />
       <workItem from="1608732153916" duration="1509000" />
+      <workItem from="1609936998690" duration="2207000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1607623606732</created>
@@ -267,7 +260,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608566025103</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Fixes and updates">
+      <created>1609937144080</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1609937144080</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fixes and updates">
+      <created>1609937401309</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1609937401309</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,7 +306,8 @@
     <MESSAGE value="Możliwość usunięcia wpisu w rejestrze obywatela." />
     <MESSAGE value="W przyciskach w Arrest | Faktura, nie wyświetla się ilość ani recydywy" />
     <MESSAGE value="Arrest | Faktura -&gt; filtorwanie + komentarz" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arrest | Faktura -&gt; filtorwanie + komentarz" />
+    <MESSAGE value="Fixes and updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes and updates" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
