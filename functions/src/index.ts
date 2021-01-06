@@ -27,6 +27,7 @@ import { createCitizenCall } from './callable/server/createCitizen';
 import { findByIdScanCall } from './callable/citizen/findByIdScan';
 import {removeRegistrationCall} from "./callable/citizen/removeRegistration";
 import {changeRecidivismCall} from "./callable/citizen/arrestMandate/changeRecidivism";
+import {updateCitizenInfoCall} from "./callable/citizen/updateCitizenInfo";
 
 admin.initializeApp();
 admin.firestore().settings({
@@ -44,6 +45,7 @@ export const confirmArrestMandate = confirmArrestMandateCall;
 export const changeRecidivism = changeRecidivismCall;
 export const findByIdScan = findByIdScanCall;
 export const removeRegistration = removeRegistrationCall;
+export const updateCitizenInfo = updateCitizenInfoCall;
 
 // Officer
 export const updateOfficerBadgeNumber = updateOfficerBadgeNumberCall;

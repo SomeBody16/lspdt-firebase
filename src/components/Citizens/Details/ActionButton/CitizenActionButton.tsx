@@ -10,6 +10,7 @@ import { IRecruitCitizenProps } from '../../../../../functions/src/callable/citi
 import { useSnackbar } from 'notistack';
 import MakeCitizenRegistrationDialog from './MakeCitizenRegistrationDialog';
 import {ICancelWantedProps} from "../../../../../functions/src/callable/citizen/cancelWanted";
+import UpdateCitizenInfoDialog from "./UpdateCitizenInfoDialog";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -31,7 +32,7 @@ function CitizenActionButton(props: Props) {
     const { enqueueSnackbar } = useSnackbar();
 
     const [isInProgress, setIsInProgress] = React.useState<boolean>(false);
-    const [state, setState] = React.useState<'setPhoneNumber' | 'makeRegistration' | 'none'>(
+    const [state, setState] = React.useState<'setPhoneNumber' | 'makeRegistration' | 'updateCitizenInfo' | 'none'>(
         'none'
     );
 
@@ -109,6 +110,16 @@ function CitizenActionButton(props: Props) {
                     setState('makeRegistration');
                 },
             },
+            {
+                label: t('Informacje'),
+                show:
+                    claims.value?.admin ||
+                    claims.value?.permissions?.includes('updateCitizenInfo'),
+                action: () => {
+                    setIsInProgress(true);
+                    setState('updateCitizenInfo');
+                },
+            },
         ],
         [t, claims.value, citizen.value, history, citizenId, recruitCitizen, enqueueSnackbar, cancelWanted]
     );
@@ -138,6 +149,12 @@ function CitizenActionButton(props: Props) {
 
             <MakeCitizenRegistrationDialog
                 open={state === 'makeRegistration'}
+                onClose={handleClose}
+                onFinish={handleFinish}
+            />
+
+            <UpdateCitizenInfoDialog
+                open={state === 'updateCitizenInfo'}
                 onClose={handleClose}
                 onFinish={handleFinish}
             />

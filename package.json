@@ -62,9 +62,9 @@
     "node-build-number": "^1.0.2"
   },
   "build": {
-    "unique": "lspdt:v3.0.0-dev[build:42]",
-    "number": 42,
-    "timestamp": "2020-12-23 15:06:05",
+    "unique": "lspdt:v3.0.0-dev[build:43]",
+    "number": 43,
+    "timestamp": "2021-1-6 15:31:20",
     "git-branch": "dev",
     "git-user": "SomeBody16 <filip.nowakowski2000@outlook.com>",
     "git-version": "2.28.0",

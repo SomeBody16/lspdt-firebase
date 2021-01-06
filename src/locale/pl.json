@@ -84,6 +84,7 @@
     "cancelWanted": "Możliwość anulowania statusu poszukiwanego dla obywatela.",
     "removeRegistration": "Możliwość usunięcia wpisu z kartoteki obywatela.",
     "changeRecidivism": "Możliwość manualnej zmiany poziomu recydywy obywatela",
+    "updateCitizenInfo": "Możliwość zmiany detali o obywatelu",
 
     "changeOfficerBadgeNumber": "Możliwość zmiany numeru odznaki funkcjonariusza.",
     "changeOfficerRank": "Możliwość zmiany rangi funkcjonariusza.",

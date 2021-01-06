@@ -89,6 +89,7 @@ export const ModelCitizen = async (value: any, options: (keyof ICitizen)[]) => {
             'Name',
             'Surname',
             'BirthDate',
+            'Height',
             'CreateTime',
 
             'PhoneNumber',
@@ -116,6 +117,10 @@ export const ModelCitizen = async (value: any, options: (keyof ICitizen)[]) => {
                     type: 'string',
                 },
                 BirthDate: (!fields || fields.includes('BirthDate')) && {
+                    presence: true,
+                    type: 'string',
+                },
+                Height: (!fields || fields.includes('Height')) && {
                     presence: true,
                     type: 'string',
                 },

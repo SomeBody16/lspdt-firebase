@@ -23,6 +23,7 @@ export const AllPermissions = [
     'setCitizenPhoto', // Ability to Ctrl+V image
     'removeRegistration', // Ability to PPM and remove registration from registry
     'changeRecidivism', // Change citizen recidivism per crime
+    'updateCitizenInfo', // Change citizen birth date and height
 
     // Police
     'changeOfficerBadgeNumber', // Button visibility: Badge Number
