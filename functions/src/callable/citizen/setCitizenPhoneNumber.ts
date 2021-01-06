@@ -56,7 +56,7 @@ export const setCitizenPhoneNumberCall = functions.https.onCall(
 
         /* ******************************************************************* */
         const officerDoc = await modelsUtil.readOfficer(context.auth.uid);
-        await makeRegistration(
+        makeRegistration(
             {
                 Server,
                 Citizen: {
@@ -88,7 +88,8 @@ export const setCitizenPhoneNumberCall = functions.https.onCall(
                         .addField(':older_man:', citizenDoc.data()?.PhoneNumber || '')
                         .addField(':new:', data.phoneNumber),
             }
-        );
+        )
+            .catch(console.error);
 
         return 1;
     }

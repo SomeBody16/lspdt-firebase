@@ -60,7 +60,7 @@ export const makeCitizenRegistrationCall = functions.https.onCall(
             });
         }
 
-        await makeRegistration(
+        makeRegistration(
             {
                 Server,
                 Citizen: {
@@ -79,7 +79,8 @@ export const makeCitizenRegistrationCall = functions.https.onCall(
                 channel: 'registry',
                 title: data.title,
             }
-        );
+        )
+            .catch(console.error);
 
         return 1;
     }

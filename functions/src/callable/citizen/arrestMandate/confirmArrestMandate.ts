@@ -83,7 +83,7 @@ export const confirmArrestMandateCall = functions.https.onCall(
         }).format(data.penalty);
 
         const Title = `${data.judgment}tyg | ${penalty}`;
-        await makeRegistration(
+        makeRegistration(
             {
                 Server,
                 Citizen: {
@@ -113,7 +113,8 @@ export const confirmArrestMandateCall = functions.https.onCall(
                         .addField('Grzywna', data.penalty.toString())
                         .addField('Odsiadka', data.judgment.toString()),
             }
-        );
+        )
+            .catch(console.error);
 
         return 1;
     }

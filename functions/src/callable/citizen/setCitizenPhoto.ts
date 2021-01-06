@@ -50,7 +50,7 @@ export const setCitizenPhotoCall = functions.https.onCall(
         }
         /* ******************************************************************* */
         const officerDoc = await modelsUtil.readOfficer(context.auth.uid);
-        await makeRegistration(
+        makeRegistration(
             {
                 Server,
                 Citizen: {
@@ -76,7 +76,8 @@ export const setCitizenPhotoCall = functions.https.onCall(
                 channel: 'registry',
                 title: 'Zmiana zdjęcia',
             }
-        );
+        )
+            .catch(console.error);
 
         return 1;
     }

@@ -46,7 +46,7 @@ export const updateOfficerBadgeNumberCall = functions.https.onCall(
         /* ******************************************************************* */
         const citizenDoc = await modelsUtil.readCitizen(officerDoc.data()?.Citizen.Id || '');
         const officerAuthorDoc = await modelsUtil.readOfficer(context.auth.uid);
-        await makeRegistration(
+        makeRegistration(
             {
                 Server,
                 Citizen: {
@@ -76,7 +76,8 @@ export const updateOfficerBadgeNumberCall = functions.https.onCall(
                         .addField(':older_man:', officerDoc.data()?.BadgeNumber || '')
                         .addField(':new:', data.badgeNumber),
             }
-        );
+        )
+            .catch(console.error);
 
         return 1;
     }

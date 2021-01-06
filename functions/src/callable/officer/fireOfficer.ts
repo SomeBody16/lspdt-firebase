@@ -45,7 +45,7 @@ export const fireOfficerCall = functions.https.onCall(
         });
         /* ******************************************************************* */
         const officerAuthorDoc = await modelsUtil.readOfficer(context.auth.uid);
-        await makeRegistration(
+        makeRegistration(
             {
                 Server,
                 Citizen: {
@@ -71,7 +71,8 @@ export const fireOfficerCall = functions.https.onCall(
                 channel: 'registry',
                 title: 'Zwolnienie',
             }
-        );
+        )
+            .catch(console.error);
 
         return 1;
     }

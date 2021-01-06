@@ -81,6 +81,17 @@ function CitizenPhoto(props: Props) {
                 setAppBarProgress(null);
             };
             image.onload = () => {
+
+                // Max file size: 512 KB
+                const fileSize = (src.length * (3/4));
+                if (fileSize > 1024 * 512) {
+                    snackbar.enqueueSnackbar('Maksymalny rozmiar zdjęcia: 512 KB', {
+                        variant: 'error',
+                    });
+                    setAppBarProgress(null);
+                    return;
+                }
+
                 setCitizenPhoto({
                     citizenId: props.citizenId,
                     imageUrl: src,

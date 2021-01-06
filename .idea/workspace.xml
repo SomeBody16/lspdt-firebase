@@ -4,6 +4,19 @@
     <list default="true" id="7e4867a6-a502-42e0-b4e2-94d4d3ce1849" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/arrestMandate/changeRecidivism.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/arrestMandate/changeRecidivism.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/arrestMandate/confirmArrestMandate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/arrestMandate/confirmArrestMandate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/arrestMandate/makeCitizenWanted.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/arrestMandate/makeCitizenWanted.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/cancelWanted.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/cancelWanted.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/findByIdScan.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/findByIdScan.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/makeCitizenRegistration.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/makeCitizenRegistration.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/recruitCitizen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/recruitCitizen.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/setCitizenPhoneNumber.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/setCitizenPhoneNumber.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/citizen/setCitizenPhoto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/citizen/setCitizenPhoto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/officer/fireOfficer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/officer/fireOfficer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/officer/setOfficerRank.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/officer/setOfficerRank.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/officer/updateOfficerBadgeNumber.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/officer/updateOfficerBadgeNumber.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/callable/server/createCitizen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/callable/server/createCitizen.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Details/CitizenPhoto.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Details/CitizenPhoto.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +180,7 @@
       <workItem from="1608650809101" duration="2505000" />
       <workItem from="1608669165532" duration="5273000" />
       <workItem from="1608732153916" duration="1509000" />
-      <workItem from="1609936998690" duration="2207000" />
+      <workItem from="1609936998690" duration="3658000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1607623606732</created>
@@ -274,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609937401309</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Zmiana recydywy wysyła się na kanał registry, nie punishments">
+      <created>1609941232277</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1609941232277</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +327,8 @@
     <MESSAGE value="W przyciskach w Arrest | Faktura, nie wyświetla się ilość ani recydywy" />
     <MESSAGE value="Arrest | Faktura -&gt; filtorwanie + komentarz" />
     <MESSAGE value="Fixes and updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes and updates" />
+    <MESSAGE value="Zmiana recydywy wysyła się na kanał registry, nie punishments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Zmiana recydywy wysyła się na kanał registry, nie punishments" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

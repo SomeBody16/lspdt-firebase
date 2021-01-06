@@ -50,7 +50,7 @@ export const setOfficerRankCall = functions.https.onCall(
         /* ******************************************************************* */
         const citizenDoc = await modelsUtil.readCitizen(officerDoc.data()?.Citizen.Id || '');
         const officerAuthorDoc = await modelsUtil.readOfficer(context.auth.uid);
-        await makeRegistration(
+        makeRegistration(
             {
                 Server,
                 Citizen: {
@@ -83,7 +83,8 @@ export const setOfficerRankCall = functions.https.onCall(
                         )
                         .addField(':new:', `${rankDoc.data()?.Callsign} | ${rankDoc.data()?.Name}`),
             }
-        );
+        )
+            .catch(console.error);
 
         return 1;
     }

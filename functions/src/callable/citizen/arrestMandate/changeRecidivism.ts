@@ -60,7 +60,7 @@ export const changeRecidivismCall = functions.https.onCall(
 
         /* ******************************************************************* */
         const officerDoc = await modelsUtil.readOfficer(context.auth.uid);
-        await makeRegistration(
+        makeRegistration(
             {
                 Server,
                 Citizen: {
@@ -93,7 +93,8 @@ export const changeRecidivismCall = functions.https.onCall(
                         .addField(':older_man:', (Recidivism[crimeDoc.id] - value).toString() || '')
                         .addField(':new:', Recidivism[crimeDoc.id].toString() || ''),
             }
-        );
+        )
+            .catch(console.error);
 
         return 1;
     }

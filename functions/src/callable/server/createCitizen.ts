@@ -57,7 +57,7 @@ export const createCitizenCall = functions.https.onCall(
             await idScan.makePublic();
         }
         const ImageUrl = `https://storage.googleapis.com/lspdt-fivem-prod.appspot.com/${data.uid}`;
-        await makeRegistration(
+        makeRegistration(
             {
                 Server,
                 Citizen: citizenDocData,
@@ -79,9 +79,14 @@ export const createCitizenCall = functions.https.onCall(
             {
                 channel: 'registry',
                 title: 'Otwarcie kartoteki',
-                customMessage: (msg) => msg.setDescription('').setImage(ImageUrl || ''),
+                customMessage: (msg) => {
+                    msg.setDescription('');
+                    if (ImageUrl.length) msg.setImage(ImageUrl);
+                    return msg;
+                },
             }
-        );
+        )
+            .catch(console.error);
 
         return 1;
     }

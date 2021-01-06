@@ -42,7 +42,7 @@ export const cancelWantedCall = functions.https.onCall(
             WantedCrimesIds: [],
         } as Partial<ICitizen>);
 
-        await makeRegistration(
+        makeRegistration(
             {
                 Server,
                 Citizen: {
@@ -67,7 +67,8 @@ export const cancelWantedCall = functions.https.onCall(
                 channel: 'registry',
                 title: 'Anulowanie poszukiwań',
             }
-        );
+        )
+            .catch(console.error);
 
         return 1;
     }

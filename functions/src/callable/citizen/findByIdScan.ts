@@ -45,16 +45,19 @@ export const findByIdScanCall = functions.https.onCall(
                 expires: Date.now() + 1000 * 60 * 60 * 24 * 5,
             });
 
-        await makeDiscordLog({
+        makeDiscordLog({
             Server,
             channel: 'log',
             title: 'Zeskanowano zdjęcie',
-            customMessage: (msg) =>
+            customMessage: (msg) => {
                 msg
                     .setAuthor(context.auth?.uid || 'UNKNOWN USER ID')
-                    .setImage(signedUrl || '')
-                    .setDescription(`\`\`\`\n${fullText}\n\`\`\``),
-        });
+                    .setDescription(`\`\`\`\n${fullText}\n\`\`\``);
+                if (signedUrl?.length) msg.setImage(signedUrl)
+                return msg;
+            },
+        })
+            .catch(console.error);
 
         return fullText;
     }

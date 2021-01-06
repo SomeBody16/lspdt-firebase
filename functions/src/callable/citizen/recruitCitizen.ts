@@ -82,7 +82,7 @@ export const recruitCitizenCall = functions.https.onCall(
             });
         }
 
-        await makeRegistration(
+        makeRegistration(
             {
                 Server,
                 Citizen: {
@@ -105,7 +105,8 @@ export const recruitCitizenCall = functions.https.onCall(
                 ImageUrl: citizenDoc.get('ImageUrl'),
             },
             discordLogOptions
-        );
+        )
+            .catch(console.error);
 
         return 1;
     }
