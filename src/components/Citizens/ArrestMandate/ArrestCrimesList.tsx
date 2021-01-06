@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useCallback, useMemo, useState} from 'react';
+import React, {ChangeEvent, useCallback, useMemo, useState, MouseEvent} from 'react';
 import {Theme, createStyles} from '@material-ui/core/styles';
 import {makeStyles} from '@material-ui/styles';
 import {
@@ -7,9 +7,9 @@ import {
     Avatar,
     ListItemText,
     ListItem,
-    ListItemSecondaryAction, IconButton, TextField,
+    ListItemSecondaryAction, IconButton, TextField, CircularProgress,
 } from '@material-ui/core';
-import {useAllCrimes, useCitizen} from '../../../firebase';
+import {useAllCrimes, useCitizen, useClaims, useFunction} from '../../../firebase';
 import EmojiPrefix from '../../Chips/EmojiPrefix';
 import PenaltyJudgment from '../../Chips/PenaltyJudgment';
 import ICrime from '../../../../functions/src/models/crime.interface';
@@ -19,6 +19,7 @@ import {useParams} from "react-router-dom";
 import ICitizen from "../../../../functions/src/models/citizen.interface";
 import {Feedback} from "@material-ui/icons";
 import {useSnackbar} from "notistack";
+import {IChangeRecidivismProps} from "../../../../functions/src/callable/citizen/arrestMandate/changeRecidivism";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -29,8 +30,18 @@ const useStyles = makeStyles((theme: Theme) =>
             color: theme.palette.getContrastText(red[500]),
             backgroundColor: red[500],
         },
-        comment: {
-
+        actions: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '5px',
+        },
+        buttonRecidivism: {
+            position: 'relative',
+        },
+        buttonRecidivismProgress: {
+            position: 'absolute',
+            zIndex: 1,
         }
     })
 );
@@ -43,11 +54,35 @@ function CrimeItem(item: ICrimeWithCount & { handleChange: (e: any, item: ICrime
     const classes = useStyles();
     const {enqueueSnackbar} = useSnackbar();
 
-    const commentClickHandler = useCallback((e:  React.MouseEvent) => {
+    const commentClickHandler = useCallback((e: React.MouseEvent) => {
         enqueueSnackbar(item.Comment, {variant: 'warning'});
         e.preventDefault();
         e.stopPropagation();
     }, [item, enqueueSnackbar]);
+
+    const {citizenId} = useParams() as any;
+    const [recidivismLoading, setRecidivismLoading] = useState<boolean>(false);
+    const changeRecidivismCall = useFunction<IChangeRecidivismProps, void>('changeRecidivism');
+    const changeRecidivism = useCallback((e: MouseEvent, value: 1 | -1) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        setRecidivismLoading(true);
+        changeRecidivismCall({
+            citizenId, 
+            crimeId: item.Id, 
+            value
+        })
+            .then(() => enqueueSnackbar('Zwiększono poziom recydywy!', {variant: 'success'}))
+            .catch((err) => enqueueSnackbar(err.message, {variant: 'error'}))
+            .finally(() => setRecidivismLoading(false));
+    }, [changeRecidivismCall, citizenId, enqueueSnackbar, item.Id]);
+
+    const claims = useClaims();
+    const recidivism = useMemo(() => {
+        const match = item.Name.match(/\((R\d+)\)/);
+        return match && match.length > 1 && match[1];
+    }, [item.Name]);
 
     return (
         <ListItem
@@ -64,20 +99,41 @@ function CrimeItem(item: ICrimeWithCount & { handleChange: (e: any, item: ICrime
                     <PenaltyJudgment penalty={item.Penalty} judgment={item.Judgment}/>
                 }
             />
-            {(item.count > 0 || item.Comment) && (
+            {(item.count > 0 || item.Comment || recidivism) && (
                 <ListItemSecondaryAction
                     onClick={(e) => item.handleChange(e, item, 1)}
                     onContextMenu={(e) => item.handleChange(e, item, -1)}
                 >
-                    {item.count ? (
-                        <Avatar className={classes.count}>
-                            {item.count}
-                        </Avatar>
-                    ) : (
-                        <IconButton onClick={commentClickHandler}>
-                            <Feedback/>
-                        </IconButton>
-                    )}
+                    <div className={classes.actions}>
+                        {item.Comment && (
+                            <IconButton onClick={commentClickHandler}>
+                                <Feedback/>
+                            </IconButton>
+                        )}
+                        {(claims.value?.admin || claims.value?.permissions?.includes('changeRecidivism')) && recidivism && (
+                            <IconButton
+                                disabled={recidivismLoading}
+                                className={classes.buttonRecidivism}
+                                onClick={e => changeRecidivism(e, 1)}
+                                onContextMenu={e => changeRecidivism(e, -1)}
+                            >
+                                {recidivismLoading && (
+                                    <CircularProgress
+                                        className={classes.buttonRecidivismProgress}
+                                        color='secondary'
+                                    />
+                                )}
+                                <Avatar>
+                                    {recidivism}
+                                </Avatar>
+                            </IconButton>
+                        )}
+                        {item.count > 0 && (
+                            <Avatar className={classes.count}>
+                                {item.count}
+                            </Avatar>
+                        )}
+                    </div>
                 </ListItemSecondaryAction>
             )}
         </ListItem>

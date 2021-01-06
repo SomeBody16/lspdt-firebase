@@ -11,6 +11,8 @@ export interface IConfirmArrestMandateProps {
     citizenId: string;
     crimesIds: string[];
     author: string;
+    penalty: number,
+    judgment: number,
 }
 
 export const confirmArrestMandateCall = functions.https.onCall(
@@ -73,6 +75,14 @@ export const confirmArrestMandateCall = functions.https.onCall(
 
         /* ******************************************************************* */
         const officerDoc = await modelsUtil.readOfficer(context.auth.uid);
+
+        const penalty = Intl.NumberFormat('pl', {
+            style: "currency",
+            currency: "USD",
+            minimumFractionDigits: 0
+        }).format(data.penalty);
+
+        const Title = `${data.judgment}tyg | ${penalty}`;
         await makeRegistration(
             {
                 Server,
@@ -89,7 +99,7 @@ export const confirmArrestMandateCall = functions.https.onCall(
                     .filter(
                         (value, index, self) => self.findIndex((p) => p.Id === value.Id) === index
                     ),
-                Title: '{{penalty}} | {{judgment}}',
+                Title,
                 Description: data.author,
                 Crimes: crimes,
                 ImageUrl: citizenDoc.get('ImageUrl'),
@@ -100,20 +110,8 @@ export const confirmArrestMandateCall = functions.https.onCall(
                 customMessage: (msg) =>
                     msg
                         .addField('Powód', crimes.map((c) => c.Name).join(', ') + ' ')
-                        .addField(
-                            'Grzywna',
-                            crimes
-                                .map((c) => +c.Penalty)
-                                .reduce((prev, curr) => prev + curr, 0)
-                                .toString() + ' '
-                        )
-                        .addField(
-                            'Odsiadka',
-                            crimes
-                                .map((c) => +c.Judgment)
-                                .reduce((prev, curr) => prev + curr, 0)
-                                .toString() + ' '
-                        ),
+                        .addField('Grzywna', data.penalty.toString())
+                        .addField('Odsiadka', data.judgment.toString()),
             }
         );
 

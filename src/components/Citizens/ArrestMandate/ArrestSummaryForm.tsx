@@ -260,7 +260,7 @@ function ArrestSummaryForm() {
         confirmArrestMandate({
             citizenId,
             crimesIds,
-            author: formValue.author,
+            ...formValue,
         })
             .then(() => {
                 enqueueSnackbar(t('Zapisano wpis w kartotece!'), {

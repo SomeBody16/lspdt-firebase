@@ -83,6 +83,7 @@
     "setCitizenPhoto": "Możliwość zmiany zdjęcia mieszkańca.",
     "cancelWanted": "Możliwość anulowania statusu poszukiwanego dla obywatela.",
     "removeRegistration": "Możliwość usunięcia wpisu z kartoteki obywatela.",
+    "changeRecidivism": "Możliwość manualnej zmiany poziomu recydywy obywatela",
 
     "changeOfficerBadgeNumber": "Możliwość zmiany numeru odznaki funkcjonariusza.",
     "changeOfficerRank": "Możliwość zmiany rangi funkcjonariusza.",

@@ -22,6 +22,7 @@ export const AllPermissions = [
     'cancelWanted', // Option visibility: Cancel wanted
     'setCitizenPhoto', // Ability to Ctrl+V image
     'removeRegistration', // Ability to PPM and remove registration from registry
+    'changeRecidivism', // Change citizen recidivism per crime
 
     // Police
     'changeOfficerBadgeNumber', // Button visibility: Badge Number
