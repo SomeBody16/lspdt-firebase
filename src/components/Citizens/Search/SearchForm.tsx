@@ -16,6 +16,8 @@ import * as uuid from 'uuid';
 import { IMakeSearchData } from '../../../screens/Citizens/SearchCitizensScreen';
 import useServer from '../../../firebase/hooks/useServer';
 
+const capitalize = (str: string): string => str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
+
 const testAndExtract = (
     variant: string
 ): {
@@ -26,16 +28,28 @@ const testAndExtract = (
         default:
             return {
                 test: (lines) =>
-                    lines.length >= 5 &&
+                    (lines.length >= 5 &&
                     /Dowód osobisty/.test(lines[1]) &&
                     /Data urodzenia.+/.test(lines[3]) &&
-                    /Wzrost.+/.test(lines[4]),
-                extract: (lines) => ({
-                    Name: lines[2].split(' ')[0],
-                    Surname: lines[2].split(' ')[1],
-                    BirthDate: lines[3].split(' : ')[1],
-                    Height: lines[4].split(': ')[1],
-                }),
+                    /Wzrost.+/.test(lines[4]))
+                    ||
+                    (lines.length >= 5 &&
+                    /INTERAKCJA Z CYWILAMI/.test(lines[0]) &&
+                    /NAME ?:.+/.test(lines[1]) &&
+                    /DATA URODZENIA ?:.+/.test(lines[3]) &&
+                    /WZROST ?:.+/.test(lines[4])),
+                extract: (lines) => (/Dowód osobisty/.test(lines[1])
+                    ? {
+                        Name: lines[2].split(' ')[0],
+                        Surname: lines[2].split(' ')[1],
+                        BirthDate: lines[3].split(' : ')[1],
+                        Height: lines[4].split(': ')[1],
+                    } : {
+                        Name: capitalize(lines[1].split(':')[1].split(' ')[0]),
+                        Surname: capitalize(lines[1].split(':')[1].split(' ')[1]),
+                        BirthDate: lines[3].split(':')[1],
+                        Height: lines[4].split(':')[1],
+                    }),
             };
     }
 };

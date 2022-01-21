@@ -192,7 +192,7 @@ function CitizenRegistry(props: Props) {
                     })
             });
         }
-    }, [canRemoveRegistration, enqueueSnackbar, props.citizenId, removeRegistration]);
+    }, [canRemoveRegistration, enqueueSnackbar, props.citizenId, removeRegistration, setAppBarProgress]);
     const handleClose = useCallback(() => {
         setAnchorEl(null);
     }, []);

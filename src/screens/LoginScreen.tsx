@@ -65,6 +65,8 @@ function LoginScreen() {
     };
 
     const onSubmit = async (data: ILoginForm) => {
+        // enqueueSnackbar('Tablet został dezaktywowany', { variant: 'error' })
+
         setSubmitLoading(true);
 
         const currentUser = firebase.auth().currentUser;

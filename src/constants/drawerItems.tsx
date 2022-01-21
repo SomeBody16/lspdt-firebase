@@ -15,6 +15,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import routerPages from './routerPages';
 import { useTranslation } from 'react-i18next';
 import WantedScreen from "../screens/Wanted/WantedScreen";
+import VehiclesScreen from "../screens/Vehicles/VehiclesScreen";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

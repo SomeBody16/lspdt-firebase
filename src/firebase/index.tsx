@@ -18,6 +18,8 @@ import { useOfficerByCitizenIdHook } from './hooks/useOfficerByCitizenId';
 import { usePrefixHook } from './hooks/usePrefix';
 import { useRankHook } from './hooks/useRank';
 import {useWantedListHook} from "./hooks/useWantedList";
+import {useVehicleHook} from "./hooks/useVehicle";
+import {useVehicleListStatusHook} from "./hooks/useVehicleListStatus";
 
 export const firebaseConfig = {
     apiKey: 'AIzaSyDS59MYfwpfZYWGi9Ur9qdmNQsdJneOETw',
@@ -52,3 +54,5 @@ export const useOfficerByCitizenId = useOfficerByCitizenIdHook;
 export const usePrefix = usePrefixHook;
 export const useRank = useRankHook;
 export const useWantedList = useWantedListHook;
+export const useVehicle = useVehicleHook;
+export const useVehicleListStatus = useVehicleListStatusHook;

@@ -1,5 +1,4 @@
 import * as admin from 'firebase-admin';
-import * as functions from 'firebase-functions';
 import { setCitizenPhoneNumberCall } from './callable/citizen/setCitizenPhoneNumber';
 import { makeCitizenRegistrationCall } from './callable/citizen/makeCitizenRegistration';
 import { recruitCitizenCall } from './callable/citizen/recruitCitizen';
@@ -28,6 +27,8 @@ import { findByIdScanCall } from './callable/citizen/findByIdScan';
 import {removeRegistrationCall} from "./callable/citizen/removeRegistration";
 import {changeRecidivismCall} from "./callable/citizen/arrestMandate/changeRecidivism";
 import {updateCitizenInfoCall} from "./callable/citizen/updateCitizenInfo";
+import {exportRegistryCall} from "./callable/server/export-registry";
+import {cancelWantedScheduleCall} from "./scheduled/cancelWanted";
 
 admin.initializeApp();
 admin.firestore().settings({
@@ -73,10 +74,6 @@ export const listPermissions = listPermissionsCall;
 // Server
 export const createChief = createChiefCall;
 export const createCitizen = createCitizenCall;
+export const exportRegistry = exportRegistryCall;
 
-export const tmp = functions.https.onCall(async (data, context) => {
-    const res = admin.auth().listUsers();
-    (await res).users.forEach((user) => {
-        console.log(user.displayName, user.customClaims);
-    });
-});
+export const cancelWantedSchedule = cancelWantedScheduleCall;

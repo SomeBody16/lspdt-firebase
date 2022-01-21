@@ -12,7 +12,6 @@ import {
     IconButton,
     Collapse,
     Box,
-    Avatar,
     DialogActions,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';

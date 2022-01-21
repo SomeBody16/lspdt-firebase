@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e4867a6-a502-42e0-b4e2-94d4d3ce1849" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/functions/src/callable/citizen/updateCitizenInfo.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Citizens/Details/ActionButton/UpdateCitizenInfoDialog.tsx" afterDir="false" />
+    <list default="true" id="7e4867a6-a502-42e0-b4e2-94d4d3ce1849" name="Default Changelist" comment="- Możliwość zaktualizowania informacji o obywatelu">
+      <change afterPath="$PROJECT_DIR$/functions/src/callable/server/export-registry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/functions/src/scheduled/cancelWanted.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Chips/VehicleChip.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/firebase/hooks/useVehicle.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/firebase/hooks/useVehicleListStatus.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/functions/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/functions/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/models/citizen.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/models/citizen.interface.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions/src/models/user-claims.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/models/user-claims.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/utils/validators.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/utils/validators.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/src/models/vehicle.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/models/vehicle.interface.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Details/ActionButton/CitizenActionButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Details/ActionButton/CitizenActionButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Details/CitizenInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Details/CitizenInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/locale/pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/locale/pl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Details/ActionButton/UpdateCitizenInfoDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Details/ActionButton/UpdateCitizenInfoDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Details/CitizenRegistry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Details/CitizenRegistry.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Citizens/Search/SearchForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Citizens/Search/SearchForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/drawerItems.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/drawerItems.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/LoginScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/LoginScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Police/PoliceScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Police/PoliceScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Vehicles/VehiclesScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Vehicles/VehiclesScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/Wanted/WantedScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Wanted/WantedScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +39,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -37,6 +51,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
@@ -73,7 +95,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/Citizens/Details/ActionButton" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -87,13 +109,19 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Filip\Code\React\lspdtablet\src\firebase\hooks" />
+      <recent name="D:\Filip\Code\React\lspdtablet\src\components\Vehicle" />
       <recent name="D:\Filip\Code\React\lspdtablet\src\components\Citizens\Details\ActionButton" />
       <recent name="D:\Filip\Code\React\lspdtablet\src\screens\WantedList" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Filip\Code\React\lspdtablet\functions\src" />
+      <recent name="D:\Filip\Code\React\lspdtablet\functions\src\callable\server" />
+    </key>
   </component>
-  <component name="RunManager" selected="npm.functions-deploy">
-    <configuration name="functions-deploy" type="js.build_tools.npm" temporary="true">
-      <package-json value="$PROJECT_DIR$/functions/package.json" />
+  <component name="RunManager" selected="npm.react-build-deploy">
+    <configuration name="deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
         <script value="deploy" />
@@ -102,11 +130,11 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="functions-serve" type="js.build_tools.npm" temporary="true">
+    <configuration name="functions-deploy" type="js.build_tools.npm" temporary="true">
       <package-json value="$PROJECT_DIR$/functions/package.json" />
       <command value="run" />
       <scripts>
-        <script value="serve" />
+        <script value="deploy" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -145,17 +173,17 @@
     <list>
       <item itemvalue="npm.react-build-deploy" />
       <item itemvalue="npm.functions-deploy" />
-      <item itemvalue="npm.functions-serve" />
       <item itemvalue="npm.functions-shell" />
       <item itemvalue="npm.react-start" />
+      <item itemvalue="npm.deploy" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.functions-deploy" />
         <item itemvalue="npm.react-build-deploy" />
         <item itemvalue="npm.react-start" />
+        <item itemvalue="npm.deploy" />
+        <item itemvalue="npm.functions-deploy" />
         <item itemvalue="npm.functions-shell" />
-        <item itemvalue="npm.functions-serve" />
       </list>
     </recent_temporary>
   </component>
@@ -178,7 +206,16 @@
       <workItem from="1608650809101" duration="2505000" />
       <workItem from="1608669165532" duration="5273000" />
       <workItem from="1608732153916" duration="1509000" />
-      <workItem from="1609936998690" duration="8958000" />
+      <workItem from="1609936998690" duration="9631000" />
+      <workItem from="1610115928155" duration="5536000" />
+      <workItem from="1610280149838" duration="7588000" />
+      <workItem from="1610658487379" duration="76000" />
+      <workItem from="1610721902871" duration="125000" />
+      <workItem from="1612871244941" duration="2216000" />
+      <workItem from="1612874342644" duration="438000" />
+      <workItem from="1632075390417" duration="3363000" />
+      <workItem from="1632500113230" duration="1608000" />
+      <workItem from="1632897191587" duration="418000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1607623606732</created>
@@ -299,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609943026708</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="- Możliwość zaktualizowania informacji o obywatelu">
+      <created>1609951656145</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1609951656145</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,7 +378,8 @@
     <MESSAGE value="Fixes and updates" />
     <MESSAGE value="Zmiana recydywy wysyła się na kanał registry, nie punishments" />
     <MESSAGE value="- Webhookie są teraz asynchroniczne&#10;- Max size zdjecia: 512KB" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Webhookie są teraz asynchroniczne&#10;- Max size zdjecia: 512KB" />
+    <MESSAGE value="- Możliwość zaktualizowania informacji o obywatelu" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Możliwość zaktualizowania informacji o obywatelu" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

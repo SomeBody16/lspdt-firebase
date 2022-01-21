@@ -41,6 +41,9 @@ export const AllPermissions = [
 
     // Permissions
     'accessPermissions',
+
+    // Vehicle
+    'setVehicleStatus',
 ] as const;
 
 export default interface IUserClaims {
