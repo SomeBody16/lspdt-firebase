@@ -18,18 +18,17 @@ import { usePrefixHook } from './hooks/usePrefix';
 import { useRankHook } from './hooks/useRank';
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyCCwGebLXv5FzKoK2WB8appK97jz3idTs8',
-    authDomain: 'fivem-lspdt.firebaseapp.com',
-    databaseURL: 'https://fivem-lspdt.firebaseio.com',
-    projectId: 'fivem-lspdt',
-    storageBucket: 'fivem-lspdt.appspot.com',
-    messagingSenderId: '586719319565',
-    appId: '1:586719319565:web:7067c9550d952c7ec0e744',
-    measurementId: 'G-GJK8TY4WBF',
+  apiKey: 'AIzaSyCm-HAZ6eUG85SeiuexjMKoMZHjAmYRlbo',
+  authDomain: 'lpsdt-3-0.firebaseapp.com',
+  projectId: 'lpsdt-3-0',
+  storageBucket: 'lpsdt-3-0.appspot.com',
+  messagingSenderId: '756709062275',
+  appId: '1:756709062275:web:86c1c5a4f5bb095fa5cdb6',
+  measurementId: 'G-136ZZ4HX7H',
 };
 
 firebase.initializeApp(firebaseConfig);
-firebase.functions().useFunctionsEmulator('http://localhost:5001');
+// firebase.functions().useFunctionsEmulator('http://localhost:5001');
 
 export const useAllCrimes = useAllCrimesHook;
 export const useAllOfficers = useAllOfficersHook;
