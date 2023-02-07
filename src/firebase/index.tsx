@@ -1,7 +1,7 @@
+import 'firebase/analytics';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import 'firebase/analytics';
 import { useAllCrimesHook } from './hooks/useAllCrimes';
 import { useAllOfficersHook } from './hooks/useAllOfficers';
 import { useAllPermissionsHook } from './hooks/useAllPermissions';
@@ -17,24 +17,20 @@ import { useOfficerHook } from './hooks/useOfficer';
 import { useOfficerByCitizenIdHook } from './hooks/useOfficerByCitizenId';
 import { usePrefixHook } from './hooks/usePrefix';
 import { useRankHook } from './hooks/useRank';
-import {useWantedListHook} from "./hooks/useWantedList";
+import { useWantedListHook } from './hooks/useWantedList';
 
 export const firebaseConfig = {
-    apiKey: 'AIzaSyDS59MYfwpfZYWGi9Ur9qdmNQsdJneOETw',
-    authDomain: 'lspdt-fivem-prod.firebaseapp.com',
-    databaseURL: 'https://lspdt-fivem-prod.firebaseio.com',
-    projectId: 'lspdt-fivem-prod',
-    storageBucket: 'lspdt-fivem-prod.appspot.com',
-    messagingSenderId: '68944789384',
-    appId: '1:68944789384:web:6fff34d573fb442fcf043d',
-    measurementId: 'G-7Y548ZRY5T',
+  apiKey: 'AIzaSyCm-HAZ6eUG85SeiuexjMKoMZHjAmYRlbo',
+  authDomain: 'lpsdt-3-0.firebaseapp.com',
+  projectId: 'lpsdt-3-0',
+  storageBucket: 'lpsdt-3-0.appspot.com',
+  messagingSenderId: '756709062275',
+  appId: '1:756709062275:web:86c1c5a4f5bb095fa5cdb6',
+  measurementId: 'G-136ZZ4HX7H',
 };
 //
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
-if (process.env.REACT_APP_USE_LOCAL_FUNCTIONS === 'true') {
-    firebase.functions().useFunctionsEmulator('http://localhost:5001');
-}
 
 export const useAllCrimes = useAllCrimesHook;
 export const useAllOfficers = useAllOfficersHook;
