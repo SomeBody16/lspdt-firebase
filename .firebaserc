@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "fivem-lspdt"
-  }
+    "production": "lpsdt-3-0"
+  },
+  "targets": {},
+  "etags": {}
 }
