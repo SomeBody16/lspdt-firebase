@@ -62,15 +62,16 @@
     "node-build-number": "^1.0.2"
   },
   "build": {
-    "unique": "lspdt:v3.0.0-[build:45]",
-    "number": 45,
-    "timestamp": "4/19/2022, 9:52:12 PM",
-    "git-branch": "",
+    "unique": "lspdt:v3.0.0-updejt[build:48]",
+    "number": 48,
+    "timestamp": "3/3/2023, 10:51:04 PM",
+    "git-branch": "updejt",
+    "git-user": "Filip Nowakowski <f.nowakowski2000@gmail.com>",
     "git-version": "2.25.1",
-    "node-version": "v16.13.0",
-    "user": "filip",
-    "shell": "/bin/bash",
-    "lang": "C.UTF-8",
+    "node-version": "v16.4.0",
+    "user": "sb",
+    "shell": "/usr/bin/zsh",
+    "lang": "en_US.UTF-8",
     "uname": "Linux"
   }
 }
