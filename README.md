@@ -3,6 +3,19 @@
 > Los Santos Police Department Tablet to zarządzalna baza danych obywateli wyspy `Atomic RP`, opartym o system permisji i rang LSPD.
 > ~ Discord: somebody16
 
+# Użyte technologie:
+
+- [React](https://pl.legacy.reactjs.org/) (16.13.1)
+- [Material UI (4.x.x)](https://v4.mui.com/)
+- [React Hook Form](https://react-hook-form.com/) (obsługa formularzy)
+- [validate.js](https://validatejs.org/) (walidacja formularzy)
+- [Firestore](https://firebase.google.com/) (Baza danych)
+- [Firebase Authorization](https://firebase.google.com/) (Autoryzacja użytkowników)
+- [Firebase Functions](https://firebase.google.com/) (Serverless functions)
+- [Firebase Storage](https://firebase.google.com/) (Przechowywanie zdjęć i innych assetów)
+- [Firestore](https://firebase.google.com/) (Baza danych)
+- [discord-webhook-node](https://www.npmjs.com/package/discord-webhook-node) (integracja z Discordem)
+
 # Omówienie funkcji
 
 ## :family: Mieszkańcy
