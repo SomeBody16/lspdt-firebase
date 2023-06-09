@@ -1,13 +1,7 @@
 # LSPD Tablet
 
 > Los Santos Police Department Tablet to zarządzalna baza danych obywateli wyspy `Atomic RP`, opartym o system permisji i rang LSPD.
-> [name=SomeBody16#7497 | Samuel Buddy] [color=#0f0]
-
-## Bądź na bierząco
-
-Na moim [serwerze discord](https://discord.gg/tpcVCUzGec) wstawiam na bieżąco aktualizacje oraz plany rozwoju tego tableu.
-
-https://discord.gg/tpcVCUzGec
+> ~ Discord: somebody16
 
 # Omówienie funkcji
 
